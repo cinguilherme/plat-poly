@@ -26,7 +26,19 @@ services:
       - HOST_TMP_FOLDER=/tmp/localstack
       - AWS_DEFAULT_REGION=us-east-1
       - AWS_ACCESS_KEY_ID=foo
+      - AWS_SECRET_ACCESS_KEY=bar
+
+      - PORT_WEB_UI=9080
+
+      ## S3 ENVS LOCAL DEVELOPMENT
+      - S3_BUCKET=localstack
+      - S3_ENDPOINT=http://localstack-poly-plat:4572
+      - S3_REGION=us-east-1
+      - S3_USE_HTTPS=false
+      - S3_VERIFY_SSL=false
+      - S3_FORCE_PATH_STYLE=true
 
     volumes:
       - "./localstack-data:/var/lib/localstack" # Maps the local directory to the container directory
       - "/var/run/docker.sock:/var/run/docker.sock" # Allows the LocalStack container to communicate with the Docker daemon
+      - ./aws-local-setup:/etc/localstack/init/ready.d

@@ -1,0 +1,9 @@
+{:paths ["src" "resources"]
+ :deps {
+        ;; clojure
+        org.clojure/clojure {:mvn/version "1.10.1"}
+        ;;
+        amazonica/amazonica {:mvn/version "0.3.165"}
+ }
+ :aliases {:test {:extra-paths ["test"]
+                  :extra-deps {}}}}

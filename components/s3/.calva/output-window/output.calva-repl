@@ -1,0 +1,21 @@
+; Jacking in...
+; Connecting using "undefined" project type.
+; You can make Calva auto-select this.
+;   - See https://calva.io/connect-sequences/
+; 
+; Aborting jack-in. No project type selected.
+; Execution error (FileNotFoundException) at gcc.platform.s3.core/eval7797$loading (REPL:1).
+; Could not locate amazonica/aws/s3__init.class, amazonica/aws/s3.clj or amazonica/aws/s3.cljc on classpath.
+clj꞉gcc.platform.s3.core꞉> 
+; Execution error (FileNotFoundException) at gcc.platform.s3.core/eval7803$loading (REPL:1).
+; Could not locate amazonica/aws/s3__init.class, amazonica/aws/s3.clj or amazonica/aws/s3.cljc on classpath.
+clj꞉gcc.platform.s3.core꞉> 
+; Execution error (FileNotFoundException) at gcc.platform.s3.core/eval7809$loading (REPL:1).
+; Could not locate amazonica/aws/s3__init.class, amazonica/aws/s3.clj or amazonica/aws/s3.cljc on classpath.
+clj꞉gcc.platform.s3.core꞉> 
+; Execution error (FileNotFoundException) at gcc.platform.s3.core/eval7815$loading (REPL:1).
+; Could not locate amazonica/aws/s3__init.class, amazonica/aws/s3.clj or amazonica/aws/s3.cljc on classpath.
+clj꞉gcc.platform.s3.core꞉> 
+; Execution error (FileNotFoundException) at gcc.platform.s3.core/eval7821$loading (REPL:1).
+; Could not locate amazonica/aws/s3__init.class, amazonica/aws/s3.clj or amazonica/aws/s3.cljc on classpath.
+clj꞉gcc.platform.s3.core꞉> 
