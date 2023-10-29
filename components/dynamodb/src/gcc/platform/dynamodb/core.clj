@@ -9,6 +9,10 @@
    :endpoint "http://localhost:4566" 
    })
 
+(defn get-by-id [id]
+  (far/get-item client-opts
+                :sample-table
+                {:id id}))
 
 (comment
 

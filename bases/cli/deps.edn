@@ -1,4 +1,7 @@
 {:paths ["src" "resources"]
- :deps {}
+ :deps {org.clojure/clojure {:mvn/version "1.10.1"} ;; clojure
+        poly/user {:local/root "../../components/user"} ;; user
+        poly/dynamodb {:local/root "../../components/dynamodb"} ;; dynamodb
+ }
  :aliases {:test {:extra-paths ["test"]
                   :extra-deps {}}}}
