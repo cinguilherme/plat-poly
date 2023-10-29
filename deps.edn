@@ -1,10 +1,33 @@
-{:aliases  {:dev {:extra-paths ["development/src"]
-                  :extra-deps {org.clojure/clojure {:mvn/version "1.11.1"}}}
+{:aliases  {:dev {:extra-paths ["development/src"
+                                "components/user/src"
+                                "components/user/resources"
+                                "components/pedestal/src"
+                                "components/pedestal/resources"
+                                "bases/cli/src"
+                                "bases/cli/resources"
+                                "bases/pedestal-server/src"
+                                "bases/pedestal-server/resources"]
 
-            :test {:extra-paths []}
+                  :extra-deps {org.clojure/clojure {:mvn/version "1.11.1"}
+                               poly/user {:local/root "components/user"}
+                               poly/pedestal {:local/root "components/pedestal"}
+                               poly/pedestal-server {:local/root "bases/pedestal-server"}
+                               poly/cli {:local/root "bases/cli"}}}
 
+            :test {:extra-paths ["components/user/test"
+                                 "bases/cli/test"]}
+
+            :build {:deps {io.github.seancorfield/build-clj {:git/tag "v0.9.2" :git/sha "9c9f078"}}
+                    :paths ["build/resources"]
+                    :ns-default build}
+            
             :poly {:main-opts ["-m" "polylith.clj.core.poly-cli.core"]
                    :extra-deps {polyfy/polylith
                                 {:git/url   "https://github.com/polyfy/polylith"
                                  :sha       "b3dcc8bbb315dfd2a9b8d011c3195c4b617ffd0b"
-                                 :deps/root "projects/poly"}}}}}
+                                 :deps/root "projects/poly"}
+
+
+                                org.clojure/clojure {:mvn/version "1.11.1"
+                                                     :exclusions [org.clojure/spec.alpha]
+                                                     :scope      "provided"}}}}}
