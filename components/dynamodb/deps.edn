@@ -1,0 +1,7 @@
+{:paths ["src" "resources"]
+ :deps {
+        ;; https://github.com/Taoensso/faraday
+        com.taoensso/faraday {:mvn/version "1.12.0"}
+ }
+ :aliases {:test {:extra-paths ["test"]
+                  :extra-deps {}}}}

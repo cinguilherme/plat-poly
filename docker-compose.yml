@@ -28,5 +28,5 @@ services:
       - AWS_ACCESS_KEY_ID=foo
 
     volumes:
-      - "./localstack-data:/tmp/localstack" # Maps the local directory to the container directory
+      - "./localstack-data:/var/lib/localstack" # Maps the local directory to the container directory
       - "/var/run/docker.sock:/var/run/docker.sock" # Allows the LocalStack container to communicate with the Docker daemon

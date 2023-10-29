@@ -1,4 +1,6 @@
 {:aliases  {:dev {:extra-paths ["development/src"
+                                "components/dynamodb/src"
+                                "components/dynamodb/resources"
                                 "components/user/src"
                                 "components/user/resources"
                                 "components/pedestal/src"
@@ -10,6 +12,7 @@
 
                   :extra-deps {org.clojure/clojure {:mvn/version "1.11.1"}
                                poly/user {:local/root "components/user"}
+                               poly/dynamodb {:local/root "components/dynamodb"}
                                poly/pedestal {:local/root "components/pedestal"}
                                poly/pedestal-server {:local/root "bases/pedestal-server"}
                                poly/cli {:local/root "bases/cli"}}}

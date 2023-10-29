@@ -1,5 +1,7 @@
 (ns dev
-  (:require [gcc.platform.pedestal.core :as c.pedestal]))
+  (:require [gcc.platform.dynamodb.interface :as c.dynamodb]))
+
+
 
 
 

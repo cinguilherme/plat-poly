@@ -10,12 +10,17 @@ You can also get in touch with the Polylith Team on [Slack](https://clojurians.s
 
 <h1>poly-platform</h1>
 
-Tested with:
+requires java 11
+requires clojure 1.10.3.943
+requires polylinth 
 
 ```bash
 brew install openjdk@11
+brew install polyfy/polylith/poly
 ```
 
+
+Tested with:
 ```
 openjdk 19.0.1 2022-10-18
 OpenJDK Runtime Environment (build 19.0.1+10-21)
