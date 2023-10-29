@@ -10,4 +10,16 @@ You can also get in touch with the Polylith Team on [Slack](https://clojurians.s
 
 <h1>poly-platform</h1>
 
+Tested with:
+
+```bash
+brew install openjdk@11
+```
+
+```
+openjdk 19.0.1 2022-10-18
+OpenJDK Runtime Environment (build 19.0.1+10-21)
+OpenJDK 64-Bit Server VM (build 19.0.1+10-21, mixed mode, sharing)
+```
+
 <p>Add your workspace documentation here...</p>

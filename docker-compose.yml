@@ -1,0 +1,32 @@
+version: '3'
+
+services:
+
+  localstack-poly-plat:
+    image: localstack/localstack:latest
+    
+    #ports for SQS, DynamoDB, S3, Lambda
+    ports:
+      - "4566:4566"
+      - "4571:4571"
+      - "4572:4572"
+      - "4574:4574"
+    
+    environment:
+      - SERVICES=s3,sqs,dynamodb,lambda
+      - DEBUG=1
+      - DATA_DIR=/tmp/localstack/data
+      - LAMBDA_EXECUTOR=docker-reuse
+      - LAMBDA_REMOTE_DOCKER=false
+      - LAMBDA_REMOVE_CONTAINERS=true
+      - LAMBDA_DOCKER_NETWORK=localstack
+      - LAMBDA_CONTAINER_REGISTRY=local
+      - LAMBDA_TMP_DIR=/tmp/lambda
+      - DOCKER_HOST=unix:///var/run/docker.sock
+      - HOST_TMP_FOLDER=/tmp/localstack
+      - AWS_DEFAULT_REGION=us-east-1
+      - AWS_ACCESS_KEY_ID=foo
+
+    volumes:
+      - "./localstack-data:/tmp/localstack" # Maps the local directory to the container directory
+      - "/var/run/docker.sock:/var/run/docker.sock" # Allows the LocalStack container to communicate with the Docker daemon
