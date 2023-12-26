@@ -1,7 +1,8 @@
 (ns dev
   (:require [gcc.platform.files.interface :as files]
             [amazonica.core :as amazonica]
-            [amazonica.aws.sqs :as sqs])
+            [amazonica.aws.sqs :as sqs]
+            [amazonica.aws.s3 :as s3])
   (:import (com.amazonaws.auth DefaultAWSCredentialsProviderChain)))
 
 
@@ -12,16 +13,13 @@
 (def localstack-credentials
     {:access-key "test"
      :secret-key "test"
-     :endpoint "http://localhost:4566"})
-
-(def credentials
- {:access-key "dummy-access-key"
-  :secret-key "dummy-secret-key"
-  :profile "localstack"
-  :region "us-east-1"
-  :endpoint   "http://localhost:4566"})
+     :region "us-east-1"
+     :path-style-access true
+     :endpoint "http://localhost:4566"
+     })
 
 (amazonica/defcredential localstack-credentials)
+
 
 (def queue-url 
   (:queue-url (sqs/create-queue 
@@ -46,7 +44,25 @@
         (println "Received message in consume:" (:body message))
         (sqs/delete-message {:queue-url queue-url
                              :receipt-handle (:receipt-handle message)}))))
-  
+
   (consume-message)
+
+  (s3/list-buckets)
   
+  (s3/create-bucket {:bucket-name "another" :region "us-east-1"})
+
+
+(try
+  (s3/create-bucket "my-bucket")
+  (catch Exception e
+    (println "Exception in creating bucket:" (.getMessage e))))
+
+  
+  (s3/put-object {:bucket-name "my-bucket" 
+                  :key "my-key"
+                  :content-type "text/plain" 
+                  :content-length 11
+                  :body "Hello World!"})
+                  
+
   )

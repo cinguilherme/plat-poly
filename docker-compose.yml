@@ -11,7 +11,9 @@ services:
     environment:
       - SERVICES=s3,sqs,dynamodb,lambda
       - DEBUG=1
-
+      - AWS_ACCESS_KEY_ID=test
+      - AWS_SECRET_ACCESS_KEY=test
+      - DEFAULT_REGION=us-east-1
       - PORT_WEB_UI=9080
 
     volumes:
