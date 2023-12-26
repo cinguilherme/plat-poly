@@ -1,4 +1,10 @@
 {:aliases  {:dev {:extra-paths ["development/src"
+                                "components/common/src"
+                                "components/common/resources"
+                                "components/kafka-producer/src"
+                                "components/kafka-producer/resources"
+                                "components/kafka-consumer/src"
+                                "components/kafka-consumer/resources"
                                 "components/dynamodb/src"
                                 "components/dynamodb/resources"
                                 "components/s3/src"
@@ -15,8 +21,11 @@
                                 "bases/pedestal-server/resources"]
 
                   :extra-deps {org.clojure/clojure {:mvn/version "1.11.1"}
+                               poly/common {:local/root "components/common"}
                                poly/user {:local/root "components/user"}
                                poly/dynamodb {:local/root "components/dynamodb"}
+                               poly/kafka-consumer {:local/root "components/kafka-consumer"}
+                               poly/kafka-producer {:local/root "components/kafka-producer"}
                                poly/files {:local/root "components/files"}
                                poly/s3 {:local/root "components/s3"}
                                poly/pedestal {:local/root "components/pedestal"}

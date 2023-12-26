@@ -1,0 +1,6 @@
+{:paths ["src" "resources"]
+ :deps {cheshire/cheshire {:mvn/version "5.12.0"}
+        com.widdindustries/clojure.log4j2 {:mvn/version "0.1.9"}
+        middlesphere/clj-compress {:mvn/version "0.1.0"}}
+ :aliases {:test {:extra-paths ["test"]
+                  :extra-deps {}}}}
