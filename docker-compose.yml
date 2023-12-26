@@ -1,41 +1,18 @@
 version: "3"
 
 services:
-  localstack-poly-plat:
+  localstack:
+    container_name: localstack-main
     image: localstack/localstack:latest
-
-    #ports for SQS, DynamoDB, S3, Lambda
     ports:
-      - "4566:4566"
-      - "4571:4571"
-      - "4572:4572"
-      - "4574:4574"
+      - "127.0.0.1:4566:4566" # LocalStack Gateway
+      - "127.0.0.1:4510-4559:4510-4559" # external services port range
 
     environment:
       - SERVICES=s3,sqs,dynamodb,lambda
       - DEBUG=1
-      - DATA_DIR=/tmp/localstack/data
-      - LAMBDA_EXECUTOR=docker-reuse
-      - LAMBDA_REMOTE_DOCKER=false
-      - LAMBDA_REMOVE_CONTAINERS=true
-      - LAMBDA_DOCKER_NETWORK=localstack
-      - LAMBDA_CONTAINER_REGISTRY=local
-      - LAMBDA_TMP_DIR=/tmp/lambda
-      - DOCKER_HOST=unix:///var/run/docker.sock
-      - HOST_TMP_FOLDER=/tmp/localstack
-      - AWS_DEFAULT_REGION=us-east-1
-      - AWS_ACCESS_KEY_ID=foo
-      - AWS_SECRET_ACCESS_KEY=bar
 
       - PORT_WEB_UI=9080
-
-      ## S3 ENVS LOCAL DEVELOPMENT
-      - S3_BUCKET=localstack
-      - S3_ENDPOINT=http://localstack-poly-plat:4572
-      - S3_REGION=us-east-1
-      - S3_USE_HTTPS=false
-      - S3_VERIFY_SSL=false
-      - S3_FORCE_PATH_STYLE=true
 
     volumes:
       - "./localstack-data:/var/lib/localstack" # Maps the local directory to the container directory
