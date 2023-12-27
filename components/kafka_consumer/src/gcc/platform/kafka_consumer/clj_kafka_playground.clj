@@ -1,4 +1,4 @@
-(ns gcc.platform.kafka-consumer.core
+(ns gcc.platform.kafka-consumer.clj-kafka-playground
   (:require [clj-kafka.core :as kafka :refer [with-resource]]
             [clj-kafka.zk :as zk]
             [clj-kafka.admin :as admin] 
@@ -15,10 +15,9 @@
      "serializer.class" "kafka.serializer.StringEncoder"
      "key.serializer.class" "kafka.serializer.StringEncoder"})
 
-  (def consumer-config {"zookeeper.connect" "localhost:2181"
-                        "deserializer.class" "kafka.serializer.StringDecoder"
-                        "valueDecoder.class" "kafka.serializer.StringDecoder"
-                        "group.id" "clj-kafka.consumer" 
+  (def consumer-config {"zookeeper.connect" "localhost:9092"
+                        "group.id" "clj-kafka.consumer"
+                        "auto.offset.reset" "smallest"
                         "auto.commit.enable" "false"})
   
   (zk/brokers {"zookeeper.connect" "localhost:2181"}) 
@@ -28,14 +27,26 @@
                                      (string-serializer))]
             (let [res @(producer/send p (record "test-topic-3" "hello world new!!"))]
               (println res))
-            (println "sent message")))
+            (println "sent message"))) 
 
-  (with-open [c (kafka-consumer/consumer "localhost" 9092 "clj-kafka.consumer")]
-    (println (take 1 (kafka-consumer/messages c "clj-kafka.consumer" "test-topic-3" 0 44 100000))))
+  (future (with-open [c (kafka-consumer/consumer "localhost" 9092 "clj-kafka.consumer")]
+            (doseq [msg (take 40 (kafka-consumer/messages c "clj-kafka.consumer" "test-topic-3" 0 10 300000))]
+              (println (String. (.value msg))))))
 
-  (with-resource [c (consumer/consumer consumer-config)]
-    shutdown
-    (take 2 (consumer/messages c "test-topic-3" )))
+
+  (future (with-resource [c (consumer/consumer consumer-config)] 
+            (println (take 2 (consumer/messages c "test-topic-3" )))))
+
+  (def xform (comp (map println)))
+
+  (future (with-resource [c (consumer/consumer consumer-config)]
+            shutdown
+            (let [stream (consumer/create-message-stream c "test-topic-3")]
+              (run! println (eduction xform stream)))))
+
+  (future (with-resource [c (consumer/consumer consumer-config)] 
+            (let [messages (take 2 (consumer/messages c "test-topic-3"))]
+              (println "Messages retrieved: " messages))))
 
 
   (with-open [zkz (admin/zk-client "localhost:2181")]

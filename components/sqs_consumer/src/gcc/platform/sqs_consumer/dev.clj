@@ -1,10 +1,7 @@
-(ns dev
-  (:require [gcc.platform.files.interface :as files]
-            [amazonica.core :as amazonica]
-            [amazonica.aws.sqs :as sqs]
-            [amazonica.aws.s3 :as s3]) 
+(ns gcc.platform.sqs_consumer.dev
+  (:require [amazonica.core :as amazonica]
+            [amazonica.aws.sqs :as sqs]) 
   (:import (com.amazonaws.auth DefaultAWSCredentialsProviderChain)))
-
 
 (comment
 

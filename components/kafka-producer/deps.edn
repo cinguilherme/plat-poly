@@ -1,4 +1,0 @@
-{:paths ["src" "resources"]
- :deps {clj-kafka/clj-kafka {:mvn/version "0.3.4"}}
- :aliases {:test {:extra-paths ["test"]
-                  :extra-deps {}}}}

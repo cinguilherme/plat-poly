@@ -1,0 +1,10 @@
+{:paths ["src" "resources"]
+ :deps {org.clojure/clojure {:mvn/version "1.11.1"}
+        clj-kafka/clj-kafka {:mvn/version "0.3.4"}
+       ;;  fundingcircle/jackdaw {:mvn/version "0.9.12"}
+        }
+ :mvn/repos {"central" {:url "https://repo1.maven.org/maven2/"}
+             "clojars" {:url "https://repo.clojars.org/"}
+             "confluent" {:url "https://packages.confluent.io/maven/"}}
+ :aliases {:test {:extra-paths ["test"]
+                  :extra-deps {}}}}

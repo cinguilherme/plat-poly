@@ -1,7 +1,7 @@
 {:paths ["src" "resources"]
  :deps {
         ;; clojure
-        org.clojure/clojure {:mvn/version "1.10.1"}
+        org.clojure/clojure {:mvn/version "1.11.1"}
         ;;
         amazonica/amazonica {:mvn/version "0.3.165"}
  }
