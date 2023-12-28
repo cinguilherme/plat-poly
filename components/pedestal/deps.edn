@@ -1,5 +1,6 @@
 {:paths ["src" "resources"]
- :deps {;; pedestal
+ :deps {org.clojure/clojure {:mvn/version "1.11.1"}
+        ;; pedestal
         io.pedestal/pedestal.service {:mvn/version "0.6.1"}
         io.pedestal/pedestal.route {:mvn/version "0.6.1"}
         io.pedestal/pedestal.jetty {:mvn/version "0.6.1"}}

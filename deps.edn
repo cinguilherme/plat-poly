@@ -16,6 +16,8 @@
                                 "components/kafka_consumer/resources"
                                 "components/dynamodb/src"
                                 "components/dynamodb/resources"
+                                "components/postgres/src"
+                                "components/postgres/resources"
                                 "components/s3/src"
                                 "components/s3/resources"
                                 "components/user/src"
@@ -33,6 +35,7 @@
                                poly/common {:local/root "components/common"}
                                poly/user {:local/root "components/user"}
                                poly/dynamodb {:local/root "components/dynamodb"}
+                               poly/postgres {:local/root "components/postgres"}
                                poly/kafka-consumer {:local/root "components/kafka_consumer"}
                                poly/kafka-producer {:local/root "components/kafka_producer"}
                                poly/sqs-consumer {:local/root "components/sqs_consumer"}
