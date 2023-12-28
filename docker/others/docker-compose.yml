@@ -50,7 +50,15 @@ services:
     volumes:
       - redis_data:/data
 
+  mongodb:
+    image: mongo:latest
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongodb_data:/data/db
+
 volumes:
+  mongodb_data:
   redis_data:
   minio_data:
   postgres_data:
