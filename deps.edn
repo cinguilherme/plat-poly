@@ -13,6 +13,10 @@
                                 "development/resources"
                                 "components/common/src"
                                 "components/common/resources"
+                                "components/client_http/src"
+                                "components/client_http/resources"
+                                "components/elastic_search/src"
+                                "components/elastic_search/resources"
                                 "components/sqs_consumer/src"
                                 "components/sqs_consumer/resources"
                                 "components/sqs_producer/src"
@@ -44,8 +48,10 @@
 
                   :extra-deps {org.clojure/clojure {:mvn/version "1.11.1"}
                                poly/common {:local/root "components/common"}
+                               poly/client-http {:local/root "components/client_http"}
                                poly/user {:local/root "components/user"}
                                poly/dynamodb {:local/root "components/dynamodb"}
+                               poly/elastic-search {:local/root "components/elastic_search"}
                                poly/mongo {:local/root "components/mongo"}
                                poly/redis {:local/root "components/redis"}
                                poly/postgres {:local/root "components/postgres"}
