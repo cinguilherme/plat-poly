@@ -43,6 +43,14 @@ services:
       MINIO_SECRET_KEY: minio123
     command: server /data
 
+  redis:
+    image: redis:latest
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis_data:/data
+
 volumes:
+  redis_data:
   minio_data:
   postgres_data:
