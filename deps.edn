@@ -1,9 +1,16 @@
 {:mvn/repos {"central" {:url "https://repo1.maven.org/maven2/"}
              "clojars" {:url "https://repo.clojars.org/"}
              "confluent" {:url "https://packages.confluent.io/maven/"}}
- :deps {org.clojure/clojure {:mvn/version "1.11.1"}}
+ 
+ :deps {org.clojure/clojure {:mvn/version "1.11.1"}
+        org.clojure/core.async {:mvn/version "1.6.681"} 
+        org.clojure/tools.logging {:mvn/version "1.2.3"}
+        org.apache.logging.log4j/log4j-api {:mvn/version "2.17.1"}
+        org.apache.logging.log4j/log4j-core {:mvn/version "2.17.1"}
+        org.apache.logging.log4j/log4j-slf4j-impl {:mvn/version "2.17.1"}}
 
  :aliases  {:dev {:extra-paths ["development/src"
+                                "development/resources"
                                 "components/common/src"
                                 "components/common/resources"
                                 "components/sqs_consumer/src"
