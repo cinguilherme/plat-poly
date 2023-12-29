@@ -2,13 +2,6 @@
   (:require [clojure.spec.alpha :as s]
             [clojure.spec.gen.alpha :as gen]))
 
-;; Define specs for keys and values
-;; (defn limited-length-string? [n s]
-;;   (and (string? s) (<= (count s) n)))
-
-;; (defn non-empty-string? [s]
-;;   (and (string? s) (not (empty? s))))
-
 ;; Spec for a non-empty string
 (s/def ::non-empty-string (s/and string? seq))
 
@@ -59,7 +52,7 @@
   (gen/sample (s/gen ::vec) 50)
   (gen/sample (s/gen ::value) 50)
   
-  (gen-data 100)
+  (gen-data 5)
 
   (gen/sample (s/gen (s/tuple ::key ::value)) 30)
 

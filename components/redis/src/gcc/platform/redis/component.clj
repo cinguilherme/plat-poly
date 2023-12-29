@@ -18,6 +18,7 @@
 (defrecord RedisComponent [redis-spec]
   component/Lifecycle
   RedisComponentCore
+  
   (start [this]
     (println "Redis component starting")
     this)
@@ -25,19 +26,18 @@
     (println "Redis component stopping")
     this)
 
+  
   ;; RedisComponentCore
-  (set-key [this key value]
-    ;; Serialize non-string values to JSON before storing
+
+  (set-key [this key value] 
     (try 
-      (let [value-str (if (string? value) value (json/generate-string value))]
+      (let [value-str (if (string? value) value value)]
         (wcar (:redis-spec this) (car/set key value-str)))
       (catch Exception _ value)))
-  (get-key [this key]
-    ;; Attempt to deserialize JSON back to original data type
+  
+  (get-key [this key] 
     (let [value-str (wcar (:redis-spec this) (car/get key))]
-      (try
-        (json/parse-string value-str true)
-        (catch Exception _ value-str)))))
+      value-str)))
 
 (defrecord MockRedisComponent [data-atom]
   component/Lifecycle
@@ -50,12 +50,13 @@
     (assoc this :data-atom (atom {}))
     this)
   (set-key [this key value]
-    (swap! (:data-atom this) assoc (str key) (json/generate-string value))
+    (swap! (:data-atom this) assoc (str key) value)
     "OK")
-  (get-key [this key]
-    (json/parse-string (get @(:data-atom this) key) true)))
+  (get-key [this key] (get @(:data-atom this) key)))
 
-(defn new-mock-redis-component []
+(defn new-mock-redis-component 
+  "Creates a new Mock Version of RedisComponent usin a single atom to mimic redis."
+  [] 
   (->MockRedisComponent (atom {})))
 
 (s/defn new-redis-component :- RedisComponent
