@@ -28,22 +28,17 @@
   (is (= {:arr [3 2 1] :str "hello"} (redis-component/get-key test-redis-component "X"))))
 
 
-(defn convert-map-keys-to-keywords [data]
-  (cond
-    (map? data) (into {} (map (fn [[k v]] [(keyword (str k)) v]) data))
-    :else data))
-
 ;; Generative tests
 
 (deftest set-key-test-gen
   (testing "set-key with generated values"
-    (doseq [generated-data (generators/gen-data 50)]
+    (doseq [generated-data (generators/gen-data 100)]
       (let [[gen-key gen-value] generated-data]
         (is (= "OK" (redis-component/set-key test-redis-component gen-key gen-value)))))))
 
 (deftest get-key-test-gen
   (testing "get-key with generated values"
-    (doseq [generated-data (generators/gen-data 50)]
+    (doseq [generated-data (generators/gen-data 100)]
       (let [[gen-key gen-value] generated-data]
         (redis-component/set-key test-redis-component gen-key gen-value)
-        (is (= (convert-map-keys-to-keywords gen-value) (redis-component/get-key test-redis-component gen-key)))))))
+        (is (= (generators/convert-map-keys-to-keywords gen-value) (redis-component/get-key test-redis-component gen-key)))))))
