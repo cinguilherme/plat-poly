@@ -7,9 +7,6 @@
 
 (comment
 
-  ;; (def rd-component (rc/new-redis-component "localhost" 6379))
-  ;; (def es-component (esc/new-elasticsearch-component "http://localhost:9200/"))
-
   (defn new-system []
     (component/system-map
      :elasticsearch (esc/new-elasticsearch-component "http://localhost:9200/")
@@ -18,10 +15,7 @@
      ))
 
   (def system (new-system))
-  (pprint/pprint system)
-  (println (:elasticsearch system))
-  (println (:redis system))
-
+  
   (component/start system)
 
   (esc/index-document

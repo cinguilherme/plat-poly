@@ -1,6 +1,10 @@
 (ns gcc.platform.redis.core
   (:require [taoensso.carmine :as car :refer [wcar]]))
 
+(defprotocol RedisComponentCore
+  (set-key [component key value] "Sets a key-value pair in Redis.")
+  (get-key [component key] "Gets a value by key from Redis."))
+
 ;; Define the Redis connection spec
 (def redis-spec {:pool {}
                  :spec {:host "localhost"  ; Assuming Redis is running locally
