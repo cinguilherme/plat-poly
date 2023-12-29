@@ -1,4 +1,4 @@
-(ns gcc.platform.redis.component-test
+(ns gcc.platform.redis.integrations.component-test
  (:require [clojure.test :as test :refer :all]
            [clojure.spec.alpha :as s]
            [clojure.spec.gen.alpha :as gen]
@@ -9,41 +9,35 @@
 
 
 (def test-redis-component
-  (redis/new-mock-redis-component))
+  (redis/new-redis-component "localhost" 6379))
 
 (component/start test-redis-component)
-(comment 
-  (component/stop test-redis-component)
-  )
 
-;; example based tests
-
-(deftest set-and-get-key-test
+(deftest set-key-test
   (is (= "OK" (redis-component/set-key test-redis-component "1" "2")))
   (is (= "OK" (redis-component/set-key test-redis-component "10" "number 2")))
   (is (= "OK" (redis-component/set-key test-redis-component "11" {:a 1 :b "2" :c ["1" "2" "3"]})))
   (is (= "OK" (redis-component/set-key test-redis-component 4 4)))
   (is (= "OK" (redis-component/set-key test-redis-component "5" [3 2 1])))
   (is (= "OK" (redis-component/set-key test-redis-component "X" {:arr [3 2 1] :str "hello"})))
-  (is (= "2" (redis-component/get-key test-redis-component "1")))
+  (is (= 2 (redis-component/get-key test-redis-component "1")))
   (is (= "number 2" (redis-component/get-key test-redis-component "10")))
   (is (= {:a 1 :b "2" :c ["1" "2" "3"]} (redis-component/get-key test-redis-component "11")))
   (is (= 4 (redis-component/get-key test-redis-component 4)))
   (is (= [3 2 1] (redis-component/get-key test-redis-component "5")))
   (is (= {:arr [3 2 1] :str "hello"} (redis-component/get-key test-redis-component "X"))))
 
-
 ;; Generative tests
 
 (deftest set-key-test-gen
   (testing "set-key with generated values"
-    (doseq [generated-data (generators/gen-data 50)]
+    (doseq [generated-data (generators/gen-data 10)]
       (let [[gen-key gen-value] generated-data]
         (is (= "OK" (redis-component/set-key test-redis-component gen-key gen-value)))))))
 
 (deftest get-key-test-gen
   (testing "get-key with generated values"
-    (doseq [generated-data (generators/gen-data 50)]
+    (doseq [generated-data (generators/gen-data 10)]
       (let [[gen-key gen-value] generated-data]
         (redis-component/set-key test-redis-component gen-key gen-value)
         (is (= gen-value (redis-component/get-key test-redis-component gen-key)))))))

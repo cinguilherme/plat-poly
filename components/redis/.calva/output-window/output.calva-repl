@@ -1,0 +1,31 @@
+; Jacking in...
+; Connecting using "deps.edn" project type.
+; You can make Calva auto-select this.
+;   - See https://calva.io/connect-sequences/
+; 
+; Starting Jack-in Terminal: pushd /home/cinguilherme/Dev/plat-poly/components/redis ; clojure -Sdeps '{:deps {nrepl/nrepl {:mvn/version,"1.0.0"},cider/cider-nrepl {:mvn/version,"0.28.5"}}}' -M:test -m nrepl.cmdline --middleware "[cider.nrepl/cider-middleware]" ; popd
+; Using host:port localhost:33403 ...
+; Hooking up nREPL sessions ...
+; Connected session: clj
+; TIPS:
+;   - You can edit the contents here. Use it as a REPL if you like.
+;   - `alt+enter` evaluates the current top level form.
+;   - `ctrl+enter` evaluates the current form.
+;   - `alt+up` and `alt+down` traverse up and down the REPL command history
+;      when the cursor is after the last contents at the prompt
+;   - Clojure lines in stack traces are peekable and clickable.
+; Evaluating code from settings: 'calva.autoEvaluateCode.onConnect.clj'
+nil
+clj꞉user꞉> 
+clj꞉user꞉> 
+; Jack-in done.
+clj꞉user꞉> 
+; Evaluating file: component_test.clj
+; Execution error (FileNotFoundException) at gcc.platform.redis.component/eval5794$loading (component.clj:1).
+; Could not locate cheshire/core__init.class, cheshire/core.clj or cheshire/core.cljc on classpath.
+; Evaluation of file component_test.clj failed: class clojure.lang.Compiler$CompilerException
+clj꞉gcc.platform.redis.component-test꞉> 
+; Execution error (FileNotFoundException) at gcc.platform.redis.component/eval14099$loading (component.clj:1).
+; Could not locate cheshire/core__init.class, cheshire/core.clj or cheshire/core.cljc on classpath.
+clj꞉gcc.platform.redis.component-test꞉> 
+; nREPL Connection was closed

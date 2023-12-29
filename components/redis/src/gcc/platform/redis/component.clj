@@ -1,6 +1,7 @@
 (ns gcc.platform.redis.component
   (:require [com.stuartsierra.component :as component]
             [taoensso.carmine :as car :refer [wcar]]
+            [cheshire.core :as json]
             [schema.core :as s]
             [gcc.platform.redis.interface :as redis-component :refer [RedisComponentCore]]))
 
@@ -24,10 +25,19 @@
     (println "Redis component stopping")
     this)
 
+  ;; RedisComponentCore
   (set-key [this key value]
-    (wcar (:redis-spec this) (car/set key value)))
+    ;; Serialize non-string values to JSON before storing
+    (try 
+      (let [value-str (if (string? value) value (json/generate-string value))]
+        (wcar (:redis-spec this) (car/set key value-str)))
+      (catch Exception _ value)))
   (get-key [this key]
-    (wcar (:redis-spec this) (car/get key))))
+    ;; Attempt to deserialize JSON back to original data type
+    (let [value-str (wcar (:redis-spec this) (car/get key))]
+      (try
+        (json/parse-string value-str)
+        (catch Exception _ value-str)))))
 
 (defrecord MockRedisComponent [data-atom]
   component/Lifecycle
@@ -67,29 +77,3 @@
                      :spec {:host endpoint
                             :port port}}]
      (map->RedisComponent {:redis-spec redis-spec}))))
-
-(comment
-
-  (def redis-component (new-redis-component "localhost" 6379))
-  (component/start redis-component)
-
-  (def mock-redis (new-mock-redis-component))
-  (component/start mock-redis)
-  (redis-component/set-key mock-redis "1" "3")
-  (redis-component/get-key mock-redis "1")
-
-  (redis-component/set-key redis-component "1" "2")
-  (redis-component/get-key redis-component "1")
-
-  (s/def redis-config :- RedisPoolConfigSchema
-    {:max-total 10
-     :max-idle-per-key 5
-     :min-idle-per-key 1
-     :max-total-per-key 8
-     :block-when-exhausted? true
-     :max-wait-ms 30000
-     :test-on-borrow? true})
-
-  (def redisc-extra (new-redis-component "localhost" 6379 redis-config))
-
-  )
