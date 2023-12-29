@@ -40,7 +40,8 @@
     (assoc this :data-atom (atom {}))
     this)
   (set-key [this key value]
-    (swap! (:data-atom this) assoc key value))
+    (swap! (:data-atom this) assoc key value)
+    "OK")
   (get-key [this key]
     (get @(:data-atom this) key)))
 
@@ -77,6 +78,7 @@
   (redis-component/set-key mock-redis "1" "3")
   (redis-component/get-key mock-redis "1")
 
+  (redis-component/set-key redis-component "1" "2")
   (redis-component/get-key redis-component "1")
 
   (s/def redis-config :- RedisPoolConfigSchema
