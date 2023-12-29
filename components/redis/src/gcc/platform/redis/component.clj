@@ -36,7 +36,7 @@
     ;; Attempt to deserialize JSON back to original data type
     (let [value-str (wcar (:redis-spec this) (car/get key))]
       (try
-        (json/parse-string value-str)
+        (json/parse-string value-str true)
         (catch Exception _ value-str)))))
 
 (defrecord MockRedisComponent [data-atom]
@@ -50,10 +50,10 @@
     (assoc this :data-atom (atom {}))
     this)
   (set-key [this key value]
-    (swap! (:data-atom this) assoc key value)
+    (swap! (:data-atom this) assoc (str key) (json/generate-string value))
     "OK")
   (get-key [this key]
-    (get @(:data-atom this) key)))
+    (json/parse-string (get @(:data-atom this) key) true)))
 
 (defn new-mock-redis-component []
   (->MockRedisComponent (atom {})))

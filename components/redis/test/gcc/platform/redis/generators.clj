@@ -44,6 +44,12 @@
 (defn gen-data [size]
   (gen/sample (s/gen (s/tuple ::key ::value)) size))
 
+
+(defn convert-map-keys-to-keywords [data]
+  (cond
+    (map? data) (into {} (map (fn [[k v]] [(keyword (str k)) v]) data))
+    :else data))
+
 (comment
 
   (gen/sample (s/gen ::key) 10)
