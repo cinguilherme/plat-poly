@@ -13,13 +13,15 @@
 
 (comment
 
-  (defn respond-hello [request]
+  (defn respond-hello [request components-map]
+  ;; Your implementation here, using components-map if needed
     {:status 200 :body "Hello, world!"})
 
-  (defn respond-hello-json [request]
+  (defn respond-hello-json [request components-map]
+  ;; Your implementation here, using components-map if needed
     {:status 200
      :headers {"Content-Type" "application/json"}
-     :body (json/encode {:message "Hello, world! This is a JSON response. 🔥"})}) 
+     :body (json/encode {:message "Hello, world! This is a JSON response. 🔥"})})
 
   (def routes
     (route/expand-routes
@@ -29,8 +31,8 @@
   (defn new-system []
     (component/system-map
      :elasticsearch (esc/new-elasticsearch-component "http://localhost:9200/")
-     :redis (rc/new-mock-redis-component)
-     :pedestal (pedestal/new-pedestal-component routes {})
+     :redis (rc/new-redis-component "localhost" 6379)
+     :pedestal (pedestal/new-pedestal-component routes {:redis "1" :elasticsearch "2"})
     ;; Add other components here
      ))
 
