@@ -19,20 +19,28 @@
 
   (defn respond-hello-json [request components-map]
   ;; Your implementation here, using components-map if needed
-    {:status 200
-     :headers {"Content-Type" "application/json"}
-     :body (json/encode {:message "Hello, world! This is a JSON response. 🔥"})})
+    (let [redis (get components-map :redis)
+          elasticsearch (get components-map :elasticsearch)
+          redis-value (redis-component/get-key redis "1")
+          elasticsearch-value (esc/search-documents elasticsearch "my-index" {:title "Test"})]
+      {:status 200
+       :headers {"Content-Type" "application/json"}
+       :body (json/encode {:message "Hello, world! This is a JSON response. 🔥"
+                           :redis-val redis-value
+                           :elasticsearch elasticsearch-value})}))
 
   (def routes
-    (route/expand-routes
-     #{["/greet" :get respond-hello :route-name :greet]
-       ["/greet-json" :get respond-hello-json :route-name :greet-json]}))
+    [["/greet" :get respond-hello :route-name :greet]
+     ["/greet-json" :get respond-hello-json :route-name :greet-json]])
+
+  (def component-map {:redis (component/start (rc/map->MockRedisComponent {})) 
+                      :elasticsearch (component/start (esc/new-elasticsearch-component "http://localhost:9200/"))})
 
   (defn new-system []
     (component/system-map
      :elasticsearch (esc/new-elasticsearch-component "http://localhost:9200/")
      :redis (rc/new-redis-component "localhost" 6379)
-     :pedestal (pedestal/new-pedestal-component routes {:redis "1" :elasticsearch "2"})
+     :pedestal (pedestal/new-pedestal-component routes component-map)
     ;; Add other components here
      ))
 
