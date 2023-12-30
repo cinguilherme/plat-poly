@@ -3,6 +3,7 @@
             [com.stuartsierra.component :as component] 
             [gcc.platform.elastic_search.component :as esc]
             [gcc.platform.redis.component :as rc]
+            [gcc.platform.redis.interface :as redis-component]
             [clojure.pprint :as pprint]))
 
 (comment
@@ -10,7 +11,7 @@
   (defn new-system []
     (component/system-map
      :elasticsearch (esc/new-elasticsearch-component "http://localhost:9200/")
-     :redis (rc/new-redis-component "localhost" 6379)
+     :redis (rc/new-mock-redis-component)
     ;; Add other components here
      ))
 
@@ -24,8 +25,8 @@
 
   (esc/search-documents (:elasticsearch system) "my-index" {:title "Test"})
   
-  (rc/get-key (:redis system) "1")
-  (rc/set-key (:redis system) "1" "2")
+  (redis-component/get-key (:redis system) "1")
+  (redis-component/set-key (:redis system) "1" "2")
 
   (println 1)
 
