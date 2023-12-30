@@ -1,8 +1,7 @@
 {:deps {org.clojure/clojure {:mvn/version "1.11.1"}
         org.clojure/tools.deps.alpha {:mvn/version "0.12.985"}
         poly/dynamodb {:local/root "../../components/dynamodb"}
-        poly/redis {:local/root "../../components/redis"}
-        poly/files {:local/root "../../components/files"}
+        poly/redis {:local/root "../../components/redis"} 
         poly/postgres {:local/root "../../components/postgres"} 
         poly/pedestal {:local/root "../../components/pedestal"}
         poly/pedestal-server {:local/root "../../bases/pedestal-server"}}

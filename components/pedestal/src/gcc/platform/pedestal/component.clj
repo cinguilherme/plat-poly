@@ -2,8 +2,7 @@
   (:require [com.stuartsierra.component :as component]
             [schema.core :as s]
             [io.pedestal.http :as http]
-            [io.pedestal.http.route :as route]
-            [cheshire.core :as json]))
+            [io.pedestal.http.route :as route]))
 
 ;; Define the schema for the Redis pool configuration
 (def ComponentsMap
@@ -57,31 +56,31 @@
   (println "new-pedestal-component init with only routes, no components, make sure components/using is used next")
   (map->PedestalComponent {:routes routes}))
 
-(comment
+;; (comment
 
-  (defn respond-hello [request components-map]
-  ;; Your implementation here, using components-map if needed
-    {:status 200 :body "Hello, world!"})
+;;   (defn respond-hello [request components-map]
+;;   ;; Your implementation here, using components-map if needed
+;;     {:status 200 :body "Hello, world!"})
 
-  (defn respond-hello-json [request components-map]
-  ;; Your implementation here, using components-map if needed
-    (println "respond-hello-json" components-map)
-    {:status 200
-     :headers {"Content-Type" "application/json"}
-     :body (json/encode {:message "Hello, world! This is a JSON response. 🔥"})})
+;;   (defn respond-hello-json [request components-map]
+;;   ;; Your implementation here, using components-map if needed
+;;     (println "respond-hello-json" components-map)
+;;     {:status 200
+;;      :headers {"Content-Type" "application/json"}
+;;      :body (json/encode {:message "Hello, world! This is a JSON response. 🔥"})})
 
-  (def simple-routes
-    [["/greet" :get respond-hello :route-name :greet]
-     ["/greet-json" :get respond-hello-json :route-name :greet-json]])
+;;   (def simple-routes
+;;     [["/greet" :get respond-hello :route-name :greet]
+;;      ["/greet-json" :get respond-hello-json :route-name :greet-json]])
 
-  (defn new-system []
-    (component/system-map
-     :pedestal (new-pedestal-component simple-routes)))
+;;   (defn new-system []
+;;     (component/system-map
+;;      :pedestal (new-pedestal-component simple-routes)))
 
-  (println 1)
+;;   (println 1)
 
-  (def system (component/start (new-system)))
+;;   (def system (component/start (new-system)))
 
-  (println system)
+;;   (println system)
 
-  (component/stop system))
+;;   (component/stop system))

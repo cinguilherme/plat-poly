@@ -1,24 +1,21 @@
 (ns dev
-  (:require [gcc.platform.files.interface :as files]
-            [io.pedestal.http :as http]
-            [io.pedestal.http.route :as route]
-            [com.stuartsierra.component :as component] 
+  (:require [com.stuartsierra.component :as component]
 
             ;; platform start
-            [gcc.platform.elastic_search.component :as esc]
+            [gcc.platform.elastic_search.interface :as es]
+
             [gcc.platform.pedestal.component :as pedestal]
             [gcc.platform.redis.component :as rc]
             [gcc.platform.redis.interface :as redis-component]
-            
+
             [gcc.platform.postgres.component :as pg]
             [gcc.platform.postgres.interface :as postgres-component]
 
             [gcc.platform.dynamodb.component :as dynamodb]
             [gcc.platform.dynamodb.interface :as dynamodb-component]
-            
+
             ;;platform end
-            [cheshire.core :as json]
-            [clojure.pprint :as pprint]))
+            [cheshire.core :as json]))
             
 
 (comment
@@ -67,7 +64,7 @@
   (defn new-system []
     (component/system-map
      ;; leaf components (low level)
-     :elasticsearch (esc/new-elasticsearch-component "http://localhost:9200/")
+     :elasticsearch (es/new-elasticsearch-component "http://localhost:9200/")
 
      :redis (rc/new-redis-component "localhost" 6379)
      

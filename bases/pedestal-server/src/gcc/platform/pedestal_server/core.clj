@@ -1,11 +1,10 @@
 (ns gcc.platform.pedestal-server.core
-  (:require [gcc.platform.pedestal.interface :as c.pedestal]
-            [gcc.platform.pedestal.component :as pedestal] 
-            [gcc.platform.redis.interface :as redis] 
-            [gcc.platform.postgres.interface :as postgres] 
+  (:require [gcc.platform.pedestal.interface :as pedestal]
+            [gcc.platform.redis.interface :as redis]
+            [gcc.platform.postgres.interface :as postgres]
             [gcc.platform.dynamodb.interface :as dynamodb]
             [gcc.platform.elastic_search.component :as esc]
-            [com.stuartsierra.component :as component] 
+            [com.stuartsierra.component :as component]
             [gcc.platform.pedestal-server.routes.routes :as routes])
   (:gen-class))
 
