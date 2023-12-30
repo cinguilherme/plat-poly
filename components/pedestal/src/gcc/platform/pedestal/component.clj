@@ -1,7 +1,6 @@
 (ns gcc.platform.pedestal.component
   (:require [com.stuartsierra.component :as component]
             [schema.core :as s]
-            [schema.macros :as sm]
             [io.pedestal.http :as http]
             [io.pedestal.http.route :as route]
             [cheshire.core :as json]))
@@ -9,9 +8,8 @@
 ;; Define the schema for the Redis pool configuration
 (def ComponentsMap
   {:dynamodb (s/maybe s/Any)
-   :relational (s/maybe s/Any)
-   :producer-sqs (s/maybe s/Any)
-   :consumer-sqs (s/maybe s/Any)
+   :postgres (s/maybe s/Any)
+   :producer-sqs (s/maybe s/Any) 
    :redis (s/maybe s/Any)
    :elasticsearch (s/maybe s/Any)})
 
@@ -34,11 +32,16 @@
 (defn start [server]
   (future (http/start server)))
 
-(defrecord PedestalComponent [routes components-map]
+(defrecord PedestalComponent [routes redis elasticsearch dynamodb postgres producer-sqs]
   component/Lifecycle
 
   (start [component]
-    (let [server (create-server routes components-map)
+    (let [components-map {:redis redis
+                          :elasticsearch elasticsearch
+                          :dynamodb dynamodb
+                          :postgres postgres
+                          :producer-sqs producer-sqs}
+          server (create-server routes components-map)
           started (future (start server))]
       (assoc component
              :server server
@@ -50,8 +53,8 @@
       (http/stop server)
       (assoc component :stopped true))))
 
-(s/defn new-pedestal-component [routes :- s/Any components-map :- ComponentsMap]
-  (map->PedestalComponent {:routes routes :components-map components-map}))
+(s/defn new-pedestal-component [routes :- s/Any]
+  (map->PedestalComponent {:routes routes}))
 
 (comment
 
@@ -72,7 +75,7 @@
 
   (defn new-system []
     (component/system-map
-     :pedestal (new-pedestal-component simple-routes {:redis "1" :elasticsearch "2"})))
+     :pedestal (new-pedestal-component simple-routes)))
 
   (println 1)
 
