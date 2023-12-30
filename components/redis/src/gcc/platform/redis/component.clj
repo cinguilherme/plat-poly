@@ -2,8 +2,11 @@
   (:require [com.stuartsierra.component :as component]
             [taoensso.carmine :as car :refer [wcar]]
             [cheshire.core :as json]
-            [schema.core :as s]
-            [gcc.platform.redis.interface :as redis-component :refer [RedisComponentCore]]))
+            [schema.core :as s]))
+
+(defprotocol RedisComponentCore
+  (set-key [component key value] "Sets a key-value pair in Redis. Both key and value must be string")
+  (get-key [component key] "Gets a value by key from Redis. value is returned as raw string"))
 
 ;; Define the schema for the Redis pool configuration
 (def RedisPoolConfigSchema

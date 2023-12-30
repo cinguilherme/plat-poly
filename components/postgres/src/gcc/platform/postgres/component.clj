@@ -1,8 +1,12 @@
 (ns gcc.platform.postgres.component
   (:require [next.jdbc :as jdbc]
-            [com.stuartsierra.component :as component]
-            [gcc.platform.postgres.interface :as postgres-interface :refer [PostgresComponentCore]]
+            [com.stuartsierra.component :as component] 
             [schema.core :as s]))
+
+
+(defprotocol PostgresComponentCore 
+  (execute! [component sql] "Executes a SQL statement without additional arguments")
+  (execute-params! [component sql params] "Executes a SQL statement with additional parameters"))
 
 ;; Define the schema for Db configuration
 (def DbConfigSchema
@@ -61,17 +65,17 @@
 
   (:datasource compo)
 
-  (postgres-interface/execute! compo ["select * from address"])
+  (execute! compo ["select * from address"])
 
 
-  (postgres-interface/execute! memory ["select * from address"])
-  (postgres-interface/execute!
+  (execute! memory ["select * from address"])
+  (execute!
    memory
    ["
     create table if not exists address (id serial primary key,
     name varchar (32),
     email varchar (255))"])
-  (postgres-interface/execute!
+  (execute!
    memory
    ["
     insert into address (name, email) values (?, ?)"
@@ -79,7 +83,7 @@
   
   
   
-  (postgres-interface/execute!
+  (execute!
    compo
    ["
     insert into address (name, email) values (?, ?)"

@@ -1,6 +1,12 @@
-(ns gcc.platform.redis.interface)
+(ns gcc.platform.redis.interface
+  (:require [gcc.platform.redis.component :as component]))
 
+(defn create-new-redis-component [host port]
+  (component/new-redis-component host port))
 
-(defprotocol RedisComponentCore
-  (set-key [component key value] "Sets a key-value pair in Redis. Both key and value must be string")
-  (get-key [component key] "Gets a value by key from Redis. value is returned as raw string"))
+(defn get-key [component key]
+  (component/get-key component key))
+
+(defn set-key [component key value]
+  (component/set-key component key value))
+

@@ -1,26 +1,18 @@
 (ns gcc.platform.dynamodb.interface
-  (:require [gcc.platform.dynamodb.core :as core] 
-            [schema.core :as s]))
+  (:require [gcc.platform.dynamodb.component :as component]))
 
-(defprotocol DynamoDbAdmin
-  (create-table [component table-name key-schema opts])
-  (update-table [component table-name opts])
-  (delete-table [component table-name])
-  (list-tables [component]))
-
-(defprotocol DynamoDBCore
-  (get-item-by-id [component table id]) 
-  (query [component table query])
-  (put-item [component table item]))
-
-(defn sample-by-id! [id]
-  (core/get-by-id id))
 
 (defn new-dynamo-component [client-opts]
   (component/new-dynamo-component client-opts))
 
+(defn create-component [client-opts]
+  (new-dynamo-component client-opts))
+
+(defn list-tables [component]
+  (component/list-tables component))
+
 (comment
 
-  (sample-by-id! 1)
+  
 
   )

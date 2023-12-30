@@ -1,8 +1,18 @@
 (ns gcc.platform.dynamodb.component
   (:require [taoensso.faraday :as far]
             [schema.core :as s]
-            [com.stuartsierra.component :as component]
-            [gcc.platform.dynamodb.interface :as interface :refer [DynamoDbAdmin DynamoDBCore]]))
+            [com.stuartsierra.component :as component]))
+
+(defprotocol DynamoDbAdmin
+  (create-table [component table-name key-schema opts])
+  (update-table [component table-name opts])
+  (delete-table [component table-name])
+  (list-tables [component]))
+
+(defprotocol DynamoDBCore
+  (get-item-by-id [component table id]) 
+  (query [component table query])
+  (put-item [component table item]))
 
 (s/def DynamoClientOps 
   {:access-key s/Str
@@ -12,6 +22,7 @@
 (s/defrecord DynamoComponent [client-opts :- DynamoClientOps]
   component/Lifecycle
   DynamoDbAdmin
+  DynamoDBCore
 
   (start [this]
     (assoc this :client-opts client-opts))
@@ -35,18 +46,18 @@
 (s/defn new-dynamo-component [client-opts :- DynamoClientOps]
   (map->DynamoComponent {:client-opts client-opts}))
 
-;; (comment
+(comment
   
-;;   (def client-opts
-;;   {:access-key "test"
-;;    :secret-key "test"
-;;    ;; port 4566 for LocalStack
-;;    :endpoint "http://localhost:4566" 
-;;    })
+  (def client-opts
+  {:access-key "test"
+   :secret-key "test"
+   ;; port 4566 for LocalStack
+   :endpoint "http://localhost:4566" 
+   })
   
-;;   (def dynamo-component (-> client-opts new-dynamo-component component/start))
+  (def dynamo-component (-> client-opts new-dynamo-component component/start))
 
-;;   (interface/list-tables dynamo-component)
+  (list-tables dynamo-component)
 
-;;   )
+  )
 
