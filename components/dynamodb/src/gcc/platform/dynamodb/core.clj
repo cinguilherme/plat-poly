@@ -30,7 +30,7 @@
    [:id :n]  ; Primary key named "id", number type (:n)
    {:throughput {:read 1 :write 1}
     :block? true
-    :global-secondary-indexes
+    :gsindexes
     [{:index-name "FirstNameIndex"               ; Name of the global secondary index
       :key-schema [:first-name :s]               ; Key schema for the index (attribute and type)
       :projection {:projection-type :all}        ; Projection type (keys-only, include, all)

@@ -2,13 +2,15 @@
   (:require [gcc.platform.dynamodb.core :as core]))
 
 (defprotocol DynamoDbAdmin
-  (create-table [table-name key-schema opts])
-  (list-tables []))
+  (create-table [component table-name key-schema opts])
+  (update-table [component table-name opts])
+  (delete-table [component table-name])
+  (list-tables [component]))
 
 (defprotocol DynamoDBCore
-  (get-item-by-id [table id]) 
-  (query [table query])
-  (put-item [table item]))
+  (get-item-by-id [component table id]) 
+  (query [component table query])
+  (put-item [component table item]))
 
 (defn sample-by-id! [id]
   (core/get-by-id id))
