@@ -54,6 +54,7 @@
       (assoc component :stopped true))))
 
 (s/defn new-pedestal-component [routes :- s/Any]
+  (println "new-pedestal-component init with only routes, no components, make sure components/using is used next")
   (map->PedestalComponent {:routes routes}))
 
 (comment

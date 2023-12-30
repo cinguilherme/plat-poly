@@ -1,9 +1,22 @@
 {:paths ["src" "resources"]
  :deps {org.clojure/clojure {:mvn/version "1.11.1"} ;; clojure
+        org.clojure/core.async {:mvn/version "1.6.681"} ;; core.async
         poly/pedestal {:local/root "../../components/pedestal"} ;; pedestal
+
+        ;; leaf components
+        poly/common {:local/root "../../components/common"}
+        poly/client-http {:local/root "../../components/client_http"}
+        poly/dynamodb {:local/root "../../components/dynamodb"}
+        poly/elastic-search {:local/root "../../components/elastic_search"}
+        poly/postgres {:local/root "../../components/postgres"}
+        poly/mongo {:local/root "../../components/mongo"}
+        poly/redis {:local/root "../../components/redis"}
 
         ;; components
         com.stuartsierra/component {:mvn/version "1.1.0"}
+
+        ;;environment
+        environ/environ {:mvn/version "1.2.0"}
 
         ;; pedestal
         io.pedestal/pedestal.service {:mvn/version "0.6.1"}

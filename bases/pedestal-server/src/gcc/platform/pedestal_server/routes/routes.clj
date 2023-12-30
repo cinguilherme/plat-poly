@@ -1,4 +1,4 @@
-(ns dev
+(ns gcc.platform.pedestal-server.routes.routes
   (:require [gcc.platform.files.interface :as files]
             [io.pedestal.http :as http]
             [io.pedestal.http.route :as route]
@@ -19,9 +19,7 @@
             ;;platform end
             [cheshire.core :as json]
             [clojure.pprint :as pprint]))
-            
 
-(comment
 
   (defn respond-hello [request components-map]
   ;; Your implementation here, using components-map if needed
@@ -60,34 +58,7 @@
                            :postgres @postgres-value
                            :dynamodb @dynamodb-value})}))
 
+
   (def routes
     [["/greet" :get respond-hello :route-name :greet]
      ["/greet-json" :get respond-hello-json :route-name :greet-json]])
-
-  (defn new-system []
-    (component/system-map
-     ;; leaf components (low level)
-     :elasticsearch (esc/new-elasticsearch-component "http://localhost:9200/")
-
-     :redis (rc/new-redis-component "localhost" 6379)
-     
-     :dynamodb (dynamodb/new-dynamo-component {:access-key "test"
-                                               :secret-key "test"
-                                               :endpoint "http://localhost:4566"})
-      
-     :postgres (pg/new-postgres-component {:dbtype "h2:mem"  ; Use in-memory H2 database
-                                            :dbname "test"    ; Name of the in-memory database
-                                            :user "sa"        ; Default user for H2
-                                            :password ""})
-     
-     
-     ;; compound components (high level)
-     :pedestal (component/using
-                (pedestal/new-pedestal-component routes)
-                [:redis :elasticsearch :dynamodb :postgres])
-    ;; Add other components here
-     ))
-
-  (def system (component/start (new-system)))
-  (component/stop system)
-  )

@@ -12,19 +12,25 @@ You can also get in touch with the Polylith Team on [Slack](https://clojurians.s
 
 requires java 11
 requires clojure 1.10.3.943
-requires polylinth 
+requires polylinth
 
 ```bash
 brew install openjdk@11
 brew install polyfy/polylith/poly
 ```
 
-
 Tested with:
+
 ```
+openjdk 11
+
 openjdk 19.0.1 2022-10-18
 OpenJDK Runtime Environment (build 19.0.1+10-21)
 OpenJDK 64-Bit Server VM (build 19.0.1+10-21, mixed mode, sharing)
+
+openjdk 21.0.1 2023-10-17
+OpenJDK Runtime Environment Homebrew (build 21.0.1)
+OpenJDK 64-Bit Server VM Homebrew (build 21.0.1, mixed mode, sharing)
 ```
 
 <p>Add your workspace documentation here...</p>
