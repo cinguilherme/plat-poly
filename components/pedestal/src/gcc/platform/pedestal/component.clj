@@ -9,25 +9,27 @@
     ::http/type   :jetty
     ::http/port   8890}))
 
-
 (defn start [server]
   (future (http/start server)))
 
-(defrecord PedestalComponent [routes]
+(defrecord PedestalComponent [routes components-map]
   component/Lifecycle
 
   (start [component]
     (let [server (create-server routes)
           started (future (start server))]
-      (assoc component :server server :started started)))
+      (assoc component
+             :server server
+             :started started
+             :components-map components-map)))
 
   (stop [component]
     (when-let [server (:server component)]
       (http/stop server)
       (assoc component :stopped true))))
 
-(defn new-pedestal-component [routes]
-  (map->PedestalComponent {:routes routes}))
+(defn new-pedestal-component [routes components-map]
+  (map->PedestalComponent {:routes routes :components-map components-map}))
 
 (comment
 
@@ -40,7 +42,7 @@
 
   (defn new-system []
     (component/system-map
-     :pedestal (new-pedestal-component routes)))
+     :pedestal (new-pedestal-component routes {})))
 
   (println 1)
 

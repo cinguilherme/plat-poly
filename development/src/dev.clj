@@ -7,6 +7,7 @@
             [gcc.platform.pedestal.component :as pedestal]
             [gcc.platform.redis.component :as rc]
             [gcc.platform.redis.interface :as redis-component]
+            [cheshire.core :as json]
             [clojure.pprint :as pprint]))
             
 
@@ -14,29 +15,34 @@
 
   (defn respond-hello [request]
     {:status 200 :body "Hello, world!"})
-  
+
+  (defn respond-hello-json [request]
+    {:status 200
+     :headers {"Content-Type" "application/json"}
+     :body (json/encode {:message "Hello, world! This is a JSON response. 🔥"})}) 
+
   (def routes
     (route/expand-routes
-     #{["/greet" :get respond-hello :route-name :greet]}))
+     #{["/greet" :get respond-hello :route-name :greet]
+       ["/greet-json" :get respond-hello-json :route-name :greet-json]}))
 
   (defn new-system []
     (component/system-map
      :elasticsearch (esc/new-elasticsearch-component "http://localhost:9200/")
      :redis (rc/new-mock-redis-component)
-     :pedestal (pedestal/new-pedestal-component routes)
+     :pedestal (pedestal/new-pedestal-component routes {})
     ;; Add other components here
      ))
 
-  (def system (new-system))
+  (def system (component/start (new-system)))
   (component/stop system)
-  (component/start system)
 
   (esc/index-document
    (:elasticsearch system)
    "my-index" "1" {:title "Test Document" :content "This is a test."})
 
   (esc/search-documents (:elasticsearch system) "my-index" {:title "Test"})
-  
+
   (redis-component/get-key (:redis system) "1")
   (redis-component/set-key (:redis system) "1" "2")
 
