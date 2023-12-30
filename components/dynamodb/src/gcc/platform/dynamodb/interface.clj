@@ -1,5 +1,6 @@
 (ns gcc.platform.dynamodb.interface
-  (:require [gcc.platform.dynamodb.core :as core]))
+  (:require [gcc.platform.dynamodb.core :as core] 
+            [schema.core :as s]))
 
 (defprotocol DynamoDbAdmin
   (create-table [component table-name key-schema opts])
@@ -14,6 +15,9 @@
 
 (defn sample-by-id! [id]
   (core/get-by-id id))
+
+(defn new-dynamo-component [client-opts]
+  (component/new-dynamo-component client-opts))
 
 (comment
 

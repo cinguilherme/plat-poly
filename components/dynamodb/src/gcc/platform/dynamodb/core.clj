@@ -1,20 +1,20 @@
 (ns gcc.platform.dynamodb.core
   (:require [taoensso.faraday :as far]))
 
-(def client-opts
-  {:access-key "test"
-   :secret-key "test"
-
-   ;; port 4566 for LocalStack
-   :endpoint "http://localhost:4566" 
-   })
-
-(defn get-by-id [id]
-  (far/get-item client-opts
-                :sample-table
-                {:id id}))
 
 (comment
+
+  (def client-opts
+    {:access-key "test"
+     :secret-key "test"
+
+   ;; port 4566 for LocalStack
+     :endpoint "http://localhost:4566"})
+
+  (defn get-by-id [id]
+    (far/get-item client-opts
+                  :sample-table
+                  {:id id}))
 
   (far/create-table
    client-opts
@@ -41,7 +41,7 @@
    client-opts :sample-table-3
    {:gsindexes {:operation    :create
                 :name         "FirstNameIndex"
-                :hash-keydef  [:first-name :s] 
+                :hash-keydef  [:first-name :s]
                 :throughput   {:read 1 :write 1}}})
 
   (far/put-item

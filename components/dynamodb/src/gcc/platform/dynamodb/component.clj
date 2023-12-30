@@ -35,18 +35,18 @@
 (s/defn new-dynamo-component [client-opts :- DynamoClientOps]
   (map->DynamoComponent {:client-opts client-opts}))
 
-(comment
+;; (comment
   
-  (def client-opts
-  {:access-key "test"
-   :secret-key "test"
-   ;; port 4566 for LocalStack
-   :endpoint "http://localhost:4566" 
-   })
+;;   (def client-opts
+;;   {:access-key "test"
+;;    :secret-key "test"
+;;    ;; port 4566 for LocalStack
+;;    :endpoint "http://localhost:4566" 
+;;    })
   
-  (def dynamo-component (-> client-opts new-dynamo-component component/start))
+;;   (def dynamo-component (-> client-opts new-dynamo-component component/start))
 
-  (interface/list-tables dynamo-component)
+;;   (interface/list-tables dynamo-component)
 
-  )
+;;   )
 

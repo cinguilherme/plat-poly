@@ -1,24 +1,11 @@
 (ns gcc.platform.pedestal-server.routes.routes
-  (:require [gcc.platform.files.interface :as files]
-            [io.pedestal.http :as http]
-            [io.pedestal.http.route :as route]
-            [com.stuartsierra.component :as component] 
-
-            ;; platform start
-            [gcc.platform.elastic_search.component :as esc]
-            [gcc.platform.pedestal.component :as pedestal]
-            [gcc.platform.redis.component :as rc]
-            [gcc.platform.redis.interface :as redis-component]
-            
-            [gcc.platform.postgres.component :as pg]
-            [gcc.platform.postgres.interface :as postgres-component]
-
-            [gcc.platform.dynamodb.component :as dynamodb]
-            [gcc.platform.dynamodb.interface :as dynamodb-component]
+  (:require [gcc.platform.elastic_search.component :as esc]
+            [gcc.platform.redis.interface :as redis]
+            [gcc.platform.postgres.interface :as postgres]
+            [gcc.platform.dynamodb.interface :as dynamodb]
             
             ;;platform end
-            [cheshire.core :as json]
-            [clojure.pprint :as pprint]))
+            [cheshire.core :as json]))
 
 
   (defn respond-hello [request components-map]
@@ -31,10 +18,10 @@
           elasticsearch (get components-map :elasticsearch)
           postgres (get components-map :postgres)
           dynamodb (get components-map :dynamodb)
-          redis-value (future (redis-component/get-key redis "1"))
+          redis-value (future (redis/get-key redis "1"))
           elasticsearch-value (future (esc/search-documents elasticsearch "my-index" {:title "Test"}))
           
-          _ (postgres-component/execute!
+          _ (postgres/execute!
              postgres
              ["
     create table if not exists address (id serial primary key,
@@ -47,9 +34,9 @@
     ;; insert into address (name, email) values (?, ?)"
     ;;           "John Doe Third" ""])
           
-          postgres-value (future (postgres-component/execute! postgres ["SELECT * FROM address"]))
+          postgres-value (future (postgres/execute! postgres ["SELECT * FROM address"]))
           
-          dynamodb-value (future (dynamodb-component/list-tables dynamodb))]
+          dynamodb-value (future (dynamodb/list-tables dynamodb))]
       {:status 200
        :headers {"Content-Type" "application/json"}
        :body (json/encode {:message "Hello, world! This is a JSON response. 🔥"
