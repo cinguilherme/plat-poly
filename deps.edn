@@ -27,6 +27,8 @@
                                 "development/resources"
                                 "components/common/src"
                                 "components/common/resources"
+                                "components/envs/src"
+                                "components/envs/resources"
                                 "components/client_http/src"
                                 "components/client_http/resources"
                                 "components/elastic_search/src"
@@ -63,6 +65,7 @@
                   :extra-deps {org.clojure/clojure {:mvn/version "1.11.1"}
                                ;; core components
                                poly/common {:local/root "components/common"}
+                               poly/envs {:local/root "components/envs"}
                                ;; base level components
 
                                ;; components leaf level dependencies
