@@ -41,6 +41,7 @@ projects/**/pom.xml
 # Calva VS Code Extension
 .calva/output-window/output.calva-repl
 **/.calva/output-window/output.calva-repl
+**/.calva
 
 
 # localstack-data
