@@ -3,14 +3,11 @@
 
             ;; platform start
             [gcc.platform.elastic_search.interface :as es]
-
             [gcc.platform.pedestal.component :as pedestal]
             [gcc.platform.redis.component :as rc]
             [gcc.platform.redis.interface :as redis-component]
-
             [gcc.platform.postgres.component :as pg]
             [gcc.platform.postgres.interface :as postgres-component]
-
             [gcc.platform.dynamodb.component :as dynamodb]
             [gcc.platform.dynamodb.interface :as dynamodb-component]
 
