@@ -43,6 +43,9 @@ projects/**/pom.xml
 **/.calva/output-window/output.calva-repl
 **/.calva
 
+## calva 
+bases/**/.calva
+
 
 # localstack-data
 localstack-data/**/*
