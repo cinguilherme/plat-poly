@@ -29,6 +29,9 @@ projects/**/pom.xml
 # nrepl
 .nrepl-port
 
+# repl output
+**/output.calva-repl
+
 # clojure-lsp
 .lsp/.cache
 
