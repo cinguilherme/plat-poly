@@ -34,3 +34,18 @@ OpenJDK 64-Bit Server VM Homebrew (build 21.0.1, mixed mode, sharing)
 ```
 
 <p>Add your workspace documentation here...</p>
+
+
+### Building
+
+<p>Build apps using Clojure, refer build.clj deps.edn and workspace.end. Also made available via Makefile</p>
+
+```bash
+clojure -T:build uberjar :project rest-api
+```
+
+or
+
+```bash
+make build-rest-api
+```
