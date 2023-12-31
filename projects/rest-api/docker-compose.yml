@@ -1,0 +1,80 @@
+version: "3"
+
+services:
+  localstack:
+    container_name: localstack-main
+    image: localstack/localstack:latest
+    ports:
+      - "127.0.0.1:4566:4566" # LocalStack Gateway
+      - "127.0.0.1:4510-4559:4510-4559" # external services port range
+
+    environment:
+      - SERVICES=s3,sqs,dynamodb,lambda
+      - DEBUG=1
+      - AWS_ACCESS_KEY_ID=test
+      - AWS_SECRET_ACCESS_KEY=test
+      - DEFAULT_REGION=us-east-1
+      - PORT_WEB_UI=9080
+
+    volumes:
+      - "./localstack-data:/var/lib/localstack" # Maps the local directory to the container directory
+      - "/var/run/docker.sock:/var/run/docker.sock" # Allows the LocalStack container to communicate with the Docker daemon
+      - ./aws-local-setup:/etc/localstack/init/ready.d
+
+  postgres:
+    image: postgres:latest
+    environment:
+      POSTGRES_DB: your_database
+      POSTGRES_USER: your_user
+      POSTGRES_PASSWORD: your_password
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+  minio:
+    image: minio/minio
+    volumes:
+      - minio_data:/data
+    ports:
+      - "9000:9000"
+    environment:
+      MINIO_ACCESS_KEY: minio
+      MINIO_SECRET_KEY: minio123
+    command: server /data
+
+  redis:
+    image: redis:latest
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis_data:/data
+
+  mongodb:
+    image: mongo:latest
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongodb_data:/data/db
+
+  elasticsearch:
+    image: docker.elastic.co/elasticsearch/elasticsearch:7.10.0 # Use the desired version
+    environment:
+      - discovery.type=single-node # For a single-node setup
+    ports:
+      - "9200:9200"
+      - "9300:9300"
+    volumes:
+      - elasticsearch_data:/usr/share/elasticsearch/data
+
+  rest-api:
+    image: rest-api:latest
+    ports:
+      - "8890:8890"
+
+volumes:
+  elasticsearch_data:
+  mongodb_data:
+  redis_data:
+  minio_data:
+  postgres_data:

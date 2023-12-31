@@ -91,3 +91,324 @@ clj꞉gcc.platform.user.interface꞉> 
 ; Could not locate se/example/user/interface__init.class, se/example/user/interface.clj or se/example/user/interface.cljc on classpath.
 clj꞉gcc.platform.cli.core꞉> 
 ; nREPL Connection was closed
+; Jacking in...
+; Connecting using "deps.edn" project type.
+; You can make Calva auto-select this.
+;   - See https://calva.io/connect-sequences/
+; 
+; Starting Jack-in Terminal: pushd /home/cinguilherme/Dev/plat-poly/bases/pedestal-server ; clojure -Sdeps '{:deps {nrepl/nrepl {:mvn/version,"1.0.0"},cider/cider-nrepl {:mvn/version,"0.28.5"}}}' -M:test -m nrepl.cmdline --middleware "[cider.nrepl/cider-middleware]" ; popd
+; nREPL Connection was closed
+; Using host:port localhost:43277 ...
+; Hooking up nREPL sessions ...
+; Connected session: clj
+; TIPS:
+;   - You can edit the contents here. Use it as a REPL if you like.
+;   - `alt+enter` evaluates the current top level form.
+;   - `ctrl+enter` evaluates the current form.
+;   - `alt+up` and `alt+down` traverse up and down the REPL command history
+;      when the cursor is after the last contents at the prompt
+;   - Clojure lines in stack traces are peekable and clickable.
+; Evaluating code from settings: 'calva.autoEvaluateCode.onConnect.clj'
+nil
+clj꞉user꞉> 
+clj꞉user꞉> 
+; Jack-in done.
+clj꞉user꞉> 
+nil
+clj꞉gcc.platform.pedestal-server.core꞉> 
+#'gcc.platform.pedestal-server.core/config-file-path
+clj꞉gcc.platform.pedestal-server.core꞉> 
+"resources/config-.edn"
+clj꞉gcc.platform.pedestal-server.core꞉> 
+; Jacking in...
+; Connecting using "deps.edn" project type.
+; You can make Calva auto-select this.
+;   - See https://calva.io/connect-sequences/
+; 
+; Starting Jack-in Terminal: pushd /home/cinguilherme/Dev/plat-poly/bases/pedestal-server ; clojure -Sdeps '{:deps {nrepl/nrepl {:mvn/version,"1.0.0"},cider/cider-nrepl {:mvn/version,"0.28.5"}}}' -M:test -m nrepl.cmdline --middleware "[cider.nrepl/cider-middleware]" ; popd
+; nREPL Connection was closed
+; Using host:port localhost:36441 ...
+; Hooking up nREPL sessions ...
+; Connected session: clj
+; TIPS:
+;   - You can edit the contents here. Use it as a REPL if you like.
+;   - `alt+enter` evaluates the current top level form.
+;   - `ctrl+enter` evaluates the current form.
+;   - `alt+up` and `alt+down` traverse up and down the REPL command history
+;      when the cursor is after the last contents at the prompt
+;   - Clojure lines in stack traces are peekable and clickable.
+; Evaluating code from settings: 'calva.autoEvaluateCode.onConnect.clj'
+nil
+clj꞉user꞉> 
+clj꞉user꞉> 
+; Jack-in done.
+clj꞉user꞉> 
+nil
+clj꞉gcc.platform.pedestal-server.core꞉> 
+#'gcc.platform.pedestal-server.core/config-file-path
+clj꞉gcc.platform.pedestal-server.core꞉> 
+"resources/config-dev.edn"
+clj꞉gcc.platform.pedestal-server.core꞉> 
+; Execution error at cprop.core/load-config (core.cljc:26).
+; could not find a non empty configuration file to load. looked in the classpath (as a "resource") and on a file system via "conf" system property
+clj꞉gcc.platform.pedestal-server.core꞉> 
+; Execution error at cprop.core/load-config (core.cljc:26).
+; could not find a non empty configuration file to load. looked in the classpath (as a "resource") and on a file system via "conf" system property
+clj꞉gcc.platform.pedestal-server.core꞉> 
+; Jacking in...
+; Connecting using "deps.edn" project type.
+; You can make Calva auto-select this.
+;   - See https://calva.io/connect-sequences/
+; 
+; Starting Jack-in Terminal: pushd /home/cinguilherme/Dev/plat-poly/bases/pedestal-server ; clojure -Sdeps '{:deps {nrepl/nrepl {:mvn/version,"1.0.0"},cider/cider-nrepl {:mvn/version,"0.28.5"}}}' -M:dev -m nrepl.cmdline --middleware "[cider.nrepl/cider-middleware]" ; popd
+; nREPL Connection was closed
+; Using host:port localhost:35445 ...
+; Hooking up nREPL sessions ...
+; Connected session: clj
+; TIPS:
+;   - You can edit the contents here. Use it as a REPL if you like.
+;   - `alt+enter` evaluates the current top level form.
+;   - `ctrl+enter` evaluates the current form.
+;   - `alt+up` and `alt+down` traverse up and down the REPL command history
+;      when the cursor is after the last contents at the prompt
+;   - Clojure lines in stack traces are peekable and clickable.
+; Evaluating code from settings: 'calva.autoEvaluateCode.onConnect.clj'
+nil
+clj꞉user꞉> 
+clj꞉user꞉> 
+; Jack-in done.
+clj꞉user꞉> 
+nil
+clj꞉gcc.platform.pedestal-server.core꞉> 
+#'gcc.platform.pedestal-server.core/config-file-path
+clj꞉gcc.platform.pedestal-server.core꞉> 
+"resources/config-dev.edn"
+clj꞉gcc.platform.pedestal-server.core꞉> 
+; Execution error at cprop.core/load-config (core.cljc:26).
+; could not find a non empty configuration file to load. looked in the classpath (as a "resource") and on a file system via "conf" system property
+clj꞉gcc.platform.pedestal-server.core꞉> 
+; Execution error at cprop.core/load-config (core.cljc:26).
+; could not find a non empty configuration file to load. looked in the classpath (as a "resource") and on a file system via "conf" system property
+clj꞉gcc.platform.pedestal-server.core꞉> 
+Loading config from: resources/config-dev.edn
+nil
+clj꞉gcc.platform.pedestal-server.core꞉> 
+; Execution error at cprop.core/load-config (core.cljc:26).
+; could not find a non empty configuration file to load. looked in the classpath (as a "resource") and on a file system via "conf" system property
+clj꞉gcc.platform.pedestal-server.core꞉> 
+resources/config-dev.edn
+; Syntax error compiling at (.calva/output-window/output.calva-repl:0:0).
+; No such namespace: resources
+clj꞉gcc.platform.pedestal-server.core꞉> 
+nil
+clj꞉gcc.platform.pedestal-server.core꞉> 
+"{:relational {:dbtype \"h2:mem\"  ; Use in-memory H2 database\n              :dbname \"test\"    ; Name of the in-memory database\n              :user \"sa\"        ; Default user for H2\n              :password \"\"}\n :dynamodb {:access-key \"test\"\n            :secret-key \"test\"\n            :endpoint \"http://localhost:4566\"}\n\n :redis {:host \"localhost\"\n         :port  6379}}"
+clj꞉gcc.platform.pedestal-server.core꞉> 
+; Execution error at cprop.core/load-config (core.cljc:26).
+; could not find a non empty configuration file to load. looked in the classpath (as a "resource") and on a file system via "conf" system property
+clj꞉gcc.platform.pedestal-server.core꞉> 
+"resources/config-dev.edn"
+clj꞉gcc.platform.pedestal-server.core꞉> 
+Loading config from: resources/config-dev.edn
+nil
+clj꞉gcc.platform.pedestal-server.core꞉> 
+"{:relational {:dbtype \"h2:mem\"  ; Use in-memory H2 database\n              :dbname \"test\"    ; Name of the in-memory database\n              :user \"sa\"        ; Default user for H2\n              :password \"\"}\n :dynamodb {:access-key \"test\"\n            :secret-key \"test\"\n            :endpoint \"http://localhost:4566\"}\n\n :redis {:host \"localhost\"\n         :port  6379}}"
+clj꞉gcc.platform.pedestal-server.core꞉> 
+; Execution error at cprop.core/load-config (core.cljc:26).
+; could not find a non empty configuration file to load. looked in the classpath (as a "resource") and on a file system via "conf" system property
+clj꞉gcc.platform.pedestal-server.core꞉> 
+; Syntax error compiling at (src/gcc/platform/pedestal_server/core.clj:16:22).
+; No such namespace: io
+clj꞉gcc.platform.pedestal-server.core꞉> 
+nil
+clj꞉gcc.platform.pedestal-server.core꞉> 
+#'gcc.platform.pedestal-server.core/config-file-path
+clj꞉gcc.platform.pedestal-server.core꞉> 
+#'gcc.platform.pedestal-server.core/config-file-path
+clj꞉gcc.platform.pedestal-server.core꞉> 
+#'gcc.platform.pedestal-server.core/config-file-path
+clj꞉gcc.platform.pedestal-server.core꞉> 
+; Execution error (IllegalArgumentException) at gcc.platform.pedestal-server.core/config-file-path (REPL:19).
+; No matching field found: getFile for class java.net.URI
+clj꞉gcc.platform.pedestal-server.core꞉> 
+#'gcc.platform.pedestal-server.core/config-file-path
+clj꞉gcc.platform.pedestal-server.core꞉> 
+; Execution error (IllegalArgumentException) at gcc.platform.pedestal-server.core/config-file-path (REPL:19).
+; No matching field found: getFile for class java.net.URI
+clj꞉gcc.platform.pedestal-server.core꞉> 
+; Execution error (IllegalArgumentException) at gcc.platform.pedestal-server.core/config-file-path (REPL:19).
+; No matching field found: getFile for class java.net.URI
+clj꞉gcc.platform.pedestal-server.core꞉> 
+#'gcc.platform.pedestal-server.core/config-file-path
+clj꞉gcc.platform.pedestal-server.core꞉> 
+; Execution error at cprop.core/load-config (core.cljc:26).
+; could not find a non empty configuration file to load. looked in the classpath (as a "resource") and on a file system via "conf" system property
+clj꞉gcc.platform.pedestal-server.core꞉> 
+nil
+clj꞉gcc.platform.pedestal-server.core꞉> 
+#'gcc.platform.pedestal-server.core/read-config-file
+clj꞉gcc.platform.pedestal-server.core꞉> 
+#'gcc.platform.pedestal-server.core/read-config-file
+clj꞉gcc.platform.pedestal-server.core꞉> 
+#'gcc.platform.pedestal-server.core/config-file-path
+clj꞉gcc.platform.pedestal-server.core꞉> 
+#'gcc.platform.pedestal-server.core/load-config-data
+clj꞉gcc.platform.pedestal-server.core꞉> 
+; Execution error (ClassCastException) at gcc.platform.pedestal-server.core/read-config-file (REPL:17).
+; class java.io.BufferedReader cannot be cast to class java.io.PushbackReader (java.io.BufferedReader and java.io.PushbackReader are in module java.base of loader 'bootstrap')
+clj꞉gcc.platform.pedestal-server.core꞉> 
+#'gcc.platform.pedestal-server.core/read-config-file
+clj꞉gcc.platform.pedestal-server.core꞉> 
+#'gcc.platform.pedestal-server.core/config-file-path
+clj꞉gcc.platform.pedestal-server.core꞉> 
+#'gcc.platform.pedestal-server.core/load-config-data
+clj꞉gcc.platform.pedestal-server.core꞉> 
+; Execution error at cprop.core/load-config (core.cljc:26).
+; could not find a non empty configuration file to load. looked in the classpath (as a "resource") and on a file system via "conf" system property
+clj꞉gcc.platform.pedestal-server.core꞉> 
+#'gcc.platform.pedestal-server.core/read-config-file
+clj꞉gcc.platform.pedestal-server.core꞉> 
+#'gcc.platform.pedestal-server.core/config-file-path
+clj꞉gcc.platform.pedestal-server.core꞉> 
+#'gcc.platform.pedestal-server.core/load-config-data
+clj꞉gcc.platform.pedestal-server.core꞉> 
+{:relational {:dbtype h2:mem, :dbname test, :user sa, :password }, :dynamodb {:access-key test, :secret-key test, :endpoint http://localhost:4566}, :redis {:host localhost, :port 6379}}
+nil
+clj꞉gcc.platform.pedestal-server.core꞉> 
+; Execution error at cprop.core/load-config (core.cljc:26).
+; could not find a non empty configuration file to load. looked in the classpath (as a "resource") and on a file system via "conf" system property
+clj꞉gcc.platform.pedestal-server.core꞉> 
+#'gcc.platform.pedestal-server.core/config
+clj꞉gcc.platform.pedestal-server.core꞉> 
+; Syntax error compiling at (src/gcc/platform/pedestal_server/core.clj:34:1).
+; No such namespace: pprint
+clj꞉gcc.platform.pedestal-server.core꞉> 
+nil
+clj꞉gcc.platform.pedestal-server.core꞉> 
+{:relational
+ {:dbtype "h2:mem", :dbname "test", :user "sa", :password ""},
+ :dynamodb
+ {:access-key "test",
+  :secret-key "test",
+  :endpoint "http://localhost:4566"},
+ :redis {:host "localhost", :port 6379}}
+nil
+clj꞉gcc.platform.pedestal-server.core꞉> 
+; Jacking in...
+; Connecting using "deps.edn" project type.
+; You can make Calva auto-select this.
+;   - See https://calva.io/connect-sequences/
+; 
+; Starting Jack-in Terminal: pushd /home/cinguilherme/Dev/plat-poly/bases/pedestal-server ; clojure -Sdeps '{:deps {nrepl/nrepl {:mvn/version,"1.0.0"},cider/cider-nrepl {:mvn/version,"0.28.5"}}}' -M:dev -m nrepl.cmdline --middleware "[cider.nrepl/cider-middleware]" ; popd
+; nREPL Connection was closed
+; Using host:port localhost:46543 ...
+; Hooking up nREPL sessions ...
+; Connected session: clj
+; TIPS:
+;   - You can edit the contents here. Use it as a REPL if you like.
+;   - `alt+enter` evaluates the current top level form.
+;   - `ctrl+enter` evaluates the current form.
+;   - `alt+up` and `alt+down` traverse up and down the REPL command history
+;      when the cursor is after the last contents at the prompt
+;   - Clojure lines in stack traces are peekable and clickable.
+; Evaluating code from settings: 'calva.autoEvaluateCode.onConnect.clj'
+nil
+clj꞉user꞉> 
+clj꞉user꞉> 
+; Jack-in done.
+clj꞉user꞉> 
+nil
+clj꞉gcc.platform.pedestal-server.core꞉> 
+#'gcc.platform.pedestal-server.core/read-config-file
+clj꞉gcc.platform.pedestal-server.core꞉> 
+#'gcc.platform.pedestal-server.core/config-file-path
+clj꞉gcc.platform.pedestal-server.core꞉> 
+#'gcc.platform.pedestal-server.core/load-config-data
+clj꞉gcc.platform.pedestal-server.core꞉> 
+{:relational {:dbtype h2:mem, :dbname test, :user sa, :password }, :dynamodb {:access-key test, :secret-key test, :endpoint http://localhost:4566}, :redis {:host localhost, :port 6379}}
+nil
+clj꞉gcc.platform.pedestal-server.core꞉> 
+#'gcc.platform.pedestal-server.core/config
+clj꞉gcc.platform.pedestal-server.core꞉> 
+{:relational
+ {:dbtype "h2:mem", :dbname "test", :user "sa", :password ""},
+ :dynamodb
+ {:access-key "test",
+  :secret-key "test",
+  :endpoint "http://localhost:4566"},
+ :redis {:host "localhost", :port 6379}}
+nil
+clj꞉gcc.platform.pedestal-server.core꞉> 
+nil
+clj꞉gcc.platform.common.core꞉> 
+#'gcc.platform.common.core/tap
+clj꞉gcc.platform.common.core꞉> 
+; Syntax error compiling at (/home/cinguilherme/Dev/plat-poly/components/common/src/gcc/platform/common/core.clj:13:19).
+; No such namespace: io
+clj꞉gcc.platform.common.core꞉> 
+nil
+clj꞉gcc.platform.common.core꞉> 
+nil
+clj꞉gcc.platform.common.core꞉> 
+#'gcc.platform.common.core/tap
+clj꞉gcc.platform.common.core꞉> 
+#'gcc.platform.common.core/read-config-file
+clj꞉gcc.platform.common.core꞉> 
+#'gcc.platform.common.core/config-file-path
+clj꞉gcc.platform.common.core꞉> 
+#'gcc.platform.common.core/load-config-data
+clj꞉gcc.platform.common.core꞉> 
+#'gcc.platform.common.core/config
+clj꞉gcc.platform.common.core꞉> 
+#'gcc.platform.common.core/config-file-path
+clj꞉gcc.platform.common.core꞉> 
+#'gcc.platform.common.core/read-config-file
+clj꞉gcc.platform.common.core꞉> 
+nil
+clj꞉gcc.platform.common.interface꞉> 
+#'gcc.platform.common.core/conf
+clj꞉gcc.platform.common.core꞉> 
+{:relational {:dbtype h2:mem, :dbname test, :user sa, :password }, :dynamodb {:access-key test, :secret-key test, :endpoint http://localhost:4566}, :redis {:host localhost, :port 6379}}
+nil
+clj꞉gcc.platform.common.core꞉> 
+nil
+clj꞉gcc.platform.pedestal-server.core꞉> 
+; Syntax error compiling at (src/gcc/platform/pedestal_server/core.clj:17:13).
+; No such var: common/load-config-for-env
+clj꞉gcc.platform.pedestal-server.core꞉> 
+; Jacking in...
+; Connecting using "deps.edn" project type.
+; You can make Calva auto-select this.
+;   - See https://calva.io/connect-sequences/
+; 
+; Starting Jack-in Terminal: pushd /home/cinguilherme/Dev/plat-poly/bases/pedestal-server ; clojure -Sdeps '{:deps {nrepl/nrepl {:mvn/version,"1.0.0"},cider/cider-nrepl {:mvn/version,"0.28.5"}}}' -M:dev -m nrepl.cmdline --middleware "[cider.nrepl/cider-middleware]" ; popd
+; nREPL Connection was closed
+; Using host:port localhost:40979 ...
+; Hooking up nREPL sessions ...
+; Connected session: clj
+; TIPS:
+;   - You can edit the contents here. Use it as a REPL if you like.
+;   - `alt+enter` evaluates the current top level form.
+;   - `ctrl+enter` evaluates the current form.
+;   - `alt+up` and `alt+down` traverse up and down the REPL command history
+;      when the cursor is after the last contents at the prompt
+;   - Clojure lines in stack traces are peekable and clickable.
+; Evaluating code from settings: 'calva.autoEvaluateCode.onConnect.clj'
+nil
+clj꞉user꞉> 
+clj꞉user꞉> 
+; Jack-in done.
+clj꞉user꞉> 
+nil
+clj꞉gcc.platform.pedestal-server.core꞉> 
+#'gcc.platform.pedestal-server.core/config
+clj꞉gcc.platform.pedestal-server.core꞉> 
+{:relational
+ {:dbtype "h2:mem", :dbname "test", :user "sa", :password ""},
+ :dynamodb
+ {:access-key "test",
+  :secret-key "test",
+  :endpoint "http://localhost:4566"},
+ :redis {:host "localhost", :port 6379}}
+nil
+clj꞉gcc.platform.pedestal-server.core꞉> 

@@ -5,8 +5,18 @@
             [gcc.platform.dynamodb.interface :as dynamodb]
             [gcc.platform.elastic_search.component :as esc]
             [com.stuartsierra.component :as component]
-            [gcc.platform.pedestal-server.routes.routes :as routes])
+            [gcc.platform.common.interface :as common]
+            [gcc.platform.pedestal-server.routes.routes :as routes]
+            [clojure.edn :as edn]
+            [dotenv :refer [env]]
+            [clojure.java.io :as io]
+            [cprop.core :refer [load-config]]
+            [clojure.pprint :refer [pprint]])
   (:gen-class))
+
+(def config (common/load-config-for-env))
+
+(pprint config)
 
 (defn create-system []
   (component/system-map
