@@ -64,8 +64,8 @@
   (send-message-async [this url message]
     (when (:sqs-producer this)
       (let [freciept (future (sqs/send-message
-                             {:queue-url url
-                              :message-body message}))]
+                              {:queue-url url
+                               :message-body message}))]
         freciept))))
 
 (defn new-sqs-producer-component

@@ -2,7 +2,8 @@
   (:require [com.stuartsierra.component :as component]
             [schema.core :as s]
             [io.pedestal.http :as http]
-            [io.pedestal.http.route :as route]))
+            [io.pedestal.http.route :as route]
+            [gcc.platform.sqs_producer.interface :as sqs-producer]))
 
 ;; Define the schema for the Redis pool configuration
 (def ComponentsMap
@@ -32,7 +33,7 @@
 (defn start [server]
   (future (http/start server)))
 
-(defrecord PedestalComponent [routes redis elasticsearch dynamodb postgres producer-sqs]
+(defrecord PedestalComponent [routes redis elasticsearch dynamodb postgres sqs-producer]
   component/Lifecycle
 
   (start [component]
@@ -40,7 +41,7 @@
                           :elasticsearch elasticsearch
                           :dynamodb dynamodb
                           :postgres postgres
-                          :producer-sqs producer-sqs}
+                          :sqs-producer sqs-producer}
           server (create-server routes components-map)
           started (future (start server))]
       (assoc component

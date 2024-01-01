@@ -1,5 +1,6 @@
 (ns gcc.platform.pedestal-server.core
   (:require [gcc.platform.pedestal.interface :as pedestal]
+            [gcc.platform.sqs_producer.interface :as sqs-producer]
             [gcc.platform.redis.interface :as redis]
             [gcc.platform.postgres.interface :as postgres]
             [gcc.platform.dynamodb.interface :as dynamodb]
@@ -7,11 +8,11 @@
             [com.stuartsierra.component :as component]
             [gcc.platform.common.interface :as common]
             [gcc.platform.envs.interface :as envs]
-            [gcc.platform.pedestal-server.routes.routes :as routes] 
+            [gcc.platform.pedestal-server.routes.routes :as routes]
             [clojure.pprint :refer [pprint]])
   (:gen-class))
 
-(def config (envs/load-config-for-env-plus-envs 
+(def config (envs/load-config-for-env-plus-envs
              [:DYNAMO_ENDPOINT :REDIS_HOST :REDIS_PORT]))
 
 (pprint config)
@@ -22,6 +23,20 @@
 (def relational-conf (-> config :config :relational))
 
 (pprint relational-conf)
+
+(def credentials
+  {:access-key (envs/get-env :AWS_ACCESS_KEY_ID)
+   :secret-key (envs/get-env :AWS_SECRET_ACCESS_KEY)
+   :region (envs/get-env :AWS_REGION)
+   :path-style-access false
+   :endpoint (envs/get-env :AWS_ENDPOINT)})
+
+(def localstack-credentials
+    {:access-key "test"
+     :secret-key "test"
+     :region "us-east-1"
+     :path-style-access true
+     :endpoint "http://localhost:4566"})
 
 (defn create-system []
   (pprint config)
@@ -40,10 +55,13 @@
    ;; Postgres
    :postgres (postgres/new-postgres-component relational-conf)
 
+   ;; mid level components
+   :sqs-producer (sqs-producer/new-sqs-producer-component localstack-credentials)
+
    ;; compound components (high level)
    :pedestal (component/using
               (pedestal/new-pedestal-component routes/routes)
-              [:redis :elasticsearch :dynamodb :postgres])
+              [:redis :elasticsearch :dynamodb :postgres :sqs-producer])
 
    ;; Add other components here
    ))
@@ -58,6 +76,4 @@
 
   (def system (-main "test"))
 
-  (shutdown system)
-
-  )
+  (shutdown system))
