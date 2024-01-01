@@ -46,6 +46,21 @@ projects/**/pom.xml
 ## calva 
 bases/**/.calva
 
+## copilot, add lines to .gitignore to ignore any .calva/ path files expecially output.calva-repl
+
+**/output.calva-repl
+**/.calva
+**/.calva/output-window/output.calva-repl
+
+
+
+## please ignore anything .clava like
+## eg bases/pedestal-server/.calva/output-window/output.calva-repl
+
+
+
+# Cursive
+
 
 # localstack-data
 localstack-data/**/*
