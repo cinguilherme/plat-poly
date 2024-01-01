@@ -26,6 +26,8 @@
                    :MaximumMessageSize 65536 ; bytes
                    :MessageRetentionPeriod 1209600 ; sec
                    :ReceiveMessageWaitTimeSeconds 10}})))
+  
+  (pprint/pprint queue-url)
 
   (sqs/send-message {:queue-url queue-url
                      :message-body "Your message 2"})
