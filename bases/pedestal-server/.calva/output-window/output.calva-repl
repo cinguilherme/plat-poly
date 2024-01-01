@@ -412,3 +412,585 @@ clj꞉gcc.platform.pedestal-server.core꞉> 
  :redis {:host "localhost", :port 6379}}
 nil
 clj꞉gcc.platform.pedestal-server.core꞉> 
+; Jacking in...
+; Connecting using "deps.edn" project type.
+; You can make Calva auto-select this.
+;   - See https://calva.io/connect-sequences/
+; 
+; Starting Jack-in Terminal: pushd /Users/guilhermecintra/Documents/code/poly-plat/poly-platform/bases/pedestal-server ; clojure -Sdeps '{:deps {nrepl/nrepl {:mvn/version,"1.0.0"},cider/cider-nrepl {:mvn/version,"0.28.5"}}}' -M:test -m nrepl.cmdline --middleware "[cider.nrepl/cider-middleware]" ; popd
+; Jacking in...
+; Connecting using "deps.edn" project type.
+; You can make Calva auto-select this.
+;   - See https://calva.io/connect-sequences/
+; 
+; Starting Jack-in Terminal: pushd /Users/guilhermecintra/Documents/code/poly-plat/poly-platform/bases/pedestal-server ; clojure -Sdeps '{:deps {nrepl/nrepl {:mvn/version,"1.0.0"},cider/cider-nrepl {:mvn/version,"0.28.5"}}}' -M:dev -m nrepl.cmdline --middleware "[cider.nrepl/cider-middleware]" ; popd
+; Using host:port localhost:49901 ...
+; Hooking up nREPL sessions ...
+; Connected session: clj
+; TIPS:
+;   - You can edit the contents here. Use it as a REPL if you like.
+;   - `alt+enter` evaluates the current top level form.
+;   - `ctrl+enter` evaluates the current form.
+;   - `alt+up` and `alt+down` traverse up and down the REPL command history
+;      when the cursor is after the last contents at the prompt
+;   - Clojure lines in stack traces are peekable and clickable.
+; Evaluating code from settings: 'calva.autoEvaluateCode.onConnect.clj'
+nil
+clj꞉user꞉> 
+clj꞉user꞉> 
+; Jack-in done.
+clj꞉user꞉> 
+nil
+clj꞉gcc.platform.pedestal-server.core꞉> 
+#'gcc.platform.pedestal-server.core/config
+clj꞉gcc.platform.pedestal-server.core꞉> 
+{:relational
+ {:dbtype "h2:mem", :dbname "test", :user "sa", :password ""},
+ :dynamodb
+ {:access-key "test",
+  :secret-key "test",
+  :endpoint "http://localhost:4566"},
+ :redis {:host "localhost", :port 6379}}
+nil
+clj꞉gcc.platform.pedestal-server.core꞉> 
+#'gcc.platform.pedestal-server.core/config
+clj꞉gcc.platform.pedestal-server.core꞉> 
+{:relational
+ {:dbtype "h2:mem", :dbname "test", :user "sa", :password ""},
+ :dynamodb
+ {:access-key "test",
+  :secret-key "test",
+  :endpoint "http://localhost:4566"},
+ :redis {:host "localhost", :port 6379}}
+nil
+clj꞉gcc.platform.pedestal-server.core꞉> 
+{:relational
+ {:dbtype "h2:mem", :dbname "test", :user "sa", :password ""},
+ :dynamodb
+ {:access-key "test",
+  :secret-key "test",
+  :endpoint "http://localhost:4566"},
+ :redis {:host "localhost", :port 6379}}
+nil
+clj꞉gcc.platform.pedestal-server.core꞉> 
+nil
+clj꞉gcc.platform.envs.core꞉> 
+#'gcc.platform.envs.core/read-systen-envs
+clj꞉gcc.platform.envs.core꞉> 
+{:java.vendor.url.bug "https://bugreport.java.com/bugreport/",
+ :socksNonProxyHosts "local|*.local|169.254/16|*.169.254/16",
+ :POSTGRES_PORT "5432",
+ :jdk.debug "release",
+ :LS_COLORS
+ "di=1;36:ln=35:so=32:pi=33:ex=31:bd=34;46:cd=34;43:su=30;41:sg=30;46:tw=30;42:ow=30;43",
+ :ENV "dev",
+ :ELASTIC_SEARCH_HOST "http://localhost:9200/",
+ :ftp.nonProxyHosts "local|*.local|169.254/16|*.169.254/16",
+ :CONDA_PREFIX "/Users/guilhermecintra/miniconda3",
+ :java.vm.name "OpenJDK 64-Bit Server VM",
+ :ITERM_SESSION_ID "w0t1p0:A09EF99D-91CD-454F-9D5A-10CE10F0604F",
+ :java.vm.version "19.0.1+10-21",
+ :java.specification.name "Java Platform API Specification",
+ :HOME "/Users/guilhermecintra",
+ :apple.awt.UIElement "true",
+ :USER "guilhermecintra",
+ :CONDA_DEFAULT_ENV "base",
+ :native.encoding "UTF-8",
+ :apple.awt.application.name "main",
+ :java.io.tmpdir "/var/folders/46/hxv35m3950l_5zbsz8wxlwnm0000gp/T/",
+ :java.runtime.name "OpenJDK Runtime Environment",
+ :ITERM_PROFILE "Default",
+ :sun.java.command
+ "clojure.main -m nrepl.cmdline --middleware [cider.nrepl/cider-middleware]",
+ :sun.java.launcher "SUN_STANDARD",
+ :PATH
+ "/Users/guilhermecintra/miniconda3/bin:/Users/guilhermecintra/miniconda3/condabin:/Users/guilhermecintra/.nvm/versions/node/v16.19.0/bin:/opt/homebrew/bin:/opt/homebrew/sbin:/usr/local/bin:/System/Cryptexes/App/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin:/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/local/bin:/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/bin:/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/appleinternal/bin:/Users/guilhermecintra/.fig/bin:/Users/guilhermecintra/.local/bin:/Users/guilhermecintra/.cabal/bin:/Users/guilhermecintra/.ghcup/bin",
+ :java.vendor "Oracle Corporation",
+ :os.version "14.2",
+ :FIG_PID "55151",
+ :NVM_CD_FLAGS "-q",
+ :MallocNanoZone "0",
+ :TTY "/dev/ttys009",
+ :ELECTRON_NO_ATTACH_CONSOLE "1",
+ :CONDA_PYTHON_EXE "/Users/guilhermecintra/miniconda3/bin/python",
+ :COLORFGBG "15;0",
+ :sun.management.compiler "HotSpot 64-Bit Tiered Compilers",
+ :TERM_PROGRAM_VERSION "3.4.22",
+ :user.name "guilhermecintra",
+ :DYNAMO_SECRET_KEY "test",
+ :java.vm.compressedOopsMode "Zero based",
+ :JACK_IN_NREPL_VERSION "1.0.0",
+ :sun.arch.data.model "64",
+ :LANG "en_US.UTF-8",
+ :ZSH "/Users/guilhermecintra/.local/share/fig/plugins/ohmyzsh",
+ :APPLICATION_INSIGHTS_NO_DIAGNOSTIC_CHANNEL "1",
+ :INFOPATH "/opt/homebrew/share/info:",
+ :REDIS_PORT "6379",
+ :java.vm.vendor "Oracle Corporation",
+ :ORIGINAL_XDG_CURRENT_DESKTOP "undefined",
+ :JACK_IN_PROJECT_ROOT_PATH
+ "/Users/guilhermecintra/Documents/code/poly-plat/poly-platform/bases/pedestal-server",
+ :LSCOLORS "Gxfxcxdxbxegedabagacad",
+ :java.vendor.url "https://java.oracle.com/",
+ :VSCODE_HANDLES_UNCAUGHT_ERRORS "true",
+ :LaunchInstanceID "974EFD61-C061-4D53-AC6B-F8D7CC18CADC",
+ :NVM_INC
+ "/Users/guilhermecintra/.nvm/versions/node/v16.19.0/include/node",
+ :CONDA_SHLVL "1",
+ :HOMEBREW_CELLAR "/opt/homebrew/Cellar",
+ :JACK_IN_NREPL_PORT_FILE ".nrepl-port",
+ :file.encoding "UTF-8",
+ :java.vm.specification.version "19",
+ :XPC_FLAGS "0x0",
+ :sun.io.unicode.encoding "UnicodeBig",
+ :clojure.basis ".cpcache/1026680038.basis",
+ :user.language "en",
+ :java.vm.info "mixed mode, sharing",
+ :java.class.version "63.0",
+ :__CF_USER_TEXT_ENCODING "0x1F6:0x0:0x0",
+ :java.vm.specification.name "Java Virtual Machine Specification",
+ :VSCODE_IPC_HOOK
+ "/Users/guilhermecintra/Library/Application Support/Code/1.85-main.sock",
+ :VSCODE_AMD_ENTRYPOINT "vs/workbench/api/node/extensionHostProcess",
+ :stderr.encoding "UTF-8",
+ :DYNAMO_ACCES_KEY "test",
+ :java.library.path
+ "/Users/guilhermecintra/Library/Java/Extensions:/Library/Java/Extensions:/Network/Library/Java/Extensions:/System/Library/Java/Extensions:/usr/lib/java:.",
+ :PWD
+ "/Users/guilhermecintra/Documents/code/poly-plat/poly-platform/bases/pedestal-server",
+ :FIGTERM_SESSION_ID "25b84775-c17f-4957-859e-56751d601bf0",
+ :HOMEBREW_PREFIX "/opt/homebrew",
+ :VSCODE_CRASH_REPORTER_PROCESS_TYPE "extensionHost",
+ :java.home
+ "/Users/guilhermecintra/Library/Java/JavaVirtualMachines/openjdk-19.0.1/Contents/Home",
+ :sun.jnu.encoding "UTF-8",
+ :VSCODE_CODE_CACHE_PATH
+ "/Users/guilhermecintra/Library/Application Support/Code/CachedData/0ee08df0cf4527e40edc9aa28f4b5bd38bbff2b2",
+ :file.separator "/",
+ : "",
+ :java.runtime.version "19.0.1+10-21",
+ :TERM "xterm-256color",
+ :java.specification.version "19",
+ :TERM_SESSION_ID "w0t1p0:A09EF99D-91CD-454F-9D5A-10CE10F0604F",
+ :line.separator "\n",
+ :http.nonProxyHosts "local|*.local|169.254/16|*.169.254/16",
+ :user.home "/Users/guilhermecintra",
+ :path.separator ":",
+ :XPC_SERVICE_NAME
+ "application.com.microsoft.VSCode.30275168.30275174.78CDBDB9-9CD9-40B9-BDBE-521AB5403CD2",
+ :LC_TERMINAL "iTerm2",
+ :JACK_IN_CIDER_NREPL_VERSION "0.28.5",
+ :TERM_PROGRAM "iTerm.app",
+ :VSCODE_CLI "1",
+ :user.dir
+ "/Users/guilhermecintra/Documents/code/poly-plat/poly-platform/bases/pedestal-server",
+ :java.specification.vendor "Oracle Corporation",
+ :FIG_SET_PARENT_CHECK "1",
+ :user.timezone "America/Recife",
+ :ELECTRON_RUN_AS_NODE "1",
+ :LESS "-R",
+ :COMMAND_MODE "unix2003",
+ :MANPATH
+ "/Users/guilhermecintra/.nvm/versions/node/v16.19.0/share/man:/opt/homebrew/share/man::",
+ :DYNAMO_ENDPOINT "http://localhost:4566",
+ :VSCODE_L10N_BUNDLE_LOCATION "",
+ :ZNT_REPO_DIR
+ "/Users/guilhermecintra/.local/share/fig/plugins/ohmyzsh/plugins/zsh-navigation-tools",
+ :__CFBundleIdentifier "com.microsoft.VSCode",
+ :SSH_AUTH_SOCK "/private/tmp/com.apple.launchd.ykD9rDrWnv/Listeners",
+ :FIG_SET_PARENT "25b84775-c17f-4957-859e-56751d601bf0",
+ :CONDA_PROMPT_MODIFIER "(base) ",
+ :SHLVL "3",
+ :JACK_IN_CLI_ALIASES ":dev",
+ :os.arch "aarch64",
+ :ZNT_CONFIG_DIR "/Users/guilhermecintra/.config/znt",
+ :PAGER "less",
+ :REDIS_HOST "localhost",
+ :NVM_DIR "/Users/guilhermecintra/.nvm",
+ :SHELL "/bin/zsh",
+ :VSCODE_CWD
+ "/Users/guilhermecintra/Documents/code/poly-plat/poly-platform",
+ :LC_FIG_SET_PARENT "25b84775-c17f-4957-859e-56751d601bf0",
+ :CONDA_EXE "/Users/guilhermecintra/miniconda3/bin/conda",
+ :java.vm.specification.vendor "Oracle Corporation",
+ :VSCODE_PID "1425",
+ :TMPDIR "/var/folders/46/hxv35m3950l_5zbsz8wxlwnm0000gp/T/",
+ :sun.boot.library.path
+ "/Users/guilhermecintra/Library/Java/JavaVirtualMachines/openjdk-19.0.1/Contents/Home/lib",
+ :stdout.encoding "UTF-8",
+ :VSCODE_NLS_CONFIG
+ "{\"locale\":\"en-us\",\"osLocale\":\"en-us\",\"availableLanguages\":{},\"_languagePackSupport\":true}",
+ :POSTGRES_HOST "localhost",
+ :FIG_TERM "2.17.0",
+ :java.version.date "2022-10-18",
+ :java.version "19.0.1",
+ :NVM_BIN "/Users/guilhermecintra/.nvm/versions/node/v16.19.0/bin",
+ :HOMEBREW_REPOSITORY "/opt/homebrew",
+ :COLORTERM "truecolor",
+ :os.name "Mac OS X",
+ :SECURITYSESSIONID "186ad",
+ :LOGNAME "guilhermecintra",
+ :java.class.path
+ "src:resources:/Users/guilhermecintra/.m2/repository/cider/cider-nrepl/0.28.5/cider-nrepl-0.28.5.jar:/Users/guilhermecintra/.m2/repository/com/stuartsierra/component/1.1.0/component-1.1.0.jar:/Users/guilhermecintra/.m2/repository/cprop/cprop/0.1.19/cprop-0.1.19.jar:/Users/guilhermecintra/.m2/repository/environ/environ/1.2.0/environ-1.2.0.jar:/Users/guilhermecintra/.m2/repository/io/pedestal/pedestal.jetty/0.6.1/pedestal.jetty-0.6.1.jar:/Users/guilhermecintra/.m2/repository/io/pedestal/pedestal.route/0.6.1/pedestal.route-0.6.1.jar:/Users/guilhermecintra/.m2/repository/io/pedestal/pedestal.service/0.6.1/pedestal.service-0.6.1.jar:/Users/guilhermecintra/.m2/repository/lynxeyes/dotenv/1.1.0/dotenv-1.1.0.jar:/Users/guilhermecintra/.m2/repository/nrepl/nrepl/1.0.0/nrepl-1.0.0.jar:/Users/guilhermecintra/.m2/repository/org/clojure/clojure/1.11.1/clojure-1.11.1.jar:/Users/guilhermecintra/.m2/repository/org/clojure/core.async/1.6.681/core.async-1.6.681.jar:/Users/guilhermecintra/Documents/code/poly-plat/poly-platform/components/client_http/src:/Users/guilhermecintra/Documents/code/poly-plat/poly-platform/components/client_http/resources:/Users/guilhermecintra/Documents/code/poly-plat/poly-platform/components/common/src:/Users/guilhermecintra/Documents/code/poly-plat/poly-platform/components/common/resources:/Users/guilhermecintra/Documents/code/poly-plat/poly-platform/components/dynamodb/src:/Users/guilhermecintra/Documents/code/poly-plat/poly-platform/components/dynamodb/resources:/Users/guilhermecintra/Documents/code/poly-plat/poly-platform/components/elastic_search/src:/Users/guilhermecintra/Documents/code/poly-plat/poly-platform/components/elastic_search/resources:/Users/guilhermecintra/Documents/code/poly-plat/poly-platform/components/envs/src:/Users/guilhermecintra/Documents/code/poly-plat/poly-platform/components/envs/resources:/Users/guilhermecintra/Documents/code/poly-plat/poly-platform/components/mongo/src:/Users/guilhermecintra/Documents/code/poly-plat/poly-platform/components/mongo/resources:/Users/guilhermecintra/Documents/code/poly-plat/poly-platform/components/pedestal/src:/Users/guilhermecintra/Documents/code/poly-plat/poly-platform/components/pedestal/resources:/Users/guilhermecintra/Documents/code/poly-plat/poly-platform/components/postgres/src:/Users/guilhermecintra/Documents/code/poly-plat/poly-platform/components/postgres/resources:/Users/guilhermecintra/Documents/code/poly-plat/poly-platform/components/redis/src:/Users/guilhermecintra/Documents/code/poly-plat/poly-platform/components/redis/resources:/Users/guilhermecintra/Documents/code/poly-plat/poly-platform/components/redis/test:/Users/guilhermecintra/.m2/repository/com/stuartsierra/dependency/1.0.0/dependency-1.0.0.jar:/Users/guilhermecintra/.m2/repository/io/pedestal/pedestal.log/0.6.1/pedestal.log-0.6.1.jar:/Users/guilhermecintra/.m2/repository/javax/servlet/javax.servlet-api/3.1.0/javax.servlet-api-3.1.0.jar:/Users/guilhermecintra/.m2/repository/org/eclipse/jetty/jetty-alpn-server/9.4.52.v20230823/jetty-alpn-server-9.4.52.v20230823.jar:/Users/guilhermecintra/.m2/repository/org/eclipse/jetty/jetty-server/9.4.52.v20230823/jetty-server-9.4.52.v20230823.jar:/Users/guilhermecintra/.m2/repository/org/eclipse/jetty/jetty-servlet/9.4.52.v20230823/jetty-servlet-9.4.52.v20230823.jar:/Users/guilhermecintra/.m2/repository/org/eclipse/jetty/alpn/alpn-api/1.1.3.v20160715/alpn-api-1.1.3.v20160715.jar:/Users/guilhermecintra/.m2/repository/org/eclipse/jetty/http2/http2-server/9.4.52.v20230823/http2-server-9.4.52.v20230823.jar:/Users/guilhermecintra/.m2/repository/org/eclipse/jetty/websocket/websocket-api/9.4.52.v20230823/websocket-api-9.4.52.v20230823.jar:/Users/guilhermecintra/.m2/repository/org/eclipse/jetty/websocket/websocket-server/9.4.52.v20230823/websocket-server-9.4.52.v20230823.jar:/Users/guilhermecintra/.m2/repository/org/eclipse/jetty/websocket/websocket-servlet/9.4.52.v20230823/websocket-servlet-9.4.52.v20230823.jar:/Users/guilhermecintra/.m2/repository/io/pedestal/pedestal.interceptor/0.6.1/pedestal.interceptor-0.6.1.jar:/Users/guilhermecintra/.m2/repository/com/cognitect/transit-clj/1.0.329/transit-clj-1.0.329.jar:/Users/guilhermecintra/.m2/repository/crypto-equality/crypto-equality/1.0.1/crypto-equality-1.0.1.jar:/Users/guilhermecintra/.m2/repository/crypto-random/crypto-random/1.2.1/crypto-random-1.2.1.jar:/Users/guilhermecintra/.m2/repository/org/clojure/tools.reader/1.3.6/tools.reader-1.3.6.jar:/Users/guilhermecintra/.m2/repository/ring/ring-core/1.10.0/ring-core-1.10.0.jar:/Users/guilhermecintra/.m2/repository/org/clojure/core.incubator/0.1.4/core.incubator-0.1.4.jar:/Users/guilhermecintra/.m2/repository/org/clojure/core.specs.alpha/0.2.62/core.specs.alpha-0.2.62.jar:/Users/guilhermecintra/.m2/repository/org/clojure/spec.alpha/0.3.218/spec.alpha-0.3.218.jar:/Users/guilhermecintra/.m2/repository/org/clojure/tools.analyzer.jvm/1.2.3/tools.analyzer.jvm-1.2.3.jar:/Users/guilhermecintra/.m2/repository/cheshire/cheshire/5.12.0/cheshire-5.12.0.jar:/Users/guilhermecintra/.m2/repository/clj-http/clj-http/3.12.3/clj-http-3.12.3.jar:/Users/guilhermecintra/.m2/repository/clj-time/clj-time/0.15.2/clj-time-0.15.2.jar:/Users/guilhermecintra/.m2/repository/com/taoensso/nippy/3.3.0/nippy-3.3.0.jar:/Users/guilhermecintra/.m2/repository/com/widdindustries/clojure.log4j2/0.1.9/clojure.log4j2-0.1.9.jar:/Users/guilhermecintra/.m2/repository/criterium/criterium/0.4.6/criterium-0.4.6.jar:/Users/guilhermecintra/.m2/repository/medley/medley/1.3.0/medley-1.3.0.jar:/Users/guilhermecintra/.m2/repository/middlesphere/clj-compress/0.1.0/clj-compress-0.1.0.jar:/Users/guilhermecintra/.m2/repository/com/taoensso/faraday/1.12.0/faraday-1.12.0.jar:/Users/guilhermecintra/.m2/repository/prismatic/schema/1.4.1/schema-1.4.1.jar:/Users/guilhermecintra/.m2/repository/com/novemberain/monger/3.6.0/monger-3.6.0.jar:/Users/guilhermecintra/.m2/repository/com/github/seancorfield/honeysql/2.5.1103/honeysql-2.5.1103.jar:/Users/guilhermecintra/.m2/repository/com/github/seancorfield/next.jdbc/1.3.909/next.jdbc-1.3.909.jar:/Users/guilhermecintra/.m2/repository/com/h2database/h2/1.4.199/h2-1.4.199.jar:/Users/guilhermecintra/.m2/repository/com/layerware/hugsql/0.5.3/hugsql-0.5.3.jar:/Users/guilhermecintra/.m2/repository/com/layerware/hugsql-adapter-next-jdbc/0.5.3/hugsql-adapter-next-jdbc-0.5.3.jar:/Users/guilhermecintra/.m2/repository/exoscale/seql/0.2.3/seql-0.2.3.jar:/Users/guilhermecintra/.m2/repository/org/postgresql/postgresql/42.6.0/postgresql-42.6.0.jar:/Users/guilhermecintra/.m2/repository/com/taoensso/carmine/3.3.2/carmine-3.3.2.jar:/Users/guilhermecintra/.m2/repository/io/dropwizard/metrics/metrics-core/4.2.18/metrics-core-4.2.18.jar:/Users/guilhermecintra/.m2/repository/io/dropwizard/metrics/metrics-jmx/4.2.18/metrics-jmx-4.2.18.jar:/Users/guilhermecintra/.m2/repository/io/opentracing/opentracing-api/0.33.0/opentracing-api-0.33.0.jar:/Users/guilhermecintra/.m2/repository/io/opentracing/opentracing-util/0.33.0/opentracing-util-0.33.0.jar:/Users/guilhermecintra/.m2/repository/org/eclipse/jetty/jetty-http/9.4.52.v20230823/jetty-http-9.4.52.v20230823.jar:/Users/guilhermecintra/.m2/repository/org/eclipse/jetty/jetty-io/9.4.52.v20230823/jetty-io-9.4.52.v20230823.jar:/Users/guilhermecintra/.m2/repository/org/eclipse/jetty/jetty-security/9.4.52.v20230823/jetty-security-9.4.52.v20230823.jar:/Users/guilhermecintra/.m2/repository/org/eclipse/jetty/jetty-util-ajax/9.4.52.v20230823/jetty-util-ajax-9.4.52.v20230823.jar:/Users/guilhermecintra/.m2/repository/org/eclipse/jetty/http2/http2-common/9.4.52.v20230823/http2-common-9.4.52.v20230823.jar:/Users/guilhermecintra/.m2/repository/org/eclipse/jetty/websocket/websocket-client/9.4.52.v20230823/websocket-client-9.4.52.v20230823.jar:/Users/guilhermecintra/.m2/repository/org/eclipse/jetty/websocket/websocket-common/9.4.52.v20230823/websocket-common-9.4.52.v20230823.jar:/Users/guilhermecintra/.m2/repository/com/cognitect/transit-java/1.0.362/transit-java-1.0.362.jar:/Users/guilhermecintra/.m2/repository/org/clojure/core.match/1.0.1/core.match-1.0.1.jar:/Users/guilhermecintra/.m2/repository/commons-fileupload/commons-fileupload/1.5/commons-fileupload-1.5.jar:/Users/guilhermecintra/.m2/repository/commons-io/commons-io/2.11.0/commons-io-2.11.0.jar:/Users/guilhermecintra/.m2/repository/ring/ring-codec/1.2.0/ring-codec-1.2.0.jar:/Users/guilhermecintra/.m2/repository/org/clojure/core.memoize/1.0.253/core.memoize-1.0.253.jar:/Users/guilhermecintra/.m2/repository/org/clojure/tools.analyzer/1.1.1/tools.analyzer-1.1.1.jar:/Users/guilhermecintra/.m2/repository/org/ow2/asm/asm/9.2/asm-9.2.jar:/Users/guilhermecintra/.m2/repository/com/fasterxml/jackson/core/jackson-core/2.15.2/jackson-core-2.15.2.jar:/Users/guilhermecintra/.m2/repository/com/fasterxml/jackson/dataformat/jackson-dataformat-cbor/2.15.2/jackson-dataformat-cbor-2.15.2.jar:/Users/guilhermecintra/.m2/repository/com/fasterxml/jackson/dataformat/jackson-dataformat-smile/2.15.2/jackson-dataformat-smile-2.15.2.jar:/Users/guilhermecintra/.m2/repository/tigris/tigris/0.1.2/tigris-0.1.2.jar:/Users/guilhermecintra/.m2/repository/com/taoensso/encore/3.68.0/encore-3.68.0.jar:/Users/guilhermecintra/.m2/repository/org/iq80/snappy/snappy/0.4/snappy-0.4.jar:/Users/guilhermecintra/.m2/repository/org/lz4/lz4-java/1.8.0/lz4-java-1.8.0.jar:/Users/guilhermecintra/.m2/repository/org/tukaani/xz/1.9/xz-1.9.jar:/Users/guilhermecintra/.m2/repository/org/apache/logging/log4j/log4j-api/2.17.1/log4j-api-2.17.1.jar:/Users/guilhermecintra/.m2/repository/org/apache/logging/log4j/log4j-core/2.17.1/log4j-core-2.17.1.jar:/Users/guilhermecintra/.m2/repository/org/apache/commons/commons-compress/1.18/commons-compress-1.18.jar:/Users/guilhermecintra/.m2/repository/org/brotli/dec/0.1.2/dec-0.1.2.jar:/Users/guilhermecintra/.m2/repository/com/amazonaws/aws-java-sdk-dynamodb/1.12.410/aws-java-sdk-dynamodb-1.12.410.jar:/Users/guilhermecintra/.m2/repository/commons-logging/commons-logging/1.2/commons-logging-1.2.jar:/Users/guilhermecintra/.m2/repository/joda-time/joda-time/2.12.2/joda-time-2.12.2.jar:/Users/guilhermecintra/.m2/repository/org/apache/httpcomponents/httpasyncclient/4.1.4/httpasyncclient-4.1.4.jar:/Users/guilhermecintra/.m2/repository/org/apache/httpcomponents/httpclient/4.5.13/httpclient-4.5.13.jar:/Users/guilhermecintra/.m2/repository/org/apache/httpcomponents/httpclient-cache/4.5.13/httpclient-cache-4.5.13.jar:/Users/guilhermecintra/.m2/repository/org/apache/httpcomponents/httpcore/4.4.14/httpcore-4.4.14.jar:/Users/guilhermecintra/.m2/repository/org/apache/httpcomponents/httpmime/4.5.13/httpmime-4.5.13.jar:/Users/guilhermecintra/.m2/repository/potemkin/potemkin/0.4.5/potemkin-0.4.5.jar:/Users/guilhermecintra/.m2/repository/slingshot/slingshot/0.12.2/slingshot-0.12.2.jar:/Users/guilhermecintra/.m2/repository/clojurewerkz/support/1.5.0/support-1.5.0.jar:/Users/guilhermecintra/.m2/repository/org/mongodb/mongodb-driver/3.12.11/mongodb-driver-3.12.11.jar:/Users/guilhermecintra/.m2/repository/camel-snake-kebab/camel-snake-kebab/0.4.3/camel-snake-kebab-0.4.3.jar:/Users/guilhermecintra/.m2/repository/org/clojure/java.data/1.1.103/java.data-1.1.103.jar:/Users/guilhermecintra/.m2/repository/com/layerware/hugsql-adapter-clojure-java-jdbc/0.5.3/hugsql-adapter-clojure-java-jdbc-0.5.3.jar:/Users/guilhermecintra/.m2/repository/com/layerware/hugsql-core/0.5.3/hugsql-core-0.5.3.jar:/Users/guilhermecintra/.m2/repository/com/layerware/hugsql-adapter/0.5.3/hugsql-adapter-0.5.3.jar:/Users/guilhermecintra/.m2/repository/exoscale/coax/1.0.0-alpha14/coax-1.0.0-alpha14.jar:/Users/guilhermecintra/.m2/repository/org/checkerframework/checker-qual/3.31.0/checker-qual-3.31.0.jar:/Users/guilhermecintra/.m2/repository/com/taoensso/timbre/6.3.1/timbre-6.3.1.jar:/Users/guilhermecintra/.m2/repository/com/taoensso/tufte/2.6.3/tufte-2.6.3.jar:/Users/guilhermecintra/.m2/repository/commons-codec/commons-codec/1.16.0/commons-codec-1.16.0.jar:/Users/guilhermecintra/.m2/repository/org/apache/commons/commons-pool2/2.12.0/commons-pool2-2.12.0.jar:/Users/guilhermecintra/.m2/repository/org/slf4j/slf4j-api/1.7.36/slf4j-api-1.7.36.jar:/Users/guilhermecintra/.m2/repository/io/opentracing/opentracing-noop/0.33.0/opentracing-noop-0.33.0.jar:/Users/guilhermecintra/.m2/repository/org/eclipse/jetty/jetty-util/9.4.52.v20230823/jetty-util-9.4.52.v20230823.jar:/Users/guilhermecintra/.m2/repository/org/eclipse/jetty/http2/http2-hpack/9.4.52.v20230823/http2-hpack-9.4.52.v20230823.jar:/Users/guilhermecintra/.m2/repository/org/eclipse/jetty/jetty-client/9.4.52.v20230823/jetty-client-9.4.52.v20230823.jar:/Users/guilhermecintra/.m2/repository/javax/xml/bind/jaxb-api/2.3.0/jaxb-api-2.3.0.jar:/Users/guilhermecintra/.m2/repository/org/msgpack/msgpack/0.6.12/msgpack-0.6.12.jar:/Users/guilhermecintra/.m2/repository/org/clojure/core.cache/1.0.225/core.cache-1.0.225.jar:/Users/guilhermecintra/.m2/repository/com/taoensso/truss/1.11.0/truss-1.11.0.jar:/Users/guilhermecintra/.m2/repository/com/amazonaws/aws-java-sdk-core/1.12.410/aws-java-sdk-core-1.12.410.jar:/Users/guilhermecintra/.m2/repository/com/amazonaws/aws-java-sdk-s3/1.12.410/aws-java-sdk-s3-1.12.410.jar:/Users/guilhermecintra/.m2/repository/com/amazonaws/jmespath-java/1.12.410/jmespath-java-1.12.410.jar:/Users/guilhermecintra/.m2/repository/org/apache/httpcomponents/httpcore-nio/4.4.10/httpcore-nio-4.4.10.jar:/Users/guilhermecintra/.m2/repository/clj-tuple/clj-tuple/0.2.2/clj-tuple-0.2.2.jar:/Users/guilhermecintra/.m2/repository/riddley/riddley/0.1.12/riddley-0.1.12.jar:/Users/guilhermecintra/.m2/repository/com/google/guava/guava/21.0/guava-21.0.jar:/Users/guilhermecintra/.m2/repository/org/mongodb/bson/3.12.11/bson-3.12.11.jar:/Users/guilhermecintra/.m2/repository/org/mongodb/mongodb-driver-core/3.12.11/mongodb-driver-core-3.12.11.jar:/Users/guilhermecintra/.m2/repository/org/clojure/java.jdbc/0.7.12/java.jdbc-0.7.12.jar:/Users/guilhermecintra/.m2/repository/io/aviso/pretty/1.4.4/pretty-1.4.4.jar:/Users/guilhermecintra/.m2/repository/com/googlecode/json-simple/json-simple/1.1.1/json-simple-1.1.1.jar:/Users/guilhermecintra/.m2/repository/org/javassist/javassist/3.18.1-GA/javassist-3.18.1-GA.jar:/Users/guilhermecintra/.m2/repository/org/clojure/data.priority-map/1.1.0/data.priority-map-1.1.0.jar:/Users/guilhermecintra/.m2/repository/com/fasterxml/jackson/core/jackson-databind/2.12.7.1/jackson-databind-2.12.7.1.jar:/Users/guilhermecintra/.m2/repository/software/amazon/ion/ion-java/1.0.2/ion-java-1.0.2.jar:/Users/guilhermecintra/.m2/repository/com/amazonaws/aws-java-sdk-kms/1.12.410/aws-java-sdk-kms-1.12.410.jar:/Users/guilhermecintra/.m2/repository/com/fasterxml/jackson/core/jackson-annotations/2.12.7/jackson-annotations-2.12.7.jar",
+ :sun.cpu.endian "little",
+ :LC_TERMINAL_VERSION "3.4.22",
+ :user.country "US",
+ :JAVA_HOME
+ "/Users/guilhermecintra/Library/Java/JavaVirtualMachines/openjdk-19.0.1/Contents/Home",
+ :JACK_IN_CLJ_MIDDLEWARE "cider.nrepl/cider-middleware"}
+nil
+clj꞉gcc.platform.envs.core꞉> 
+#'gcc.platform.envs.core/read-systen-envs-map
+clj꞉gcc.platform.envs.core꞉> 
+{:java.vendor.url.bug "https://bugreport.java.com/bugreport/",
+ :socksNonProxyHosts "local|*.local|169.254/16|*.169.254/16",
+ :POSTGRES_PORT "5432",
+ :jdk.debug "release",
+ :LS_COLORS
+ "di=1;36:ln=35:so=32:pi=33:ex=31:bd=34;46:cd=34;43:su=30;41:sg=30;46:tw=30;42:ow=30;43",
+ :ENV "dev",
+ :ELASTIC_SEARCH_HOST "http://localhost:9200/",
+ :ftp.nonProxyHosts "local|*.local|169.254/16|*.169.254/16",
+ :CONDA_PREFIX "/Users/guilhermecintra/miniconda3",
+ :java.vm.name "OpenJDK 64-Bit Server VM",
+ :ITERM_SESSION_ID "w0t1p0:A09EF99D-91CD-454F-9D5A-10CE10F0604F",
+ :java.vm.version "19.0.1+10-21",
+ :java.specification.name "Java Platform API Specification",
+ :HOME "/Users/guilhermecintra",
+ :apple.awt.UIElement "true",
+ :USER "guilhermecintra",
+ :CONDA_DEFAULT_ENV "base",
+ :native.encoding "UTF-8",
+ :apple.awt.application.name "main",
+ :java.io.tmpdir "/var/folders/46/hxv35m3950l_5zbsz8wxlwnm0000gp/T/",
+ :java.runtime.name "OpenJDK Runtime Environment",
+ :ITERM_PROFILE "Default",
+ :sun.java.command
+ "clojure.main -m nrepl.cmdline --middleware [cider.nrepl/cider-middleware]",
+ :sun.java.launcher "SUN_STANDARD",
+ :PATH
+ "/Users/guilhermecintra/miniconda3/bin:/Users/guilhermecintra/miniconda3/condabin:/Users/guilhermecintra/.nvm/versions/node/v16.19.0/bin:/opt/homebrew/bin:/opt/homebrew/sbin:/usr/local/bin:/System/Cryptexes/App/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin:/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/local/bin:/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/bin:/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/appleinternal/bin:/Users/guilhermecintra/.fig/bin:/Users/guilhermecintra/.local/bin:/Users/guilhermecintra/.cabal/bin:/Users/guilhermecintra/.ghcup/bin",
+ :java.vendor "Oracle Corporation",
+ :os.version "14.2",
+ :FIG_PID "55151",
+ :NVM_CD_FLAGS "-q",
+ :MallocNanoZone "0",
+ :TTY "/dev/ttys009",
+ :ELECTRON_NO_ATTACH_CONSOLE "1",
+ :CONDA_PYTHON_EXE "/Users/guilhermecintra/miniconda3/bin/python",
+ :COLORFGBG "15;0",
+ :sun.management.compiler "HotSpot 64-Bit Tiered Compilers",
+ :TERM_PROGRAM_VERSION "3.4.22",
+ :user.name "guilhermecintra",
+ :DYNAMO_SECRET_KEY "test",
+ :java.vm.compressedOopsMode "Zero based",
+ :JACK_IN_NREPL_VERSION "1.0.0",
+ :sun.arch.data.model "64",
+ :LANG "en_US.UTF-8",
+ :ZSH "/Users/guilhermecintra/.local/share/fig/plugins/ohmyzsh",
+ :APPLICATION_INSIGHTS_NO_DIAGNOSTIC_CHANNEL "1",
+ :INFOPATH "/opt/homebrew/share/info:",
+ :REDIS_PORT "6379",
+ :java.vm.vendor "Oracle Corporation",
+ :ORIGINAL_XDG_CURRENT_DESKTOP "undefined",
+ :JACK_IN_PROJECT_ROOT_PATH
+ "/Users/guilhermecintra/Documents/code/poly-plat/poly-platform/bases/pedestal-server",
+ :LSCOLORS "Gxfxcxdxbxegedabagacad",
+ :java.vendor.url "https://java.oracle.com/",
+ :VSCODE_HANDLES_UNCAUGHT_ERRORS "true",
+ :LaunchInstanceID "974EFD61-C061-4D53-AC6B-F8D7CC18CADC",
+ :NVM_INC
+ "/Users/guilhermecintra/.nvm/versions/node/v16.19.0/include/node",
+ :CONDA_SHLVL "1",
+ :HOMEBREW_CELLAR "/opt/homebrew/Cellar",
+ :JACK_IN_NREPL_PORT_FILE ".nrepl-port",
+ :file.encoding "UTF-8",
+ :java.vm.specification.version "19",
+ :XPC_FLAGS "0x0",
+ :sun.io.unicode.encoding "UnicodeBig",
+ :clojure.basis ".cpcache/1026680038.basis",
+ :user.language "en",
+ :java.vm.info "mixed mode, sharing",
+ :java.class.version "63.0",
+ :__CF_USER_TEXT_ENCODING "0x1F6:0x0:0x0",
+ :java.vm.specification.name "Java Virtual Machine Specification",
+ :VSCODE_IPC_HOOK
+ "/Users/guilhermecintra/Library/Application Support/Code/1.85-main.sock",
+ :VSCODE_AMD_ENTRYPOINT "vs/workbench/api/node/extensionHostProcess",
+ :stderr.encoding "UTF-8",
+ :DYNAMO_ACCES_KEY "test",
+ :java.library.path
+ "/Users/guilhermecintra/Library/Java/Extensions:/Library/Java/Extensions:/Network/Library/Java/Extensions:/System/Library/Java/Extensions:/usr/lib/java:.",
+ :PWD
+ "/Users/guilhermecintra/Documents/code/poly-plat/poly-platform/bases/pedestal-server",
+ :FIGTERM_SESSION_ID "25b84775-c17f-4957-859e-56751d601bf0",
+ :HOMEBREW_PREFIX "/opt/homebrew",
+ :VSCODE_CRASH_REPORTER_PROCESS_TYPE "extensionHost",
+ :java.home
+ "/Users/guilhermecintra/Library/Java/JavaVirtualMachines/openjdk-19.0.1/Contents/Home",
+ :sun.jnu.encoding "UTF-8",
+ :VSCODE_CODE_CACHE_PATH
+ "/Users/guilhermecintra/Library/Application Support/Code/CachedData/0ee08df0cf4527e40edc9aa28f4b5bd38bbff2b2",
+ :file.separator "/",
+ : "",
+ :java.runtime.version "19.0.1+10-21",
+ :TERM "xterm-256color",
+ :java.specification.version "19",
+ :TERM_SESSION_ID "w0t1p0:A09EF99D-91CD-454F-9D5A-10CE10F0604F",
+ :line.separator "\n",
+ :http.nonProxyHosts "local|*.local|169.254/16|*.169.254/16",
+ :user.home "/Users/guilhermecintra",
+ :path.separator ":",
+ :XPC_SERVICE_NAME
+ "application.com.microsoft.VSCode.30275168.30275174.78CDBDB9-9CD9-40B9-BDBE-521AB5403CD2",
+ :LC_TERMINAL "iTerm2",
+ :JACK_IN_CIDER_NREPL_VERSION "0.28.5",
+ :TERM_PROGRAM "iTerm.app",
+ :VSCODE_CLI "1",
+ :user.dir
+ "/Users/guilhermecintra/Documents/code/poly-plat/poly-platform/bases/pedestal-server",
+ :java.specification.vendor "Oracle Corporation",
+ :FIG_SET_PARENT_CHECK "1",
+ :user.timezone "America/Recife",
+ :ELECTRON_RUN_AS_NODE "1",
+ :LESS "-R",
+ :COMMAND_MODE "unix2003",
+ :MANPATH
+ "/Users/guilhermecintra/.nvm/versions/node/v16.19.0/share/man:/opt/homebrew/share/man::",
+ :DYNAMO_ENDPOINT "http://localhost:4566",
+ :VSCODE_L10N_BUNDLE_LOCATION "",
+ :ZNT_REPO_DIR
+ "/Users/guilhermecintra/.local/share/fig/plugins/ohmyzsh/plugins/zsh-navigation-tools",
+ :__CFBundleIdentifier "com.microsoft.VSCode",
+ :SSH_AUTH_SOCK "/private/tmp/com.apple.launchd.ykD9rDrWnv/Listeners",
+ :FIG_SET_PARENT "25b84775-c17f-4957-859e-56751d601bf0",
+ :CONDA_PROMPT_MODIFIER "(base) ",
+ :SHLVL "3",
+ :JACK_IN_CLI_ALIASES ":dev",
+ :os.arch "aarch64",
+ :ZNT_CONFIG_DIR "/Users/guilhermecintra/.config/znt",
+ :PAGER "less",
+ :REDIS_HOST "localhost",
+ :NVM_DIR "/Users/guilhermecintra/.nvm",
+ :SHELL "/bin/zsh",
+ :VSCODE_CWD
+ "/Users/guilhermecintra/Documents/code/poly-plat/poly-platform",
+ :LC_FIG_SET_PARENT "25b84775-c17f-4957-859e-56751d601bf0",
+ :CONDA_EXE "/Users/guilhermecintra/miniconda3/bin/conda",
+ :java.vm.specification.vendor "Oracle Corporation",
+ :VSCODE_PID "1425",
+ :TMPDIR "/var/folders/46/hxv35m3950l_5zbsz8wxlwnm0000gp/T/",
+ :sun.boot.library.path
+ "/Users/guilhermecintra/Library/Java/JavaVirtualMachines/openjdk-19.0.1/Contents/Home/lib",
+ :stdout.encoding "UTF-8",
+ :VSCODE_NLS_CONFIG
+ "{\"locale\":\"en-us\",\"osLocale\":\"en-us\",\"availableLanguages\":{},\"_languagePackSupport\":true}",
+ :POSTGRES_HOST "localhost",
+ :FIG_TERM "2.17.0",
+ :java.version.date "2022-10-18",
+ :java.version "19.0.1",
+ :NVM_BIN "/Users/guilhermecintra/.nvm/versions/node/v16.19.0/bin",
+ :HOMEBREW_REPOSITORY "/opt/homebrew",
+ :COLORTERM "truecolor",
+ :os.name "Mac OS X",
+ :SECURITYSESSIONID "186ad",
+ :LOGNAME "guilhermecintra",
+ :java.class.path
+ "src:resources:/Users/guilhermecintra/.m2/repository/cider/cider-nrepl/0.28.5/cider-nrepl-0.28.5.jar:/Users/guilhermecintra/.m2/repository/com/stuartsierra/component/1.1.0/component-1.1.0.jar:/Users/guilhermecintra/.m2/repository/cprop/cprop/0.1.19/cprop-0.1.19.jar:/Users/guilhermecintra/.m2/repository/environ/environ/1.2.0/environ-1.2.0.jar:/Users/guilhermecintra/.m2/repository/io/pedestal/pedestal.jetty/0.6.1/pedestal.jetty-0.6.1.jar:/Users/guilhermecintra/.m2/repository/io/pedestal/pedestal.route/0.6.1/pedestal.route-0.6.1.jar:/Users/guilhermecintra/.m2/repository/io/pedestal/pedestal.service/0.6.1/pedestal.service-0.6.1.jar:/Users/guilhermecintra/.m2/repository/lynxeyes/dotenv/1.1.0/dotenv-1.1.0.jar:/Users/guilhermecintra/.m2/repository/nrepl/nrepl/1.0.0/nrepl-1.0.0.jar:/Users/guilhermecintra/.m2/repository/org/clojure/clojure/1.11.1/clojure-1.11.1.jar:/Users/guilhermecintra/.m2/repository/org/clojure/core.async/1.6.681/core.async-1.6.681.jar:/Users/guilhermecintra/Documents/code/poly-plat/poly-platform/components/client_http/src:/Users/guilhermecintra/Documents/code/poly-plat/poly-platform/components/client_http/resources:/Users/guilhermecintra/Documents/code/poly-plat/poly-platform/components/common/src:/Users/guilhermecintra/Documents/code/poly-plat/poly-platform/components/common/resources:/Users/guilhermecintra/Documents/code/poly-plat/poly-platform/components/dynamodb/src:/Users/guilhermecintra/Documents/code/poly-plat/poly-platform/components/dynamodb/resources:/Users/guilhermecintra/Documents/code/poly-plat/poly-platform/components/elastic_search/src:/Users/guilhermecintra/Documents/code/poly-plat/poly-platform/components/elastic_search/resources:/Users/guilhermecintra/Documents/code/poly-plat/poly-platform/components/envs/src:/Users/guilhermecintra/Documents/code/poly-plat/poly-platform/components/envs/resources:/Users/guilhermecintra/Documents/code/poly-plat/poly-platform/components/mongo/src:/Users/guilhermecintra/Documents/code/poly-plat/poly-platform/components/mongo/resources:/Users/guilhermecintra/Documents/code/poly-plat/poly-platform/components/pedestal/src:/Users/guilhermecintra/Documents/code/poly-plat/poly-platform/components/pedestal/resources:/Users/guilhermecintra/Documents/code/poly-plat/poly-platform/components/postgres/src:/Users/guilhermecintra/Documents/code/poly-plat/poly-platform/components/postgres/resources:/Users/guilhermecintra/Documents/code/poly-plat/poly-platform/components/redis/src:/Users/guilhermecintra/Documents/code/poly-plat/poly-platform/components/redis/resources:/Users/guilhermecintra/Documents/code/poly-plat/poly-platform/components/redis/test:/Users/guilhermecintra/.m2/repository/com/stuartsierra/dependency/1.0.0/dependency-1.0.0.jar:/Users/guilhermecintra/.m2/repository/io/pedestal/pedestal.log/0.6.1/pedestal.log-0.6.1.jar:/Users/guilhermecintra/.m2/repository/javax/servlet/javax.servlet-api/3.1.0/javax.servlet-api-3.1.0.jar:/Users/guilhermecintra/.m2/repository/org/eclipse/jetty/jetty-alpn-server/9.4.52.v20230823/jetty-alpn-server-9.4.52.v20230823.jar:/Users/guilhermecintra/.m2/repository/org/eclipse/jetty/jetty-server/9.4.52.v20230823/jetty-server-9.4.52.v20230823.jar:/Users/guilhermecintra/.m2/repository/org/eclipse/jetty/jetty-servlet/9.4.52.v20230823/jetty-servlet-9.4.52.v20230823.jar:/Users/guilhermecintra/.m2/repository/org/eclipse/jetty/alpn/alpn-api/1.1.3.v20160715/alpn-api-1.1.3.v20160715.jar:/Users/guilhermecintra/.m2/repository/org/eclipse/jetty/http2/http2-server/9.4.52.v20230823/http2-server-9.4.52.v20230823.jar:/Users/guilhermecintra/.m2/repository/org/eclipse/jetty/websocket/websocket-api/9.4.52.v20230823/websocket-api-9.4.52.v20230823.jar:/Users/guilhermecintra/.m2/repository/org/eclipse/jetty/websocket/websocket-server/9.4.52.v20230823/websocket-server-9.4.52.v20230823.jar:/Users/guilhermecintra/.m2/repository/org/eclipse/jetty/websocket/websocket-servlet/9.4.52.v20230823/websocket-servlet-9.4.52.v20230823.jar:/Users/guilhermecintra/.m2/repository/io/pedestal/pedestal.interceptor/0.6.1/pedestal.interceptor-0.6.1.jar:/Users/guilhermecintra/.m2/repository/com/cognitect/transit-clj/1.0.329/transit-clj-1.0.329.jar:/Users/guilhermecintra/.m2/repository/crypto-equality/crypto-equality/1.0.1/crypto-equality-1.0.1.jar:/Users/guilhermecintra/.m2/repository/crypto-random/crypto-random/1.2.1/crypto-random-1.2.1.jar:/Users/guilhermecintra/.m2/repository/org/clojure/tools.reader/1.3.6/tools.reader-1.3.6.jar:/Users/guilhermecintra/.m2/repository/ring/ring-core/1.10.0/ring-core-1.10.0.jar:/Users/guilhermecintra/.m2/repository/org/clojure/core.incubator/0.1.4/core.incubator-0.1.4.jar:/Users/guilhermecintra/.m2/repository/org/clojure/core.specs.alpha/0.2.62/core.specs.alpha-0.2.62.jar:/Users/guilhermecintra/.m2/repository/org/clojure/spec.alpha/0.3.218/spec.alpha-0.3.218.jar:/Users/guilhermecintra/.m2/repository/org/clojure/tools.analyzer.jvm/1.2.3/tools.analyzer.jvm-1.2.3.jar:/Users/guilhermecintra/.m2/repository/cheshire/cheshire/5.12.0/cheshire-5.12.0.jar:/Users/guilhermecintra/.m2/repository/clj-http/clj-http/3.12.3/clj-http-3.12.3.jar:/Users/guilhermecintra/.m2/repository/clj-time/clj-time/0.15.2/clj-time-0.15.2.jar:/Users/guilhermecintra/.m2/repository/com/taoensso/nippy/3.3.0/nippy-3.3.0.jar:/Users/guilhermecintra/.m2/repository/com/widdindustries/clojure.log4j2/0.1.9/clojure.log4j2-0.1.9.jar:/Users/guilhermecintra/.m2/repository/criterium/criterium/0.4.6/criterium-0.4.6.jar:/Users/guilhermecintra/.m2/repository/medley/medley/1.3.0/medley-1.3.0.jar:/Users/guilhermecintra/.m2/repository/middlesphere/clj-compress/0.1.0/clj-compress-0.1.0.jar:/Users/guilhermecintra/.m2/repository/com/taoensso/faraday/1.12.0/faraday-1.12.0.jar:/Users/guilhermecintra/.m2/repository/prismatic/schema/1.4.1/schema-1.4.1.jar:/Users/guilhermecintra/.m2/repository/com/novemberain/monger/3.6.0/monger-3.6.0.jar:/Users/guilhermecintra/.m2/repository/com/github/seancorfield/honeysql/2.5.1103/honeysql-2.5.1103.jar:/Users/guilhermecintra/.m2/repository/com/github/seancorfield/next.jdbc/1.3.909/next.jdbc-1.3.909.jar:/Users/guilhermecintra/.m2/repository/com/h2database/h2/1.4.199/h2-1.4.199.jar:/Users/guilhermecintra/.m2/repository/com/layerware/hugsql/0.5.3/hugsql-0.5.3.jar:/Users/guilhermecintra/.m2/repository/com/layerware/hugsql-adapter-next-jdbc/0.5.3/hugsql-adapter-next-jdbc-0.5.3.jar:/Users/guilhermecintra/.m2/repository/exoscale/seql/0.2.3/seql-0.2.3.jar:/Users/guilhermecintra/.m2/repository/org/postgresql/postgresql/42.6.0/postgresql-42.6.0.jar:/Users/guilhermecintra/.m2/repository/com/taoensso/carmine/3.3.2/carmine-3.3.2.jar:/Users/guilhermecintra/.m2/repository/io/dropwizard/metrics/metrics-core/4.2.18/metrics-core-4.2.18.jar:/Users/guilhermecintra/.m2/repository/io/dropwizard/metrics/metrics-jmx/4.2.18/metrics-jmx-4.2.18.jar:/Users/guilhermecintra/.m2/repository/io/opentracing/opentracing-api/0.33.0/opentracing-api-0.33.0.jar:/Users/guilhermecintra/.m2/repository/io/opentracing/opentracing-util/0.33.0/opentracing-util-0.33.0.jar:/Users/guilhermecintra/.m2/repository/org/eclipse/jetty/jetty-http/9.4.52.v20230823/jetty-http-9.4.52.v20230823.jar:/Users/guilhermecintra/.m2/repository/org/eclipse/jetty/jetty-io/9.4.52.v20230823/jetty-io-9.4.52.v20230823.jar:/Users/guilhermecintra/.m2/repository/org/eclipse/jetty/jetty-security/9.4.52.v20230823/jetty-security-9.4.52.v20230823.jar:/Users/guilhermecintra/.m2/repository/org/eclipse/jetty/jetty-util-ajax/9.4.52.v20230823/jetty-util-ajax-9.4.52.v20230823.jar:/Users/guilhermecintra/.m2/repository/org/eclipse/jetty/http2/http2-common/9.4.52.v20230823/http2-common-9.4.52.v20230823.jar:/Users/guilhermecintra/.m2/repository/org/eclipse/jetty/websocket/websocket-client/9.4.52.v20230823/websocket-client-9.4.52.v20230823.jar:/Users/guilhermecintra/.m2/repository/org/eclipse/jetty/websocket/websocket-common/9.4.52.v20230823/websocket-common-9.4.52.v20230823.jar:/Users/guilhermecintra/.m2/repository/com/cognitect/transit-java/1.0.362/transit-java-1.0.362.jar:/Users/guilhermecintra/.m2/repository/org/clojure/core.match/1.0.1/core.match-1.0.1.jar:/Users/guilhermecintra/.m2/repository/commons-fileupload/commons-fileupload/1.5/commons-fileupload-1.5.jar:/Users/guilhermecintra/.m2/repository/commons-io/commons-io/2.11.0/commons-io-2.11.0.jar:/Users/guilhermecintra/.m2/repository/ring/ring-codec/1.2.0/ring-codec-1.2.0.jar:/Users/guilhermecintra/.m2/repository/org/clojure/core.memoize/1.0.253/core.memoize-1.0.253.jar:/Users/guilhermecintra/.m2/repository/org/clojure/tools.analyzer/1.1.1/tools.analyzer-1.1.1.jar:/Users/guilhermecintra/.m2/repository/org/ow2/asm/asm/9.2/asm-9.2.jar:/Users/guilhermecintra/.m2/repository/com/fasterxml/jackson/core/jackson-core/2.15.2/jackson-core-2.15.2.jar:/Users/guilhermecintra/.m2/repository/com/fasterxml/jackson/dataformat/jackson-dataformat-cbor/2.15.2/jackson-dataformat-cbor-2.15.2.jar:/Users/guilhermecintra/.m2/repository/com/fasterxml/jackson/dataformat/jackson-dataformat-smile/2.15.2/jackson-dataformat-smile-2.15.2.jar:/Users/guilhermecintra/.m2/repository/tigris/tigris/0.1.2/tigris-0.1.2.jar:/Users/guilhermecintra/.m2/repository/com/taoensso/encore/3.68.0/encore-3.68.0.jar:/Users/guilhermecintra/.m2/repository/org/iq80/snappy/snappy/0.4/snappy-0.4.jar:/Users/guilhermecintra/.m2/repository/org/lz4/lz4-java/1.8.0/lz4-java-1.8.0.jar:/Users/guilhermecintra/.m2/repository/org/tukaani/xz/1.9/xz-1.9.jar:/Users/guilhermecintra/.m2/repository/org/apache/logging/log4j/log4j-api/2.17.1/log4j-api-2.17.1.jar:/Users/guilhermecintra/.m2/repository/org/apache/logging/log4j/log4j-core/2.17.1/log4j-core-2.17.1.jar:/Users/guilhermecintra/.m2/repository/org/apache/commons/commons-compress/1.18/commons-compress-1.18.jar:/Users/guilhermecintra/.m2/repository/org/brotli/dec/0.1.2/dec-0.1.2.jar:/Users/guilhermecintra/.m2/repository/com/amazonaws/aws-java-sdk-dynamodb/1.12.410/aws-java-sdk-dynamodb-1.12.410.jar:/Users/guilhermecintra/.m2/repository/commons-logging/commons-logging/1.2/commons-logging-1.2.jar:/Users/guilhermecintra/.m2/repository/joda-time/joda-time/2.12.2/joda-time-2.12.2.jar:/Users/guilhermecintra/.m2/repository/org/apache/httpcomponents/httpasyncclient/4.1.4/httpasyncclient-4.1.4.jar:/Users/guilhermecintra/.m2/repository/org/apache/httpcomponents/httpclient/4.5.13/httpclient-4.5.13.jar:/Users/guilhermecintra/.m2/repository/org/apache/httpcomponents/httpclient-cache/4.5.13/httpclient-cache-4.5.13.jar:/Users/guilhermecintra/.m2/repository/org/apache/httpcomponents/httpcore/4.4.14/httpcore-4.4.14.jar:/Users/guilhermecintra/.m2/repository/org/apache/httpcomponents/httpmime/4.5.13/httpmime-4.5.13.jar:/Users/guilhermecintra/.m2/repository/potemkin/potemkin/0.4.5/potemkin-0.4.5.jar:/Users/guilhermecintra/.m2/repository/slingshot/slingshot/0.12.2/slingshot-0.12.2.jar:/Users/guilhermecintra/.m2/repository/clojurewerkz/support/1.5.0/support-1.5.0.jar:/Users/guilhermecintra/.m2/repository/org/mongodb/mongodb-driver/3.12.11/mongodb-driver-3.12.11.jar:/Users/guilhermecintra/.m2/repository/camel-snake-kebab/camel-snake-kebab/0.4.3/camel-snake-kebab-0.4.3.jar:/Users/guilhermecintra/.m2/repository/org/clojure/java.data/1.1.103/java.data-1.1.103.jar:/Users/guilhermecintra/.m2/repository/com/layerware/hugsql-adapter-clojure-java-jdbc/0.5.3/hugsql-adapter-clojure-java-jdbc-0.5.3.jar:/Users/guilhermecintra/.m2/repository/com/layerware/hugsql-core/0.5.3/hugsql-core-0.5.3.jar:/Users/guilhermecintra/.m2/repository/com/layerware/hugsql-adapter/0.5.3/hugsql-adapter-0.5.3.jar:/Users/guilhermecintra/.m2/repository/exoscale/coax/1.0.0-alpha14/coax-1.0.0-alpha14.jar:/Users/guilhermecintra/.m2/repository/org/checkerframework/checker-qual/3.31.0/checker-qual-3.31.0.jar:/Users/guilhermecintra/.m2/repository/com/taoensso/timbre/6.3.1/timbre-6.3.1.jar:/Users/guilhermecintra/.m2/repository/com/taoensso/tufte/2.6.3/tufte-2.6.3.jar:/Users/guilhermecintra/.m2/repository/commons-codec/commons-codec/1.16.0/commons-codec-1.16.0.jar:/Users/guilhermecintra/.m2/repository/org/apache/commons/commons-pool2/2.12.0/commons-pool2-2.12.0.jar:/Users/guilhermecintra/.m2/repository/org/slf4j/slf4j-api/1.7.36/slf4j-api-1.7.36.jar:/Users/guilhermecintra/.m2/repository/io/opentracing/opentracing-noop/0.33.0/opentracing-noop-0.33.0.jar:/Users/guilhermecintra/.m2/repository/org/eclipse/jetty/jetty-util/9.4.52.v20230823/jetty-util-9.4.52.v20230823.jar:/Users/guilhermecintra/.m2/repository/org/eclipse/jetty/http2/http2-hpack/9.4.52.v20230823/http2-hpack-9.4.52.v20230823.jar:/Users/guilhermecintra/.m2/repository/org/eclipse/jetty/jetty-client/9.4.52.v20230823/jetty-client-9.4.52.v20230823.jar:/Users/guilhermecintra/.m2/repository/javax/xml/bind/jaxb-api/2.3.0/jaxb-api-2.3.0.jar:/Users/guilhermecintra/.m2/repository/org/msgpack/msgpack/0.6.12/msgpack-0.6.12.jar:/Users/guilhermecintra/.m2/repository/org/clojure/core.cache/1.0.225/core.cache-1.0.225.jar:/Users/guilhermecintra/.m2/repository/com/taoensso/truss/1.11.0/truss-1.11.0.jar:/Users/guilhermecintra/.m2/repository/com/amazonaws/aws-java-sdk-core/1.12.410/aws-java-sdk-core-1.12.410.jar:/Users/guilhermecintra/.m2/repository/com/amazonaws/aws-java-sdk-s3/1.12.410/aws-java-sdk-s3-1.12.410.jar:/Users/guilhermecintra/.m2/repository/com/amazonaws/jmespath-java/1.12.410/jmespath-java-1.12.410.jar:/Users/guilhermecintra/.m2/repository/org/apache/httpcomponents/httpcore-nio/4.4.10/httpcore-nio-4.4.10.jar:/Users/guilhermecintra/.m2/repository/clj-tuple/clj-tuple/0.2.2/clj-tuple-0.2.2.jar:/Users/guilhermecintra/.m2/repository/riddley/riddley/0.1.12/riddley-0.1.12.jar:/Users/guilhermecintra/.m2/repository/com/google/guava/guava/21.0/guava-21.0.jar:/Users/guilhermecintra/.m2/repository/org/mongodb/bson/3.12.11/bson-3.12.11.jar:/Users/guilhermecintra/.m2/repository/org/mongodb/mongodb-driver-core/3.12.11/mongodb-driver-core-3.12.11.jar:/Users/guilhermecintra/.m2/repository/org/clojure/java.jdbc/0.7.12/java.jdbc-0.7.12.jar:/Users/guilhermecintra/.m2/repository/io/aviso/pretty/1.4.4/pretty-1.4.4.jar:/Users/guilhermecintra/.m2/repository/com/googlecode/json-simple/json-simple/1.1.1/json-simple-1.1.1.jar:/Users/guilhermecintra/.m2/repository/org/javassist/javassist/3.18.1-GA/javassist-3.18.1-GA.jar:/Users/guilhermecintra/.m2/repository/org/clojure/data.priority-map/1.1.0/data.priority-map-1.1.0.jar:/Users/guilhermecintra/.m2/repository/com/fasterxml/jackson/core/jackson-databind/2.12.7.1/jackson-databind-2.12.7.1.jar:/Users/guilhermecintra/.m2/repository/software/amazon/ion/ion-java/1.0.2/ion-java-1.0.2.jar:/Users/guilhermecintra/.m2/repository/com/amazonaws/aws-java-sdk-kms/1.12.410/aws-java-sdk-kms-1.12.410.jar:/Users/guilhermecintra/.m2/repository/com/fasterxml/jackson/core/jackson-annotations/2.12.7/jackson-annotations-2.12.7.jar",
+ :sun.cpu.endian "little",
+ :LC_TERMINAL_VERSION "3.4.22",
+ :user.country "US",
+ :JAVA_HOME
+ "/Users/guilhermecintra/Library/Java/JavaVirtualMachines/openjdk-19.0.1/Contents/Home",
+ :JACK_IN_CLJ_MIDDLEWARE "cider.nrepl/cider-middleware"}
+nil
+clj꞉gcc.platform.envs.core꞉> 
+{:relational
+ {:dbtype "h2:mem", :dbname "test", :user "sa", :password ""},
+ :dynamodb
+ {:access-key "test",
+  :secret-key "test",
+  :endpoint "http://localhost:4566"},
+ :redis {:host "localhost", :port 6379}}
+nil
+clj꞉gcc.platform.envs.core꞉> 
+{:relational
+ {:dbtype "h2:mem", :dbname "test", :user "sa", :password ""},
+ :dynamodb
+ {:access-key "test",
+  :secret-key "test",
+  :endpoint "http://localhost:4566"},
+ :redis {:host "localhost", :port 6379}}
+nil
+clj꞉gcc.platform.envs.core꞉> 
+#'gcc.platform.envs.core/read-config-map
+clj꞉gcc.platform.envs.core꞉> 
+{:dbtype nil, :dbname nil, :user nil, :password nil}
+nil
+clj꞉gcc.platform.envs.core꞉> 
+{:dbtype nil, :dbname nil, :user nil, :password nil}
+nil
+clj꞉gcc.platform.envs.core꞉> 
+{:java.vendor.url.bug "https://bugreport.java.com/bugreport/",
+ :socksNonProxyHosts "local|*.local|169.254/16|*.169.254/16",
+ :POSTGRES_PORT "5432",
+ :jdk.debug "release",
+ :LS_COLORS
+ "di=1;36:ln=35:so=32:pi=33:ex=31:bd=34;46:cd=34;43:su=30;41:sg=30;46:tw=30;42:ow=30;43",
+ :ENV "dev",
+ :ELASTIC_SEARCH_HOST "http://localhost:9200/",
+ :ftp.nonProxyHosts "local|*.local|169.254/16|*.169.254/16",
+ :CONDA_PREFIX "/Users/guilhermecintra/miniconda3",
+ :java.vm.name "OpenJDK 64-Bit Server VM",
+ :ITERM_SESSION_ID "w0t1p0:A09EF99D-91CD-454F-9D5A-10CE10F0604F",
+ :java.vm.version "19.0.1+10-21",
+ :java.specification.name "Java Platform API Specification",
+ :HOME "/Users/guilhermecintra",
+ :apple.awt.UIElement "true",
+ :USER "guilhermecintra",
+ :CONDA_DEFAULT_ENV "base",
+ :native.encoding "UTF-8",
+ :apple.awt.application.name "main",
+ :java.io.tmpdir "/var/folders/46/hxv35m3950l_5zbsz8wxlwnm0000gp/T/",
+ :java.runtime.name "OpenJDK Runtime Environment",
+ :ITERM_PROFILE "Default",
+ :sun.java.command
+ "clojure.main -m nrepl.cmdline --middleware [cider.nrepl/cider-middleware]",
+ :sun.java.launcher "SUN_STANDARD",
+ :PATH
+ "/Users/guilhermecintra/miniconda3/bin:/Users/guilhermecintra/miniconda3/condabin:/Users/guilhermecintra/.nvm/versions/node/v16.19.0/bin:/opt/homebrew/bin:/opt/homebrew/sbin:/usr/local/bin:/System/Cryptexes/App/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin:/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/local/bin:/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/bin:/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/appleinternal/bin:/Users/guilhermecintra/.fig/bin:/Users/guilhermecintra/.local/bin:/Users/guilhermecintra/.cabal/bin:/Users/guilhermecintra/.ghcup/bin",
+ :java.vendor "Oracle Corporation",
+ :os.version "14.2",
+ :FIG_PID "55151",
+ :NVM_CD_FLAGS "-q",
+ :MallocNanoZone "0",
+ :TTY "/dev/ttys009",
+ :ELECTRON_NO_ATTACH_CONSOLE "1",
+ :CONDA_PYTHON_EXE "/Users/guilhermecintra/miniconda3/bin/python",
+ :COLORFGBG "15;0",
+ :sun.management.compiler "HotSpot 64-Bit Tiered Compilers",
+ :TERM_PROGRAM_VERSION "3.4.22",
+ :user.name "guilhermecintra",
+ :DYNAMO_SECRET_KEY "test",
+ :java.vm.compressedOopsMode "Zero based",
+ :JACK_IN_NREPL_VERSION "1.0.0",
+ :sun.arch.data.model "64",
+ :LANG "en_US.UTF-8",
+ :ZSH "/Users/guilhermecintra/.local/share/fig/plugins/ohmyzsh",
+ :APPLICATION_INSIGHTS_NO_DIAGNOSTIC_CHANNEL "1",
+ :INFOPATH "/opt/homebrew/share/info:",
+ :REDIS_PORT "6379",
+ :java.vm.vendor "Oracle Corporation",
+ :ORIGINAL_XDG_CURRENT_DESKTOP "undefined",
+ :JACK_IN_PROJECT_ROOT_PATH
+ "/Users/guilhermecintra/Documents/code/poly-plat/poly-platform/bases/pedestal-server",
+ :LSCOLORS "Gxfxcxdxbxegedabagacad",
+ :java.vendor.url "https://java.oracle.com/",
+ :VSCODE_HANDLES_UNCAUGHT_ERRORS "true",
+ :LaunchInstanceID "974EFD61-C061-4D53-AC6B-F8D7CC18CADC",
+ :NVM_INC
+ "/Users/guilhermecintra/.nvm/versions/node/v16.19.0/include/node",
+ :CONDA_SHLVL "1",
+ :HOMEBREW_CELLAR "/opt/homebrew/Cellar",
+ :JACK_IN_NREPL_PORT_FILE ".nrepl-port",
+ :file.encoding "UTF-8",
+ :java.vm.specification.version "19",
+ :XPC_FLAGS "0x0",
+ :sun.io.unicode.encoding "UnicodeBig",
+ :clojure.basis ".cpcache/1026680038.basis",
+ :user.language "en",
+ :java.vm.info "mixed mode, sharing",
+ :java.class.version "63.0",
+ :__CF_USER_TEXT_ENCODING "0x1F6:0x0:0x0",
+ :java.vm.specification.name "Java Virtual Machine Specification",
+ :VSCODE_IPC_HOOK
+ "/Users/guilhermecintra/Library/Application Support/Code/1.85-main.sock",
+ :VSCODE_AMD_ENTRYPOINT "vs/workbench/api/node/extensionHostProcess",
+ :stderr.encoding "UTF-8",
+ :DYNAMO_ACCES_KEY "test",
+ :java.library.path
+ "/Users/guilhermecintra/Library/Java/Extensions:/Library/Java/Extensions:/Network/Library/Java/Extensions:/System/Library/Java/Extensions:/usr/lib/java:.",
+ :PWD
+ "/Users/guilhermecintra/Documents/code/poly-plat/poly-platform/bases/pedestal-server",
+ :FIGTERM_SESSION_ID "25b84775-c17f-4957-859e-56751d601bf0",
+ :HOMEBREW_PREFIX "/opt/homebrew",
+ :VSCODE_CRASH_REPORTER_PROCESS_TYPE "extensionHost",
+ :java.home
+ "/Users/guilhermecintra/Library/Java/JavaVirtualMachines/openjdk-19.0.1/Contents/Home",
+ :sun.jnu.encoding "UTF-8",
+ :VSCODE_CODE_CACHE_PATH
+ "/Users/guilhermecintra/Library/Application Support/Code/CachedData/0ee08df0cf4527e40edc9aa28f4b5bd38bbff2b2",
+ :file.separator "/",
+ : "",
+ :java.runtime.version "19.0.1+10-21",
+ :TERM "xterm-256color",
+ :java.specification.version "19",
+ :TERM_SESSION_ID "w0t1p0:A09EF99D-91CD-454F-9D5A-10CE10F0604F",
+ :line.separator "\n",
+ :http.nonProxyHosts "local|*.local|169.254/16|*.169.254/16",
+ :user.home "/Users/guilhermecintra",
+ :path.separator ":",
+ :XPC_SERVICE_NAME
+ "application.com.microsoft.VSCode.30275168.30275174.78CDBDB9-9CD9-40B9-BDBE-521AB5403CD2",
+ :LC_TERMINAL "iTerm2",
+ :JACK_IN_CIDER_NREPL_VERSION "0.28.5",
+ :TERM_PROGRAM "iTerm.app",
+ :VSCODE_CLI "1",
+ :user.dir
+ "/Users/guilhermecintra/Documents/code/poly-plat/poly-platform/bases/pedestal-server",
+ :java.specification.vendor "Oracle Corporation",
+ :FIG_SET_PARENT_CHECK "1",
+ :user.timezone "America/Recife",
+ :ELECTRON_RUN_AS_NODE "1",
+ :LESS "-R",
+ :COMMAND_MODE "unix2003",
+ :MANPATH
+ "/Users/guilhermecintra/.nvm/versions/node/v16.19.0/share/man:/opt/homebrew/share/man::",
+ :DYNAMO_ENDPOINT "http://localhost:4566",
+ :VSCODE_L10N_BUNDLE_LOCATION "",
+ :ZNT_REPO_DIR
+ "/Users/guilhermecintra/.local/share/fig/plugins/ohmyzsh/plugins/zsh-navigation-tools",
+ :__CFBundleIdentifier "com.microsoft.VSCode",
+ :SSH_AUTH_SOCK "/private/tmp/com.apple.launchd.ykD9rDrWnv/Listeners",
+ :FIG_SET_PARENT "25b84775-c17f-4957-859e-56751d601bf0",
+ :CONDA_PROMPT_MODIFIER "(base) ",
+ :SHLVL "3",
+ :JACK_IN_CLI_ALIASES ":dev",
+ :os.arch "aarch64",
+ :ZNT_CONFIG_DIR "/Users/guilhermecintra/.config/znt",
+ :PAGER "less",
+ :REDIS_HOST "localhost",
+ :NVM_DIR "/Users/guilhermecintra/.nvm",
+ :SHELL "/bin/zsh",
+ :VSCODE_CWD
+ "/Users/guilhermecintra/Documents/code/poly-plat/poly-platform",
+ :LC_FIG_SET_PARENT "25b84775-c17f-4957-859e-56751d601bf0",
+ :CONDA_EXE "/Users/guilhermecintra/miniconda3/bin/conda",
+ :java.vm.specification.vendor "Oracle Corporation",
+ :VSCODE_PID "1425",
+ :TMPDIR "/var/folders/46/hxv35m3950l_5zbsz8wxlwnm0000gp/T/",
+ :sun.boot.library.path
+ "/Users/guilhermecintra/Library/Java/JavaVirtualMachines/openjdk-19.0.1/Contents/Home/lib",
+ :stdout.encoding "UTF-8",
+ :VSCODE_NLS_CONFIG
+ "{\"locale\":\"en-us\",\"osLocale\":\"en-us\",\"availableLanguages\":{},\"_languagePackSupport\":true}",
+ :POSTGRES_HOST "localhost",
+ :FIG_TERM "2.17.0",
+ :java.version.date "2022-10-18",
+ :java.version "19.0.1",
+ :NVM_BIN "/Users/guilhermecintra/.nvm/versions/node/v16.19.0/bin",
+ :HOMEBREW_REPOSITORY "/opt/homebrew",
+ :COLORTERM "truecolor",
+ :os.name "Mac OS X",
+ :SECURITYSESSIONID "186ad",
+ :LOGNAME "guilhermecintra",
+ :java.class.path
+ "src:resources:/Users/guilhermecintra/.m2/repository/cider/cider-nrepl/0.28.5/cider-nrepl-0.28.5.jar:/Users/guilhermecintra/.m2/repository/com/stuartsierra/component/1.1.0/component-1.1.0.jar:/Users/guilhermecintra/.m2/repository/cprop/cprop/0.1.19/cprop-0.1.19.jar:/Users/guilhermecintra/.m2/repository/environ/environ/1.2.0/environ-1.2.0.jar:/Users/guilhermecintra/.m2/repository/io/pedestal/pedestal.jetty/0.6.1/pedestal.jetty-0.6.1.jar:/Users/guilhermecintra/.m2/repository/io/pedestal/pedestal.route/0.6.1/pedestal.route-0.6.1.jar:/Users/guilhermecintra/.m2/repository/io/pedestal/pedestal.service/0.6.1/pedestal.service-0.6.1.jar:/Users/guilhermecintra/.m2/repository/lynxeyes/dotenv/1.1.0/dotenv-1.1.0.jar:/Users/guilhermecintra/.m2/repository/nrepl/nrepl/1.0.0/nrepl-1.0.0.jar:/Users/guilhermecintra/.m2/repository/org/clojure/clojure/1.11.1/clojure-1.11.1.jar:/Users/guilhermecintra/.m2/repository/org/clojure/core.async/1.6.681/core.async-1.6.681.jar:/Users/guilhermecintra/Documents/code/poly-plat/poly-platform/components/client_http/src:/Users/guilhermecintra/Documents/code/poly-plat/poly-platform/components/client_http/resources:/Users/guilhermecintra/Documents/code/poly-plat/poly-platform/components/common/src:/Users/guilhermecintra/Documents/code/poly-plat/poly-platform/components/common/resources:/Users/guilhermecintra/Documents/code/poly-plat/poly-platform/components/dynamodb/src:/Users/guilhermecintra/Documents/code/poly-plat/poly-platform/components/dynamodb/resources:/Users/guilhermecintra/Documents/code/poly-plat/poly-platform/components/elastic_search/src:/Users/guilhermecintra/Documents/code/poly-plat/poly-platform/components/elastic_search/resources:/Users/guilhermecintra/Documents/code/poly-plat/poly-platform/components/envs/src:/Users/guilhermecintra/Documents/code/poly-plat/poly-platform/components/envs/resources:/Users/guilhermecintra/Documents/code/poly-plat/poly-platform/components/mongo/src:/Users/guilhermecintra/Documents/code/poly-plat/poly-platform/components/mongo/resources:/Users/guilhermecintra/Documents/code/poly-plat/poly-platform/components/pedestal/src:/Users/guilhermecintra/Documents/code/poly-plat/poly-platform/components/pedestal/resources:/Users/guilhermecintra/Documents/code/poly-plat/poly-platform/components/postgres/src:/Users/guilhermecintra/Documents/code/poly-plat/poly-platform/components/postgres/resources:/Users/guilhermecintra/Documents/code/poly-plat/poly-platform/components/redis/src:/Users/guilhermecintra/Documents/code/poly-plat/poly-platform/components/redis/resources:/Users/guilhermecintra/Documents/code/poly-plat/poly-platform/components/redis/test:/Users/guilhermecintra/.m2/repository/com/stuartsierra/dependency/1.0.0/dependency-1.0.0.jar:/Users/guilhermecintra/.m2/repository/io/pedestal/pedestal.log/0.6.1/pedestal.log-0.6.1.jar:/Users/guilhermecintra/.m2/repository/javax/servlet/javax.servlet-api/3.1.0/javax.servlet-api-3.1.0.jar:/Users/guilhermecintra/.m2/repository/org/eclipse/jetty/jetty-alpn-server/9.4.52.v20230823/jetty-alpn-server-9.4.52.v20230823.jar:/Users/guilhermecintra/.m2/repository/org/eclipse/jetty/jetty-server/9.4.52.v20230823/jetty-server-9.4.52.v20230823.jar:/Users/guilhermecintra/.m2/repository/org/eclipse/jetty/jetty-servlet/9.4.52.v20230823/jetty-servlet-9.4.52.v20230823.jar:/Users/guilhermecintra/.m2/repository/org/eclipse/jetty/alpn/alpn-api/1.1.3.v20160715/alpn-api-1.1.3.v20160715.jar:/Users/guilhermecintra/.m2/repository/org/eclipse/jetty/http2/http2-server/9.4.52.v20230823/http2-server-9.4.52.v20230823.jar:/Users/guilhermecintra/.m2/repository/org/eclipse/jetty/websocket/websocket-api/9.4.52.v20230823/websocket-api-9.4.52.v20230823.jar:/Users/guilhermecintra/.m2/repository/org/eclipse/jetty/websocket/websocket-server/9.4.52.v20230823/websocket-server-9.4.52.v20230823.jar:/Users/guilhermecintra/.m2/repository/org/eclipse/jetty/websocket/websocket-servlet/9.4.52.v20230823/websocket-servlet-9.4.52.v20230823.jar:/Users/guilhermecintra/.m2/repository/io/pedestal/pedestal.interceptor/0.6.1/pedestal.interceptor-0.6.1.jar:/Users/guilhermecintra/.m2/repository/com/cognitect/transit-clj/1.0.329/transit-clj-1.0.329.jar:/Users/guilhermecintra/.m2/repository/crypto-equality/crypto-equality/1.0.1/crypto-equality-1.0.1.jar:/Users/guilhermecintra/.m2/repository/crypto-random/crypto-random/1.2.1/crypto-random-1.2.1.jar:/Users/guilhermecintra/.m2/repository/org/clojure/tools.reader/1.3.6/tools.reader-1.3.6.jar:/Users/guilhermecintra/.m2/repository/ring/ring-core/1.10.0/ring-core-1.10.0.jar:/Users/guilhermecintra/.m2/repository/org/clojure/core.incubator/0.1.4/core.incubator-0.1.4.jar:/Users/guilhermecintra/.m2/repository/org/clojure/core.specs.alpha/0.2.62/core.specs.alpha-0.2.62.jar:/Users/guilhermecintra/.m2/repository/org/clojure/spec.alpha/0.3.218/spec.alpha-0.3.218.jar:/Users/guilhermecintra/.m2/repository/org/clojure/tools.analyzer.jvm/1.2.3/tools.analyzer.jvm-1.2.3.jar:/Users/guilhermecintra/.m2/repository/cheshire/cheshire/5.12.0/cheshire-5.12.0.jar:/Users/guilhermecintra/.m2/repository/clj-http/clj-http/3.12.3/clj-http-3.12.3.jar:/Users/guilhermecintra/.m2/repository/clj-time/clj-time/0.15.2/clj-time-0.15.2.jar:/Users/guilhermecintra/.m2/repository/com/taoensso/nippy/3.3.0/nippy-3.3.0.jar:/Users/guilhermecintra/.m2/repository/com/widdindustries/clojure.log4j2/0.1.9/clojure.log4j2-0.1.9.jar:/Users/guilhermecintra/.m2/repository/criterium/criterium/0.4.6/criterium-0.4.6.jar:/Users/guilhermecintra/.m2/repository/medley/medley/1.3.0/medley-1.3.0.jar:/Users/guilhermecintra/.m2/repository/middlesphere/clj-compress/0.1.0/clj-compress-0.1.0.jar:/Users/guilhermecintra/.m2/repository/com/taoensso/faraday/1.12.0/faraday-1.12.0.jar:/Users/guilhermecintra/.m2/repository/prismatic/schema/1.4.1/schema-1.4.1.jar:/Users/guilhermecintra/.m2/repository/com/novemberain/monger/3.6.0/monger-3.6.0.jar:/Users/guilhermecintra/.m2/repository/com/github/seancorfield/honeysql/2.5.1103/honeysql-2.5.1103.jar:/Users/guilhermecintra/.m2/repository/com/github/seancorfield/next.jdbc/1.3.909/next.jdbc-1.3.909.jar:/Users/guilhermecintra/.m2/repository/com/h2database/h2/1.4.199/h2-1.4.199.jar:/Users/guilhermecintra/.m2/repository/com/layerware/hugsql/0.5.3/hugsql-0.5.3.jar:/Users/guilhermecintra/.m2/repository/com/layerware/hugsql-adapter-next-jdbc/0.5.3/hugsql-adapter-next-jdbc-0.5.3.jar:/Users/guilhermecintra/.m2/repository/exoscale/seql/0.2.3/seql-0.2.3.jar:/Users/guilhermecintra/.m2/repository/org/postgresql/postgresql/42.6.0/postgresql-42.6.0.jar:/Users/guilhermecintra/.m2/repository/com/taoensso/carmine/3.3.2/carmine-3.3.2.jar:/Users/guilhermecintra/.m2/repository/io/dropwizard/metrics/metrics-core/4.2.18/metrics-core-4.2.18.jar:/Users/guilhermecintra/.m2/repository/io/dropwizard/metrics/metrics-jmx/4.2.18/metrics-jmx-4.2.18.jar:/Users/guilhermecintra/.m2/repository/io/opentracing/opentracing-api/0.33.0/opentracing-api-0.33.0.jar:/Users/guilhermecintra/.m2/repository/io/opentracing/opentracing-util/0.33.0/opentracing-util-0.33.0.jar:/Users/guilhermecintra/.m2/repository/org/eclipse/jetty/jetty-http/9.4.52.v20230823/jetty-http-9.4.52.v20230823.jar:/Users/guilhermecintra/.m2/repository/org/eclipse/jetty/jetty-io/9.4.52.v20230823/jetty-io-9.4.52.v20230823.jar:/Users/guilhermecintra/.m2/repository/org/eclipse/jetty/jetty-security/9.4.52.v20230823/jetty-security-9.4.52.v20230823.jar:/Users/guilhermecintra/.m2/repository/org/eclipse/jetty/jetty-util-ajax/9.4.52.v20230823/jetty-util-ajax-9.4.52.v20230823.jar:/Users/guilhermecintra/.m2/repository/org/eclipse/jetty/http2/http2-common/9.4.52.v20230823/http2-common-9.4.52.v20230823.jar:/Users/guilhermecintra/.m2/repository/org/eclipse/jetty/websocket/websocket-client/9.4.52.v20230823/websocket-client-9.4.52.v20230823.jar:/Users/guilhermecintra/.m2/repository/org/eclipse/jetty/websocket/websocket-common/9.4.52.v20230823/websocket-common-9.4.52.v20230823.jar:/Users/guilhermecintra/.m2/repository/com/cognitect/transit-java/1.0.362/transit-java-1.0.362.jar:/Users/guilhermecintra/.m2/repository/org/clojure/core.match/1.0.1/core.match-1.0.1.jar:/Users/guilhermecintra/.m2/repository/commons-fileupload/commons-fileupload/1.5/commons-fileupload-1.5.jar:/Users/guilhermecintra/.m2/repository/commons-io/commons-io/2.11.0/commons-io-2.11.0.jar:/Users/guilhermecintra/.m2/repository/ring/ring-codec/1.2.0/ring-codec-1.2.0.jar:/Users/guilhermecintra/.m2/repository/org/clojure/core.memoize/1.0.253/core.memoize-1.0.253.jar:/Users/guilhermecintra/.m2/repository/org/clojure/tools.analyzer/1.1.1/tools.analyzer-1.1.1.jar:/Users/guilhermecintra/.m2/repository/org/ow2/asm/asm/9.2/asm-9.2.jar:/Users/guilhermecintra/.m2/repository/com/fasterxml/jackson/core/jackson-core/2.15.2/jackson-core-2.15.2.jar:/Users/guilhermecintra/.m2/repository/com/fasterxml/jackson/dataformat/jackson-dataformat-cbor/2.15.2/jackson-dataformat-cbor-2.15.2.jar:/Users/guilhermecintra/.m2/repository/com/fasterxml/jackson/dataformat/jackson-dataformat-smile/2.15.2/jackson-dataformat-smile-2.15.2.jar:/Users/guilhermecintra/.m2/repository/tigris/tigris/0.1.2/tigris-0.1.2.jar:/Users/guilhermecintra/.m2/repository/com/taoensso/encore/3.68.0/encore-3.68.0.jar:/Users/guilhermecintra/.m2/repository/org/iq80/snappy/snappy/0.4/snappy-0.4.jar:/Users/guilhermecintra/.m2/repository/org/lz4/lz4-java/1.8.0/lz4-java-1.8.0.jar:/Users/guilhermecintra/.m2/repository/org/tukaani/xz/1.9/xz-1.9.jar:/Users/guilhermecintra/.m2/repository/org/apache/logging/log4j/log4j-api/2.17.1/log4j-api-2.17.1.jar:/Users/guilhermecintra/.m2/repository/org/apache/logging/log4j/log4j-core/2.17.1/log4j-core-2.17.1.jar:/Users/guilhermecintra/.m2/repository/org/apache/commons/commons-compress/1.18/commons-compress-1.18.jar:/Users/guilhermecintra/.m2/repository/org/brotli/dec/0.1.2/dec-0.1.2.jar:/Users/guilhermecintra/.m2/repository/com/amazonaws/aws-java-sdk-dynamodb/1.12.410/aws-java-sdk-dynamodb-1.12.410.jar:/Users/guilhermecintra/.m2/repository/commons-logging/commons-logging/1.2/commons-logging-1.2.jar:/Users/guilhermecintra/.m2/repository/joda-time/joda-time/2.12.2/joda-time-2.12.2.jar:/Users/guilhermecintra/.m2/repository/org/apache/httpcomponents/httpasyncclient/4.1.4/httpasyncclient-4.1.4.jar:/Users/guilhermecintra/.m2/repository/org/apache/httpcomponents/httpclient/4.5.13/httpclient-4.5.13.jar:/Users/guilhermecintra/.m2/repository/org/apache/httpcomponents/httpclient-cache/4.5.13/httpclient-cache-4.5.13.jar:/Users/guilhermecintra/.m2/repository/org/apache/httpcomponents/httpcore/4.4.14/httpcore-4.4.14.jar:/Users/guilhermecintra/.m2/repository/org/apache/httpcomponents/httpmime/4.5.13/httpmime-4.5.13.jar:/Users/guilhermecintra/.m2/repository/potemkin/potemkin/0.4.5/potemkin-0.4.5.jar:/Users/guilhermecintra/.m2/repository/slingshot/slingshot/0.12.2/slingshot-0.12.2.jar:/Users/guilhermecintra/.m2/repository/clojurewerkz/support/1.5.0/support-1.5.0.jar:/Users/guilhermecintra/.m2/repository/org/mongodb/mongodb-driver/3.12.11/mongodb-driver-3.12.11.jar:/Users/guilhermecintra/.m2/repository/camel-snake-kebab/camel-snake-kebab/0.4.3/camel-snake-kebab-0.4.3.jar:/Users/guilhermecintra/.m2/repository/org/clojure/java.data/1.1.103/java.data-1.1.103.jar:/Users/guilhermecintra/.m2/repository/com/layerware/hugsql-adapter-clojure-java-jdbc/0.5.3/hugsql-adapter-clojure-java-jdbc-0.5.3.jar:/Users/guilhermecintra/.m2/repository/com/layerware/hugsql-core/0.5.3/hugsql-core-0.5.3.jar:/Users/guilhermecintra/.m2/repository/com/layerware/hugsql-adapter/0.5.3/hugsql-adapter-0.5.3.jar:/Users/guilhermecintra/.m2/repository/exoscale/coax/1.0.0-alpha14/coax-1.0.0-alpha14.jar:/Users/guilhermecintra/.m2/repository/org/checkerframework/checker-qual/3.31.0/checker-qual-3.31.0.jar:/Users/guilhermecintra/.m2/repository/com/taoensso/timbre/6.3.1/timbre-6.3.1.jar:/Users/guilhermecintra/.m2/repository/com/taoensso/tufte/2.6.3/tufte-2.6.3.jar:/Users/guilhermecintra/.m2/repository/commons-codec/commons-codec/1.16.0/commons-codec-1.16.0.jar:/Users/guilhermecintra/.m2/repository/org/apache/commons/commons-pool2/2.12.0/commons-pool2-2.12.0.jar:/Users/guilhermecintra/.m2/repository/org/slf4j/slf4j-api/1.7.36/slf4j-api-1.7.36.jar:/Users/guilhermecintra/.m2/repository/io/opentracing/opentracing-noop/0.33.0/opentracing-noop-0.33.0.jar:/Users/guilhermecintra/.m2/repository/org/eclipse/jetty/jetty-util/9.4.52.v20230823/jetty-util-9.4.52.v20230823.jar:/Users/guilhermecintra/.m2/repository/org/eclipse/jetty/http2/http2-hpack/9.4.52.v20230823/http2-hpack-9.4.52.v20230823.jar:/Users/guilhermecintra/.m2/repository/org/eclipse/jetty/jetty-client/9.4.52.v20230823/jetty-client-9.4.52.v20230823.jar:/Users/guilhermecintra/.m2/repository/javax/xml/bind/jaxb-api/2.3.0/jaxb-api-2.3.0.jar:/Users/guilhermecintra/.m2/repository/org/msgpack/msgpack/0.6.12/msgpack-0.6.12.jar:/Users/guilhermecintra/.m2/repository/org/clojure/core.cache/1.0.225/core.cache-1.0.225.jar:/Users/guilhermecintra/.m2/repository/com/taoensso/truss/1.11.0/truss-1.11.0.jar:/Users/guilhermecintra/.m2/repository/com/amazonaws/aws-java-sdk-core/1.12.410/aws-java-sdk-core-1.12.410.jar:/Users/guilhermecintra/.m2/repository/com/amazonaws/aws-java-sdk-s3/1.12.410/aws-java-sdk-s3-1.12.410.jar:/Users/guilhermecintra/.m2/repository/com/amazonaws/jmespath-java/1.12.410/jmespath-java-1.12.410.jar:/Users/guilhermecintra/.m2/repository/org/apache/httpcomponents/httpcore-nio/4.4.10/httpcore-nio-4.4.10.jar:/Users/guilhermecintra/.m2/repository/clj-tuple/clj-tuple/0.2.2/clj-tuple-0.2.2.jar:/Users/guilhermecintra/.m2/repository/riddley/riddley/0.1.12/riddley-0.1.12.jar:/Users/guilhermecintra/.m2/repository/com/google/guava/guava/21.0/guava-21.0.jar:/Users/guilhermecintra/.m2/repository/org/mongodb/bson/3.12.11/bson-3.12.11.jar:/Users/guilhermecintra/.m2/repository/org/mongodb/mongodb-driver-core/3.12.11/mongodb-driver-core-3.12.11.jar:/Users/guilhermecintra/.m2/repository/org/clojure/java.jdbc/0.7.12/java.jdbc-0.7.12.jar:/Users/guilhermecintra/.m2/repository/io/aviso/pretty/1.4.4/pretty-1.4.4.jar:/Users/guilhermecintra/.m2/repository/com/googlecode/json-simple/json-simple/1.1.1/json-simple-1.1.1.jar:/Users/guilhermecintra/.m2/repository/org/javassist/javassist/3.18.1-GA/javassist-3.18.1-GA.jar:/Users/guilhermecintra/.m2/repository/org/clojure/data.priority-map/1.1.0/data.priority-map-1.1.0.jar:/Users/guilhermecintra/.m2/repository/com/fasterxml/jackson/core/jackson-databind/2.12.7.1/jackson-databind-2.12.7.1.jar:/Users/guilhermecintra/.m2/repository/software/amazon/ion/ion-java/1.0.2/ion-java-1.0.2.jar:/Users/guilhermecintra/.m2/repository/com/amazonaws/aws-java-sdk-kms/1.12.410/aws-java-sdk-kms-1.12.410.jar:/Users/guilhermecintra/.m2/repository/com/fasterxml/jackson/core/jackson-annotations/2.12.7/jackson-annotations-2.12.7.jar",
+ :sun.cpu.endian "little",
+ :LC_TERMINAL_VERSION "3.4.22",
+ :user.country "US",
+ :JAVA_HOME
+ "/Users/guilhermecintra/Library/Java/JavaVirtualMachines/openjdk-19.0.1/Contents/Home",
+ :JACK_IN_CLJ_MIDDLEWARE "cider.nrepl/cider-middleware"}
+nil
+clj꞉gcc.platform.envs.core꞉> 

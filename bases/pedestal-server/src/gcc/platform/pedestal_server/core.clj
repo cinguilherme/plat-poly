@@ -6,15 +6,12 @@
             [gcc.platform.elastic_search.component :as esc]
             [com.stuartsierra.component :as component]
             [gcc.platform.common.interface :as common]
-            [gcc.platform.pedestal-server.routes.routes :as routes]
-            [clojure.edn :as edn]
-            [dotenv :refer [env]]
-            [clojure.java.io :as io]
-            [cprop.core :refer [load-config]]
+            [gcc.platform.envs.interface :as envs]
+            [gcc.platform.pedestal-server.routes.routes :as routes] 
             [clojure.pprint :refer [pprint]])
   (:gen-class))
 
-(def config (common/load-config-for-env))
+(def config (envs/load-config-for-env))
 
 (pprint config)
 
