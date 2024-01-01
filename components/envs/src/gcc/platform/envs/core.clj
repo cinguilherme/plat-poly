@@ -30,18 +30,15 @@
     (when path
       (read-config-file path))))
 
-
+(defn load-config-for-env-plus-envs [extra-keys]
+  (let [all-keys (concat [:ENV] extra-keys)]
+    (assoc {}
+           :config (load-config-data)
+           :envs (read-config-map all-keys))))
+  
 
 (comment
-  (def all (assoc {} 
-                  :config (load-config-data) 
-                  :envs (read-config-map 
-                         [:DYNAMO_ENDPOINT 
-                          :DYNAMO_ACCES_KEY
-                          :DYNAMO_SECRET_KEY
-                          :REDIS_HOST 
-                          :REDIS_PORT 
-                          :ENV])))
+  (def all (load-config-for-env-plus-envs [:DYNAMO_ENDPOINT :REDIS_HOST :REDIS_PORT]))
   (pprint all)
   (pprint (load-config-data))
 

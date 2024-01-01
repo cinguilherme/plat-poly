@@ -994,3 +994,572 @@ clj꞉gcc.platform.envs.core꞉> 
  :JACK_IN_CLJ_MIDDLEWARE "cider.nrepl/cider-middleware"}
 nil
 clj꞉gcc.platform.envs.core꞉> 
+; Jacking in...
+; Connecting using "deps.edn" project type.
+; You can make Calva auto-select this.
+;   - See https://calva.io/connect-sequences/
+; 
+; Starting Jack-in Terminal: pushd /Users/guilhermecintra/Documents/code/poly-plat/poly-platform/bases/pedestal-server ; clojure -Sdeps '{:deps {nrepl/nrepl {:mvn/version,"1.0.0"},cider/cider-nrepl {:mvn/version,"0.28.5"}}}' -M:dev -m nrepl.cmdline --middleware "[cider.nrepl/cider-middleware]" ; popd
+; nREPL Connection was closed
+; Using host:port localhost:51007 ...
+; Hooking up nREPL sessions ...
+; Connected session: clj
+; TIPS:
+;   - You can edit the contents here. Use it as a REPL if you like.
+;   - `alt+enter` evaluates the current top level form.
+;   - `ctrl+enter` evaluates the current form.
+;   - `alt+up` and `alt+down` traverse up and down the REPL command history
+;      when the cursor is after the last contents at the prompt
+;   - Clojure lines in stack traces are peekable and clickable.
+; Evaluating code from settings: 'calva.autoEvaluateCode.onConnect.clj'
+nil
+clj꞉user꞉> 
+clj꞉user꞉> 
+; Jack-in done.
+clj꞉user꞉> 
+nil
+clj꞉gcc.platform.pedestal-server.core꞉> 
+#'gcc.platform.pedestal-server.core/config
+clj꞉gcc.platform.pedestal-server.core꞉> 
+{:config
+ {:relational
+  {:dbtype "h2:mem", :dbname "test", :user "sa", :password ""},
+  :dynamodb
+  {:access-key "test",
+   :secret-key "test",
+   :endpoint "http://localhost:4566"},
+  :redis {:host "localhost", :port 6379}},
+ :envs
+ {:ENV "dev",
+  :DYNAMO_ENDPOINT "http://localhost:4566",
+  :REDIS_HOST "localhost",
+  :REDIS_PORT "6379"}}
+nil
+clj꞉gcc.platform.pedestal-server.core꞉> 
+#'gcc.platform.pedestal-server.core/config
+clj꞉gcc.platform.pedestal-server.core꞉> 
+{:config
+ {:relational
+  {:dbtype "h2:mem", :dbname "test", :user "sa", :password ""},
+  :dynamodb
+  {:access-key "test",
+   :secret-key "test",
+   :endpoint "http://localhost:4566"},
+  :elasticsearch {:endpoint "http://localhost:9200/"},
+  :redis {:host "localhost", :port 6379}},
+ :envs
+ {:ENV "dev",
+  :DYNAMO_ENDPOINT "http://localhost:4566",
+  :REDIS_HOST "localhost",
+  :REDIS_PORT "6379"}}
+nil
+clj꞉gcc.platform.pedestal-server.core꞉> 
+#'gcc.platform.pedestal-server.core/elasticsearch-endpoint
+clj꞉gcc.platform.pedestal-server.core꞉> 
+nil
+nil
+clj꞉gcc.platform.pedestal-server.core꞉> 
+#'gcc.platform.pedestal-server.core/elasticsearch-endpoint
+clj꞉gcc.platform.pedestal-server.core꞉> 
+#'gcc.platform.pedestal-server.core/config
+clj꞉gcc.platform.pedestal-server.core꞉> 
+{:config
+ {:relational
+  {:dbtype "h2:mem", :dbname "test", :user "sa", :password ""},
+  :dynamodb
+  {:access-key "test",
+   :secret-key "test",
+   :endpoint "http://localhost:4566"},
+  :elasticsearch {:endpoint "http://localhost:9200/"},
+  :redis {:host "localhost", :port 6379}},
+ :envs
+ {:ENV "dev",
+  :DYNAMO_ENDPOINT "http://localhost:4566",
+  :REDIS_HOST "localhost",
+  :REDIS_PORT "6379"}}
+nil
+clj꞉gcc.platform.pedestal-server.core꞉> 
+#'gcc.platform.pedestal-server.core/elasticsearch-endpoint
+clj꞉gcc.platform.pedestal-server.core꞉> 
+"http://localhost:9200/"
+nil
+clj꞉gcc.platform.pedestal-server.core꞉> 
+#'gcc.platform.pedestal-server.core/redis-conf
+clj꞉gcc.platform.pedestal-server.core꞉> 
+{:host "localhost", :port 6379}
+nil
+clj꞉gcc.platform.pedestal-server.core꞉> 
+#'gcc.platform.pedestal-server.core/dynamo-conf
+clj꞉gcc.platform.pedestal-server.core꞉> 
+{:config
+ {:relational
+  {:dbtype "h2:mem", :dbname "test", :user "sa", :password ""},
+  :dynamodb
+  {:access-key "test",
+   :secret-key "test",
+   :endpoint "http://localhost:4566"},
+  :elasticsearch {:endpoint "http://localhost:9200/"},
+  :redis {:host "localhost", :port 6379}},
+ :envs
+ {:ENV "dev",
+  :DYNAMO_ENDPOINT "http://localhost:4566",
+  :REDIS_HOST "localhost",
+  :REDIS_PORT "6379"}}
+nil
+clj꞉gcc.platform.pedestal-server.core꞉> 
+#'gcc.platform.pedestal-server.core/relational-conf
+clj꞉gcc.platform.pedestal-server.core꞉> 
+{:config
+ {:relational
+  {:dbtype "h2:mem", :dbname "test", :user "sa", :password ""},
+  :dynamodb
+  {:access-key "test",
+   :secret-key "test",
+   :endpoint "http://localhost:4566"},
+  :elasticsearch {:endpoint "http://localhost:9200/"},
+  :redis {:host "localhost", :port 6379}},
+ :envs
+ {:ENV "dev",
+  :DYNAMO_ENDPOINT "http://localhost:4566",
+  :REDIS_HOST "localhost",
+  :REDIS_PORT "6379"}}
+nil
+clj꞉gcc.platform.pedestal-server.core꞉> 
+#'gcc.platform.pedestal-server.core/create-system
+clj꞉gcc.platform.pedestal-server.core꞉> 
+#'gcc.platform.pedestal-server.core/-main
+clj꞉gcc.platform.pedestal-server.core꞉> 
+#'gcc.platform.pedestal-server.core/shutdown
+clj꞉gcc.platform.pedestal-server.core꞉> 
+new-pedestal-component init with only routes, no components, make sure components/using is used next
+Elasticsearch component starting
+Redis component starting
+Postgres component starting
+#'gcc.platform.pedestal-server.core/system
+clj꞉gcc.platform.pedestal-server.core꞉> 
+Postgres component stopping
+Redis component stopping
+Elasticsearch component stopping
+{:elasticsearch {:endpoint "http://localhost:9200/"},
+ :redis
+ {:redis-spec
+  {:pool
+   {:max-total 10,
+    :max-idle-per-key 5,
+    :min-idle-per-key 1,
+    :max-total-per-key 8,
+    :block-when-exhausted? true,
+    :max-wait-ms 30000,
+    :test-on-borrow? true},
+   :spec {:host "localhost", :port 6379}}},
+ :dynamodb {:client-opts nil},
+ :postgres {:config {:dbtype "h2:mem", :dbname "test", :user "sa", :password ""}, :datasource nil},
+ :pedestal
+ {:routes
+  [["/greet" :get #function[gcc.platform.pedestal-server.routes.routes/respond-hello] :route-name :greet]
+   ["/greet-json"
+    :get
+    #function[gcc.platform.pedestal-server.routes.routes/respond-hello-json]
+    :route-name
+    :greet-json]],
+  :redis
+  {:redis-spec
+   {:pool
+    {:max-total 10,
+     :max-idle-per-key 5,
+     :min-idle-per-key 1,
+     :max-total-per-key 8,
+     :block-when-exhausted? true,
+     :max-wait-ms 30000,
+     :test-on-borrow? true},
+    :spec {:host "localhost", :port 6379}}},
+  :elasticsearch {:endpoint "http://localhost:9200/"},
+  :dynamodb {:client-opts {:access-key "test", :secret-key "test", :endpoint "http://localhost:4566"}},
+  :postgres
+  {:config {:dbtype "h2:mem", :dbname "test", :user "sa", :password ""},
+   :datasource
+   #object[next.jdbc.connection$url_PLUS_etc$reify__31460 0x18630f2e "jdbc:h2:mem:test;DB_CLOSE_DELAY=-1"]},
+  :producer-sqs nil,
+  :server
+  #:io.pedestal.http{:port 8890,
+                     :service-fn #function[io.pedestal.http.impl.servlet-interceptor/interceptor-service-fn/fn--23154],
+                     :host "localhost",
+                     :type :jetty,
+                     :start-fn #function[io.pedestal.http.jetty/server/fn--38544],
+                     :interceptors
+                     [{:name :io.pedestal.http/log-request,
+                       :enter #function[io.pedestal.interceptor.helpers/on-request/fn--19209],
+                       :leave nil,
+                       :error nil}
+                      {:name :io.pedestal.http/not-found,
+                       :enter nil,
+                       :leave #function[io.pedestal.interceptor.helpers/after/fn--19173],
+                       :error nil}
+                      {:name :io.pedestal.http.ring-middlewares/content-type-interceptor,
+                       :enter nil,
+                       :leave #function[io.pedestal.interceptor.helpers/after/fn--19173],
+                       :error nil}
+                      {:name :io.pedestal.http.route/query-params,
+                       :enter #function[io.pedestal.http.route/fn--20087],
+                       :leave nil,
+                       :error nil}
+                      {:name :io.pedestal.http.route/method-param,
+                       :enter #function[io.pedestal.http.route/method-param/fn--20092],
+                       :leave nil,
+                       :error nil}
+                      {:name :io.pedestal.http.secure-headers/secure-headers,
+                       :enter nil,
+                       :leave #function[io.pedestal.http.secure-headers/secure-headers/fn--21731],
+                       :error nil}
+                      {:name :io.pedestal.http.route/router,
+                       :enter #function[io.pedestal.http.route/eval20073/fn--20074/fn--20075],
+                       :leave nil,
+                       :error nil}
+                      {:name :io.pedestal.http.route/path-params-decoder,
+                       :enter #function[io.pedestal.http.route/fn--20089],
+                       :leave nil,
+                       :error nil}],
+                     :routes
+                     ({:path "/greet-json",
+                       :method :get,
+                       :path-re #"/\Qgreet-json\E",
+                       :path-parts ["greet-json"],
+                       :interceptors
+                       [{:name nil,
+                         :enter #function[io.pedestal.interceptor/eval8473/fn--8474/fn--8475],
+                         :leave nil,
+                         :error nil}],
+                       :route-name :greet-json,
+                       :path-params []}
+                      {:path "/greet",
+                       :method :get,
+                       :path-re #"/\Qgreet\E",
+                       :path-parts ["greet"],
+                       :interceptors
+                       [{:name nil,
+                         :enter #function[io.pedestal.interceptor/eval8473/fn--8474/fn--8475],
+                         :leave nil,
+                         :error nil}],
+                       :route-name :greet,
+                       :path-params []}),
+                     :servlet
+                     #object[io.pedestal.http.servlet.FnServlet 0x723639e7 "io.pedestal.http.servlet.FnServlet@723639e7"],
+                     :server
+                     #object[org.eclipse.jetty.server.Server 0xba49aa3 "Server@ba49aa3{STOPPED}[9.4.52.v20230823]"],
+                     :stop-fn #function[io.pedestal.http.jetty/server/fn--38546]},
+  :started
+  #<Future@8f23dd0: 
+    #<Future@35e68c9d: 
+      #:io.pedestal.http{:port 8890,
+                         :service-fn
+                         #function[io.pedestal.http.impl.servlet-interceptor/interceptor-service-fn/fn--23154],
+                         :host "localhost",
+                         :type :jetty,
+                         :start-fn #function[io.pedestal.http.jetty/server/fn--38544],
+                         :interceptors
+                         [{:name :io.pedestal.http/log-request,
+                           :enter #function[io.pedestal.interceptor.helpers/on-request/fn--19209],
+                           :leave nil,
+                           :error nil}
+                          {:name :io.pedestal.http/not-found,
+                           :enter nil,
+                           :leave #function[io.pedestal.interceptor.helpers/after/fn--19173],
+                           :error nil}
+                          {:name :io.pedestal.http.ring-middlewares/content-type-interceptor,
+                           :enter nil,
+                           :leave #function[io.pedestal.interceptor.helpers/after/fn--19173],
+                           :error nil}
+                          {:name :io.pedestal.http.route/query-params,
+                           :enter #function[io.pedestal.http.route/fn--20087],
+                           :leave nil,
+                           :error nil}
+                          {:name :io.pedestal.http.route/method-param,
+                           :enter #function[io.pedestal.http.route/method-param/fn--20092],
+                           :leave nil,
+                           :error nil}
+                          {:name :io.pedestal.http.secure-headers/secure-headers,
+                           :enter nil,
+                           :leave #function[io.pedestal.http.secure-headers/secure-headers/fn--21731],
+                           :error nil}
+                          {:name :io.pedestal.http.route/router,
+                           :enter #function[io.pedestal.http.route/eval20073/fn--20074/fn--20075],
+                           :leave nil,
+                           :error nil}
+                          {:name :io.pedestal.http.route/path-params-decoder,
+                           :enter #function[io.pedestal.http.route/fn--20089],
+                           :leave nil,
+                           :error nil}],
+                         :routes
+                         ({:path "/greet-json",
+                           :method :get,
+                           :path-re #"/\Qgreet-json\E",
+                           :path-parts ["greet-json"],
+                           :interceptors
+                           [{:name nil,
+                             :enter #function[io.pedestal.interceptor/eval8473/fn--8474/fn--8475],
+                             :leave nil,
+                             :error nil}],
+                           :route-name :greet-json,
+                           :path-params []}
+                          {:path "/greet",
+                           :method :get,
+                           :path-re #"/\Qgreet\E",
+                           :path-parts ["greet"],
+                           :interceptors
+                           [{:name nil,
+                             :enter #function[io.pedestal.interceptor/eval8473/fn--8474/fn--8475],
+                             :leave nil,
+                             :error nil}],
+                           :route-name :greet,
+                           :path-params []}),
+                         :servlet
+                         #object[io.pedestal.http.servlet.FnServlet 0x723639e7 "io.pedestal.http.servlet.FnServlet@723639e7"],
+                         :server
+                         #object[org.eclipse.jetty.server.Server 0xba49aa3 "Server@ba49aa3{STOPPED}[9.4.52.v20230823]"],
+                         :stop-fn #function[io.pedestal.http.jetty/server/fn--38546]}>>,
+  :components-map
+  {:redis
+   {:redis-spec
+    {:pool
+     {:max-total 10,
+      :max-idle-per-key 5,
+      :min-idle-per-key 1,
+      :max-total-per-key 8,
+      :block-when-exhausted? true,
+      :max-wait-ms 30000,
+      :test-on-borrow? true},
+     :spec {:host "localhost", :port 6379}}},
+   :elasticsearch {:endpoint "http://localhost:9200/"},
+   :dynamodb {:client-opts {:access-key "test", :secret-key "test", :endpoint "http://localhost:4566"}},
+   :postgres
+   {:config {:dbtype "h2:mem", :dbname "test", :user "sa", :password ""},
+    :datasource
+    #object[next.jdbc.connection$url_PLUS_etc$reify__31460 0x18630f2e "jdbc:h2:mem:test;DB_CLOSE_DELAY=-1"]},
+   :producer-sqs nil},
+  :stopped true}}
+clj꞉gcc.platform.pedestal-server.core꞉> 
+#'gcc.platform.pedestal-server.core/create-system
+clj꞉gcc.platform.pedestal-server.core꞉> 
+#'gcc.platform.pedestal-server.core/-main
+clj꞉gcc.platform.pedestal-server.core꞉> 
+{:config
+ {:relational
+  {:dbtype "h2:mem", :dbname "test", :user "sa", :password ""},
+  :dynamodb
+  {:access-key "test",
+   :secret-key "test",
+   :endpoint "http://localhost:4566"},
+  :elasticsearch {:endpoint "http://localhost:9200/"},
+  :redis {:host "localhost", :port 6379}},
+ :envs
+ {:ENV "dev",
+  :DYNAMO_ENDPOINT "http://localhost:4566",
+  :REDIS_HOST "localhost",
+  :REDIS_PORT "6379"}}
+new-pedestal-component init with only routes, no components, make sure components/using is used next
+Elasticsearch component starting
+Redis component starting
+Postgres component starting
+#'gcc.platform.pedestal-server.core/system
+clj꞉gcc.platform.pedestal-server.core꞉> 
+Postgres component stopping
+Redis component stopping
+Elasticsearch component stopping
+{:elasticsearch {:endpoint "http://localhost:9200/"},
+ :redis
+ {:redis-spec
+  {:pool
+   {:max-total 10,
+    :max-idle-per-key 5,
+    :min-idle-per-key 1,
+    :max-total-per-key 8,
+    :block-when-exhausted? true,
+    :max-wait-ms 30000,
+    :test-on-borrow? true},
+   :spec {:host "localhost", :port 6379}}},
+ :dynamodb {:client-opts nil},
+ :postgres {:config {:dbtype "h2:mem", :dbname "test", :user "sa", :password ""}, :datasource nil},
+ :pedestal
+ {:routes
+  [["/greet" :get #function[gcc.platform.pedestal-server.routes.routes/respond-hello] :route-name :greet]
+   ["/greet-json"
+    :get
+    #function[gcc.platform.pedestal-server.routes.routes/respond-hello-json]
+    :route-name
+    :greet-json]],
+  :redis
+  {:redis-spec
+   {:pool
+    {:max-total 10,
+     :max-idle-per-key 5,
+     :min-idle-per-key 1,
+     :max-total-per-key 8,
+     :block-when-exhausted? true,
+     :max-wait-ms 30000,
+     :test-on-borrow? true},
+    :spec {:host "localhost", :port 6379}}},
+  :elasticsearch {:endpoint "http://localhost:9200/"},
+  :dynamodb {:client-opts {:access-key "test", :secret-key "test", :endpoint "http://localhost:4566"}},
+  :postgres
+  {:config {:dbtype "h2:mem", :dbname "test", :user "sa", :password ""},
+   :datasource
+   #object[next.jdbc.connection$url_PLUS_etc$reify__31460 0x5d110537 "jdbc:h2:mem:test;DB_CLOSE_DELAY=-1"]},
+  :producer-sqs nil,
+  :server
+  #:io.pedestal.http{:port 8890,
+                     :service-fn #function[io.pedestal.http.impl.servlet-interceptor/interceptor-service-fn/fn--23154],
+                     :host "localhost",
+                     :type :jetty,
+                     :start-fn #function[io.pedestal.http.jetty/server/fn--38544],
+                     :interceptors
+                     [{:name :io.pedestal.http/log-request,
+                       :enter #function[io.pedestal.interceptor.helpers/on-request/fn--19209],
+                       :leave nil,
+                       :error nil}
+                      {:name :io.pedestal.http/not-found,
+                       :enter nil,
+                       :leave #function[io.pedestal.interceptor.helpers/after/fn--19173],
+                       :error nil}
+                      {:name :io.pedestal.http.ring-middlewares/content-type-interceptor,
+                       :enter nil,
+                       :leave #function[io.pedestal.interceptor.helpers/after/fn--19173],
+                       :error nil}
+                      {:name :io.pedestal.http.route/query-params,
+                       :enter #function[io.pedestal.http.route/fn--20087],
+                       :leave nil,
+                       :error nil}
+                      {:name :io.pedestal.http.route/method-param,
+                       :enter #function[io.pedestal.http.route/method-param/fn--20092],
+                       :leave nil,
+                       :error nil}
+                      {:name :io.pedestal.http.secure-headers/secure-headers,
+                       :enter nil,
+                       :leave #function[io.pedestal.http.secure-headers/secure-headers/fn--21731],
+                       :error nil}
+                      {:name :io.pedestal.http.route/router,
+                       :enter #function[io.pedestal.http.route/eval20073/fn--20074/fn--20075],
+                       :leave nil,
+                       :error nil}
+                      {:name :io.pedestal.http.route/path-params-decoder,
+                       :enter #function[io.pedestal.http.route/fn--20089],
+                       :leave nil,
+                       :error nil}],
+                     :routes
+                     ({:path "/greet",
+                       :method :get,
+                       :path-re #"/\Qgreet\E",
+                       :path-parts ["greet"],
+                       :interceptors
+                       [{:name nil,
+                         :enter #function[io.pedestal.interceptor/eval8473/fn--8474/fn--8475],
+                         :leave nil,
+                         :error nil}],
+                       :route-name :greet,
+                       :path-params []}
+                      {:path "/greet-json",
+                       :method :get,
+                       :path-re #"/\Qgreet-json\E",
+                       :path-parts ["greet-json"],
+                       :interceptors
+                       [{:name nil,
+                         :enter #function[io.pedestal.interceptor/eval8473/fn--8474/fn--8475],
+                         :leave nil,
+                         :error nil}],
+                       :route-name :greet-json,
+                       :path-params []}),
+                     :servlet
+                     #object[io.pedestal.http.servlet.FnServlet 0x50c0c8f4 "io.pedestal.http.servlet.FnServlet@50c0c8f4"],
+                     :server
+                     #object[org.eclipse.jetty.server.Server 0xf9364ae "Server@f9364ae{STOPPED}[9.4.52.v20230823]"],
+                     :stop-fn #function[io.pedestal.http.jetty/server/fn--38546]},
+  :started
+  #<Future@44d5e416: 
+    #<Future@53c70984: 
+      #:io.pedestal.http{:port 8890,
+                         :service-fn
+                         #function[io.pedestal.http.impl.servlet-interceptor/interceptor-service-fn/fn--23154],
+                         :host "localhost",
+                         :type :jetty,
+                         :start-fn #function[io.pedestal.http.jetty/server/fn--38544],
+                         :interceptors
+                         [{:name :io.pedestal.http/log-request,
+                           :enter #function[io.pedestal.interceptor.helpers/on-request/fn--19209],
+                           :leave nil,
+                           :error nil}
+                          {:name :io.pedestal.http/not-found,
+                           :enter nil,
+                           :leave #function[io.pedestal.interceptor.helpers/after/fn--19173],
+                           :error nil}
+                          {:name :io.pedestal.http.ring-middlewares/content-type-interceptor,
+                           :enter nil,
+                           :leave #function[io.pedestal.interceptor.helpers/after/fn--19173],
+                           :error nil}
+                          {:name :io.pedestal.http.route/query-params,
+                           :enter #function[io.pedestal.http.route/fn--20087],
+                           :leave nil,
+                           :error nil}
+                          {:name :io.pedestal.http.route/method-param,
+                           :enter #function[io.pedestal.http.route/method-param/fn--20092],
+                           :leave nil,
+                           :error nil}
+                          {:name :io.pedestal.http.secure-headers/secure-headers,
+                           :enter nil,
+                           :leave #function[io.pedestal.http.secure-headers/secure-headers/fn--21731],
+                           :error nil}
+                          {:name :io.pedestal.http.route/router,
+                           :enter #function[io.pedestal.http.route/eval20073/fn--20074/fn--20075],
+                           :leave nil,
+                           :error nil}
+                          {:name :io.pedestal.http.route/path-params-decoder,
+                           :enter #function[io.pedestal.http.route/fn--20089],
+                           :leave nil,
+                           :error nil}],
+                         :routes
+                         ({:path "/greet",
+                           :method :get,
+                           :path-re #"/\Qgreet\E",
+                           :path-parts ["greet"],
+                           :interceptors
+                           [{:name nil,
+                             :enter #function[io.pedestal.interceptor/eval8473/fn--8474/fn--8475],
+                             :leave nil,
+                             :error nil}],
+                           :route-name :greet,
+                           :path-params []}
+                          {:path "/greet-json",
+                           :method :get,
+                           :path-re #"/\Qgreet-json\E",
+                           :path-parts ["greet-json"],
+                           :interceptors
+                           [{:name nil,
+                             :enter #function[io.pedestal.interceptor/eval8473/fn--8474/fn--8475],
+                             :leave nil,
+                             :error nil}],
+                           :route-name :greet-json,
+                           :path-params []}),
+                         :servlet
+                         #object[io.pedestal.http.servlet.FnServlet 0x50c0c8f4 "io.pedestal.http.servlet.FnServlet@50c0c8f4"],
+                         :server
+                         #object[org.eclipse.jetty.server.Server 0xf9364ae "Server@f9364ae{STOPPED}[9.4.52.v20230823]"],
+                         :stop-fn #function[io.pedestal.http.jetty/server/fn--38546]}>>,
+  :components-map
+  {:redis
+   {:redis-spec
+    {:pool
+     {:max-total 10,
+      :max-idle-per-key 5,
+      :min-idle-per-key 1,
+      :max-total-per-key 8,
+      :block-when-exhausted? true,
+      :max-wait-ms 30000,
+      :test-on-borrow? true},
+     :spec {:host "localhost", :port 6379}}},
+   :elasticsearch {:endpoint "http://localhost:9200/"},
+   :dynamodb {:client-opts {:access-key "test", :secret-key "test", :endpoint "http://localhost:4566"}},
+   :postgres
+   {:config {:dbtype "h2:mem", :dbname "test", :user "sa", :password ""},
+    :datasource
+    #object[next.jdbc.connection$url_PLUS_etc$reify__31460 0x5d110537 "jdbc:h2:mem:test;DB_CLOSE_DELAY=-1"]},
+   :producer-sqs nil},
+  :stopped true}}
+clj꞉gcc.platform.pedestal-server.core꞉> 

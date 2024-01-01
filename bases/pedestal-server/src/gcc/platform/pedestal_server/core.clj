@@ -11,30 +11,30 @@
             [clojure.pprint :refer [pprint]])
   (:gen-class))
 
-(def config (envs/load-config-for-env))
+(def config (envs/load-config-for-env-plus-envs 
+             [:DYNAMO_ENDPOINT :REDIS_HOST :REDIS_PORT]))
 
-(pprint config)
+(def elasticsearch-endpoint (-> config :config :elasticsearch :endpoint))
+(def redis-conf (-> config :config :redis))
+(def dynamo-conf (-> config :config :dynamodb))
+(def relational-conf (-> config :config :relational))
 
 (defn create-system []
+  (pprint config)
   (component/system-map
    ;; leaf components (low level)
    
    ;; Elasticsearch
-   :elasticsearch (esc/new-elasticsearch-component "http://localhost:9200/")
+   :elasticsearch (esc/new-elasticsearch-component elasticsearch-endpoint)
 
    ;; Redis
-   :redis (redis/create-new-redis-component "localhost" 6379)
+   :redis (redis/create-new-redis-component (:host redis-conf) (:port redis-conf))
 
    ;; DynamoDB
-   :dynamodb (dynamodb/create-component {:access-key "test"
-                                         :secret-key "test"
-                                         :endpoint "http://localhost:4566"})
+   :dynamodb (dynamodb/create-component dynamo-conf)
 
    ;; Postgres
-   :postgres (postgres/new-postgres-component {:dbtype "h2:mem"  ; Use in-memory H2 database
-                                               :dbname "test"    ; Name of the in-memory database
-                                               :user "sa"        ; Default user for H2
-                                               :password ""})
+   :postgres (postgres/new-postgres-component relational-conf)
 
    ;; compound components (high level)
    :pedestal (component/using
