@@ -66,7 +66,17 @@
   (:datasource compo)
 
   (execute! compo ["select * from address"])
-
+  (execute!
+   compo
+   ["
+      create table if not exists address (id serial primary key,
+      name varchar (32),
+      email varchar (255))"])
+  (execute!
+   compo
+   ["
+    insert into address (name, email) values (?, ?)"
+    "John Doe Third" "john3@example.com"])
 
   (execute! memory ["select * from address"])
   (execute!
@@ -80,9 +90,9 @@
    ["
     insert into address (name, email) values (?, ?)"
     "John Doe Third" "john3@example.com"])
-  
-  
-  
+
+
+
   (execute!
    compo
    ["

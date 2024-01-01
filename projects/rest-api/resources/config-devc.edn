@@ -1,0 +1,12 @@
+{:relational {:dbtype "postgresql"
+              :dbname "your_database"
+              :user "your_user"
+              :password "your_password"
+              :host "postgres"
+              :port 5432}
+ :dynamodb {:access-key "test"
+            :secret-key "test"
+            :endpoint "http://localstack:4566"}
+
+ :redis {:host "redis"
+         :port  6379}}

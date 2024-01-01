@@ -26,6 +26,7 @@
     (http/create-server
      {::http/routes wrapped-routes
       ::http/type :jetty
+      ::http/host "0.0.0.0"
       ::http/port 8890})))
 
 (defn start [server]
