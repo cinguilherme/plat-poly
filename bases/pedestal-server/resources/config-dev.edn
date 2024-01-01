@@ -1,14 +1,14 @@
 {
-;;  :relational {:dbtype "h2:mem"  ; Use in-memory H2 database
-;;               :dbname "test"    ; Name of the in-memory database
-;;               :user "sa"        ; Default user for H2
-;;               :password ""}
- :relational {:dbtype "postgresql"
-              :dbname "your_database"
-              :user "your_user"
-              :password "your_password"
-              :host "localhost"
-              :port 5432}
+ :relational {:dbtype "h2:mem"  ; Use in-memory H2 database
+              :dbname "test"    ; Name of the in-memory database
+              :user "sa"        ; Default user for H2
+              :password ""}
+;;  :relational {:dbtype "postgresql"
+;;               :dbname "your_database"
+;;               :user "your_user"
+;;               :password "your_password"
+;;               :host "localhost"
+;;               :port 5432}
  :dynamodb {:access-key "test"
             :secret-key "test"
             :endpoint "http://localhost:4566"}
