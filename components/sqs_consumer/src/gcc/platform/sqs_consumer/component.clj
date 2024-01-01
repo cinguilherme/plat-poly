@@ -15,9 +15,24 @@
   [{:queue-url (s/maybe s/Str)
     :handler (s/maybe s/Any)}])
 
-(s/defn consume-messages [queue-url :- s/Str handler :- s/Any components-map :- ComponentsMap]
-  ;; logic for consuming messages from the SQS queue
-  )
+(defn consume-messages-continuous [queue-url handler components-map running-flag]
+    (loop []
+      (when @running-flag
+        (let [messages (:messages (sqs/receive-message {:queue-url queue-url
+                                                        :wait-time-seconds 5
+                                                        :max-number-of-messages 10}))]
+          (doseq [message messages]
+            (try
+            ;; Call the handler with the message and components-map
+              (handler (:body message) components-map)
+              (sqs/delete-message {:queue-url queue-url
+                                   :receipt-handle (:receipt-handle message)})
+              (catch Exception e
+              ;; Handle exceptions here, possibly logging the error
+                (pprint e)
+                )))
+        ;; Continue the loop
+          (recur)))))
 
 (defrecord SQSConsumerComponent [queue-input consumers redis dynamodb postgres]
   component/Lifecycle
@@ -27,10 +42,11 @@
                           :dynamodb dynamodb
                           :postgres postgres}
           consumers (mapv (fn [queue]
-                            (future (consume-messages
+                            (future (consume-messages-continuous
                                      (:queue-url queue)
                                      (:handler queue)
-                                     components-map)))
+                                     components-map
+                                     (atom true))))
                           queue-input)]
       (assoc this :consumers consumers)))
 
@@ -47,7 +63,12 @@
 
 (comment 
   
-  (def consumers (component/start (new-sqs-consumer-component ["queue-url-1" "queue-url-2"])))
+  (def queue-url "http://sqs.us-east-1.localhost.localstack.cloud:4566/000000000000/qname-2")
+
+  (def consumers (component/start (new-sqs-consumer-component [{:queue-url queue-url  
+                                                                :handler (fn [v components-map]
+                                                                           (println v)
+                                                                           (pprint components-map))}])))
 
   (component/stop consumers)
   (pprint consumers)

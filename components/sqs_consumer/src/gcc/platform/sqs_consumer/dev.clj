@@ -1,6 +1,7 @@
 (ns gcc.platform.sqs_consumer.dev
   (:require [amazonica.core :as amazonica]
-            [amazonica.aws.sqs :as sqs]) 
+            [amazonica.aws.sqs :as sqs]
+            [clojure.pprint :as pprint]) 
   (:import (com.amazonaws.auth DefaultAWSCredentialsProviderChain)))
 
 (comment
@@ -39,6 +40,30 @@
         (sqs/delete-message {:queue-url queue-url
                              :receipt-handle (:receipt-handle message)}))))
 
+
+  (defn consume-messages-continuous [queue-url handler components-map running-flag]
+    (loop []
+      (when @running-flag
+        (let [messages (:messages (sqs/receive-message {:queue-url queue-url
+                                                        :wait-time-seconds 5
+                                                        :max-number-of-messages 10}))]
+          (doseq [message messages]
+            (try
+            ;; Call the handler with the message and components-map
+              (handler (:body message) components-map)
+              (sqs/delete-message {:queue-url queue-url
+                                   :receipt-handle (:receipt-handle message)})
+              (catch Exception e
+              ;; Handle exceptions here, possibly logging the error
+                (pprint/pprint e))))
+        ;; Continue the loop
+          (recur)))))
+
+  (pprint/pprint queue-url)
+
+  (def continous (future (consume-messages-continuous queue-url println {} (atom true))))
+
+  (future-cancel continous)
+
   (consume-message)
-  
   )
