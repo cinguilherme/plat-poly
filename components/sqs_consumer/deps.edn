@@ -1,4 +1,6 @@
 {:paths ["src" "resources"]
- :deps {}
+ :deps {org.clojure/clojure {:mvn/version "1.11.1"}
+        org.clojure/core.async {:mvn/version "1.6.681"}
+        plumatic/schema {:mvn/version "1.10.10"}}
  :aliases {:test {:extra-paths ["test"]
                   :extra-deps {}}}}
