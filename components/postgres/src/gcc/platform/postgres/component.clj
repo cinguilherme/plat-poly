@@ -1,6 +1,7 @@
 (ns gcc.platform.postgres.component
-  (:require [next.jdbc :as jdbc]
-            [com.stuartsierra.component :as component] 
+  (:require [clojure.pprint :as pprint]
+            [com.stuartsierra.component :as component]
+            [next.jdbc :as jdbc]
             [schema.core :as s]))
 
 
@@ -63,7 +64,7 @@
 
   (println memory)
 
-  (:datasource compo)
+  (pprint/pprint (:datasource compo))
 
   (execute! compo ["select * from address"])
   (execute!

@@ -7,6 +7,6 @@
  :dynamodb {:access-key "test"
             :secret-key "test"
             :endpoint "http://localstack:4566"}
-
+ :elasticsearch {:endpoint "http://elasticsearch:9200/"}
  :redis {:host "redis"
          :port  6379}}

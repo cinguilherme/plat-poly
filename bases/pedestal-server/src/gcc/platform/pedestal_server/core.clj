@@ -14,10 +14,21 @@
 (def config (envs/load-config-for-env-plus-envs 
              [:DYNAMO_ENDPOINT :REDIS_HOST :REDIS_PORT]))
 
+(pprint config)
+
 (def elasticsearch-endpoint (-> config :config :elasticsearch :endpoint))
 (def redis-conf (-> config :config :redis))
 (def dynamo-conf (-> config :config :dynamodb))
 (def relational-conf (-> config :config :relational))
+;; (def db {:dbtype "postgresql"
+;;          :dbname "your_database"
+;;          :user "your_user"
+;;          :password "your_password"
+;;          :host "localhost"
+;;          :port 5432})
+
+;; (pprint db)
+(pprint relational-conf)
 
 (defn create-system []
   (pprint config)
