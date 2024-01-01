@@ -33,10 +33,19 @@
 
 
 (comment
-
+  (def all (assoc {} 
+                  :config (load-config-data) 
+                  :envs (read-config-map 
+                         [:DYNAMO_ENDPOINT 
+                          :DYNAMO_ACCES_KEY
+                          :DYNAMO_SECRET_KEY
+                          :REDIS_HOST 
+                          :REDIS_PORT 
+                          :ENV])))
+  (pprint all)
   (pprint (load-config-data))
 
-  (pprint (read-config-map [:dbtype :dbname :user :password]))
+  (pprint (read-config-map [:DYNAMO_ENDPOINT :REDIS_HOST :REDIS_PORT]))
   (pprint (read-systen-envs-map))
 
   ;;end
