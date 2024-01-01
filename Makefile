@@ -13,4 +13,4 @@ run-rest-api:
 
 run-image-rest-api:
 	@echo "Running image REST API"
-	docker run -p 8890:8890 rest-api
+	docker run -e ENV=dev -p 8890:8890 rest-api

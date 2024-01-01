@@ -70,6 +70,12 @@
                               :ns-compile   [main]
                               :uber-file    uber-file})]
         (b/delete {:path class-dir})
+        ;; Copy resources to class directory, preserving directory structure
+        (doseq [resource-path ["build/resources" "resources"]]
+          (let [resource-dir (io/file resource-path)
+                target-resource-dir (io/file class-dir)]
+            (when (.exists resource-dir)
+              (b/copy-dir {:src resource-dir :dest target-resource-dir}))))
         ;; no src or resources to copy
         (println "\nCompiling" (str main "..."))
         (b/compile-clj opts)

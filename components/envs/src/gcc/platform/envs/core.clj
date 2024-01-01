@@ -15,15 +15,13 @@
     (when envs
       (into {} (map (fn [k] [k (envs k)]) symbols)))))
 
-(defn- read-config-file [path]
-  (with-open [rdr (io/reader path)]
-    (edn/read (java.io.PushbackReader. rdr))))
-
 (defn- config-file-path []
-  (let [resource-path (str "config-" (env "ENV") ".edn")
-        resource (io/resource resource-path)]
-    (when resource
-      (subs (.toString resource) 5)))) ; Remove "file:" prefix
+  (let [resource-path (str "config-" (env "ENV") ".edn")]
+    (io/resource resource-path)))
+
+(defn- read-config-file [url]
+  (with-open [rdr (io/reader url)]
+    (edn/read (java.io.PushbackReader. rdr))))
 
 (defn load-config-data []
   (let [path (config-file-path)]
