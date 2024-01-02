@@ -121,10 +121,9 @@
 
   (component/stop component)
 
-  (send-message component queue-url "Your message 33")
+  (send-message component "qname-2" "Your message 33")
 
   (def ps (mapv (fn [v] (send-message-async component queue-url (str "Your message number " v))) (range 100)))
 
-  (sqs/send-message {:queue-url queue-url
-                     :message-body "Your message 2"})
+  (sqs/send-message "qname-2" "Your message 2")
   )

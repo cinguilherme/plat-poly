@@ -86,8 +86,8 @@
 
 
 ;; Define a function to create a new SQSConsumerComponent
-(s/defn new-sqs-consumer-component [queue-input :- QueuesConsumers]
-  (map->SQSConsumerComponent {:queue-input queue-input :consumers []}))
+;; (s/defn new-sqs-consumer-component [queue-input :- QueuesConsumers]
+;;   (map->SQSConsumerComponent {:queue-input queue-input :consumers []}))
 
 (s/defn new-sqs-consumer-component [config :- SQSConsumerConfig handlers :- Handlers]
   (map->SQSConsumerComponent {:config config :handlers handlers}))
@@ -116,10 +116,10 @@
   
   (def consumers (component/start (new-sqs-consumer-component config handlers)))
 
-  (def consumers (component/start (new-sqs-consumer-component [{:queue-url queue-url
-                                                                :handler (fn [v components-map]
-                                                                           (println v)
-                                                                           (pprint components-map))}])))
+  ;; (def consumers (component/start (new-sqs-consumer-component [{:queue-url queue-url
+  ;;                                                               :handler (fn [v components-map]
+  ;;                                                                          (println v)
+  ;;                                                                          (pprint components-map))}])))
 
   (component/stop consumers)
   (pprint consumers)
