@@ -35,17 +35,26 @@
    :endpoint (envs/get-env :AWS_ENDPOINT)})
 
 (def localstack-credentials
-    {:access-key "test"
-     :secret-key "test"
-     :region "us-east-1"
-     :path-style-access true
-     :endpoint "http://localhost:4566"})
+  {:access-key "test"
+   :secret-key "test"
+   :region "us-east-1"
+   :path-style-access true
+   :endpoint "http://localhost:4566"})
+
+(def config {:credentials localstack-credentials
+             :baseUrl "http://sqs.us-east-1.localhost.localstack.cloud:4566/000000000000/"
+             :queues [{:name "qname-2" :properties {:queue-type "default"}}]})
+
+(def handlers [{:queue "qname-2"
+                :handler (fn [v components-map]
+                           (println v)
+                           (pprint components-map))}])
 
 (defn create-system []
   (pprint config)
   (component/system-map
    ;; leaf components (low level)
-   
+
    ;; Elasticsearch
    :elasticsearch (esc/new-elasticsearch-component elasticsearch-endpoint)
 
@@ -65,8 +74,8 @@
    :pedestal (component/using
               (pedestal/new-pedestal-component routes/routes)
               [:redis :elasticsearch :dynamodb :postgres :sqs-producer])
-   
-   :sqs-consumer (sqs-consumer/new-sqs-consumer )
+
+   :sqs-consumer (sqs-consumer/new-sqs-consumer-component config handlers)
 
    ;; Add other components here
    ))
@@ -82,6 +91,5 @@
   (def system (-main "test"))
 
   (shutdown system)
-  
-  (println "end of comment")
-  )
+
+  (println "end of comment"))
