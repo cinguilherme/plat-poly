@@ -7,12 +7,12 @@
 (defn create-queue [sqs-producer queue-name attributes]
     (component/create-queue sqs-producer queue-name attributes))
 
-(defn update-queue-attributes [sqs-producer url attributes]
+(defn update-queue-attributes [sqs-producer queue-name attributes]
   
-    (component/update-queue-attributes sqs-producer url attributes))
+    (component/update-queue-attributes sqs-producer queue-name attributes))
 
-(defn send-message [sqs-producer url message]
-    (component/send-message sqs-producer url message))
+(defn send-message [sqs-producer queue-name message]
+    (component/send-message sqs-producer queue-name message))
 
-(defn send-message-async [sqs-producer url message]
-  (component/send-message-async sqs-producer url message))
+(defn send-message-async [sqs-producer queue-name message]
+  (component/send-message-async sqs-producer queue-name message))

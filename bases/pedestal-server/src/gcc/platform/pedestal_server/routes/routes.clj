@@ -7,16 +7,16 @@
             ;;platform end
             [cheshire.core :as json]
             [gcc.platform.pedestal-server.routes.migrations :as migrations]
-            [gcc.platform.pedestal-server.routes.hello-json :as hello]))
+            [gcc.platform.pedestal-server.routes.hello-json :as hello]
+            [gcc.platform.pedestal-server.routes.some-producer :as some-producer]))
 
 (defn respond-hello [request components-map]
   ;; Your implementation here, using components-map if needed
   {:status 200 :body "Hello, world!"})
 
-
-
 (def routes
   [["/greet" :get respond-hello :route-name :greet]
    ["/migrations" :post migrations/migations-plus-sample-data :route-name :migrations]
    ["/migrations-2" :post migrations/migrations-volume :route-name :migrations-2]
+   ["/producer" :post some-producer/hello-producer :route-name :producer]
    ["/greet-json" :get hello/respond-hello-json :route-name :greet-json]])

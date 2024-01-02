@@ -37,6 +37,7 @@
   component/Lifecycle
 
   (start [component]
+    (println "Starting PedestalComponent")
     (let [components-map {:redis redis
                           :elasticsearch elasticsearch
                           :dynamodb dynamodb
@@ -50,6 +51,7 @@
              :components-map components-map)))
 
   (stop [component]
+    (println "Stopping PedestalComponent")
     (when-let [server (:server component)]
       (http/stop server)
       (assoc component :stopped true))))

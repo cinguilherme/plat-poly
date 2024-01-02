@@ -21,7 +21,9 @@
 (def redis-conf (-> config :config :redis))
 (def dynamo-conf (-> config :config :dynamodb))
 (def relational-conf (-> config :config :relational))
+(def sqs-producer-conf (-> config :config :producer :sqs))
 
+(pprint sqs-producer-conf)
 (pprint relational-conf)
 
 (def credentials
@@ -55,8 +57,8 @@
    ;; Postgres
    :postgres (postgres/new-postgres-component relational-conf)
 
-   ;; mid level components
-   :sqs-producer (sqs-producer/new-sqs-producer-component localstack-credentials)
+   ;; SQS Producer
+   :sqs-producer (sqs-producer/new-sqs-producer-component sqs-producer-conf)
 
    ;; compound components (high level)
    :pedestal (component/using
@@ -76,4 +78,7 @@
 
   (def system (-main "test"))
 
-  (shutdown system))
+  (shutdown system)
+  
+  (println "end of comment")
+  )

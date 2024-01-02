@@ -1,5 +1,4 @@
-{
- :relational {:dbtype "h2:mem"  ; Use in-memory H2 database
+{:relational {:dbtype "h2:mem"  ; Use in-memory H2 database
               :dbname "test"    ; Name of the in-memory database
               :user "sa"        ; Default user for H2
               :password ""}
@@ -13,6 +12,16 @@
             :secret-key "test"
             :endpoint "http://localhost:4566"}
  :elasticsearch {:endpoint "http://localhost:9200/"}
+
+ :producer {:redis {}
+            :sqs {:credentials {:access-key "test"
+                                :secret-key "test"
+                                :region "us-east-1"
+                                :path-style-access true
+                                :endpoint "http://localhost:4566"}
+                  :baseUrl "http://sqs.us-east-1.localhost.localstack.cloud:4566/000000000000/"
+                  :queues [{:name "qname-2" :properties {:queue-type "default"}}]}
+            :kafka {}}
 
  :redis {:host "localhost"
          :port  6379}}

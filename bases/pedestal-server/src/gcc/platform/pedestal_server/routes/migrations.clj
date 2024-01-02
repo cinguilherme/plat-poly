@@ -1,6 +1,7 @@
 (ns gcc.platform.pedestal-server.routes.migrations
   (:require [gcc.platform.elastic_search.component :as esc]
             [gcc.platform.redis.interface :as redis]
+            [gcc.platform.sqs_producer.interface :as sqs-producer]
             [gcc.platform.postgres.interface :as postgres]
             [gcc.platform.dynamodb.interface :as dynamodb]
 
@@ -50,6 +51,7 @@
 (defn migrations-volume [request components-map]
   (let [rc (get components-map :redis)
         ec (get components-map :elasticsearch)
+        sq (get components-map :sqs-producer)
         rs (get components-map :postgres)]
     (try
       (do
@@ -59,6 +61,7 @@
             create table if not exists address (id serial primary key,
             name varchar (32),
             email varchar (255))"])
+        (sqs-producer/create-queue sq "qname-2")
         (let [fr (redis/set-key rc "100" (random-redis-models 30))
               fd (mapv (fn [x]
                          (esc/index-document
