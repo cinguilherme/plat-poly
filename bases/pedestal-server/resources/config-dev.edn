@@ -23,5 +23,15 @@
                   :queues [{:name "qname-2" :properties {:queue-type "default"}}]}
             :kafka {}}
 
+ :consumer {:sqs {:credentials {:access-key "test"
+                                :secret-key "test"
+                                :region "us-east-1"
+                                :path-style-access true
+                                :endpoint "http://localhost:4566"}
+                  :baseUrl "http://sqs.us-east-1.localhost.localstack.cloud:4566/000000000000/"
+                  :queues [{:name "qname-2" :properties {:queue-type "default"}}]}
+            :kafka {}
+            :redis {}}
+
  :redis {:host "localhost"
          :port  6379}}

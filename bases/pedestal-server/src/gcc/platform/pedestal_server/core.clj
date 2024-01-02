@@ -1,6 +1,7 @@
 (ns gcc.platform.pedestal-server.core
   (:require [gcc.platform.pedestal.interface :as pedestal]
             [gcc.platform.sqs_producer.interface :as sqs-producer]
+            [gcc.platform.sqs_consumer.interface :as sqs-consumer]
             [gcc.platform.redis.interface :as redis]
             [gcc.platform.postgres.interface :as postgres]
             [gcc.platform.dynamodb.interface :as dynamodb]
@@ -64,6 +65,8 @@
    :pedestal (component/using
               (pedestal/new-pedestal-component routes/routes)
               [:redis :elasticsearch :dynamodb :postgres :sqs-producer])
+   
+   :sqs-consumer (sqs-consumer/new-sqs-consumer )
 
    ;; Add other components here
    ))

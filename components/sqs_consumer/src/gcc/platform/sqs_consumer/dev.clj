@@ -16,6 +16,8 @@
      :path-style-access true
      :endpoint "http://localhost:4566"})
 
+  ;; (amazonica/defcredential create-standard-credentials)
+
   (amazonica/defcredential localstack-credentials)
 
   (def queue-url

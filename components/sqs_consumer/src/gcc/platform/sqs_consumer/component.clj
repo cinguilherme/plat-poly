@@ -15,7 +15,28 @@
   [{:queue-url (s/maybe s/Str)
     :handler (s/maybe s/Any)}])
 
-(defn consume-messages-continuous [queue-url handler components-map running-flag]
+(def Queues
+  {:name (s/maybe s/Str)
+   :properties (s/maybe s/Any)})
+
+(def SQSConsumerConfig
+  {:credentials {:access-key "test"
+                 :secret-key "test"
+                 :region "us-east-1"
+                 :path-style-access true
+                 :endpoint "http://localhost:4566"}
+   :baseUrl (s/maybe s/Str)
+   :queues [Queues]
+   :queue-input (s/maybe QueuesConsumers)})
+
+(def Handlers
+  [{:queue (s/maybe s/Str)
+    :handler (s/maybe s/Any)}])
+
+(defn- queue-url-from-queue-name [queue-name config]
+  (str (:baseUrl config) queue-name))
+
+(defn- consume-messages-continuous [queue-url handler components-map running-flag]
     (loop []
       (when @running-flag
         (let [messages (:messages (sqs/receive-message {:queue-url queue-url
@@ -34,11 +55,18 @@
         ;; Continue the loop
           (recur)))))
 
-(defrecord SQSConsumerComponent [queue-input consumers redis dynamodb postgres]
+(defn- with-queue-url [handlers configs]
+  (mapv (fn [handler]
+          (assoc handler :queue-url (queue-url-from-queue-name (:queue handler) configs)))
+        handlers))
+
+(defrecord SQSConsumerComponent [config handlers redis dynamodb postgres]
   component/Lifecycle
 
-  (start [this]
-    (let [components-map {:redis redis
+  (start [this] 
+    (let [_ (amazonica/defcredential (:credentials config))
+          queue-input (with-queue-url handlers config)
+          components-map {:redis redis
                           :dynamodb dynamodb
                           :postgres postgres}
           consumers (mapv (fn [queue]
@@ -61,16 +89,39 @@
 (s/defn new-sqs-consumer-component [queue-input :- QueuesConsumers]
   (map->SQSConsumerComponent {:queue-input queue-input :consumers []}))
 
-(comment 
-  
+(s/defn new-sqs-consumer-component [config :- SQSConsumerConfig handlers :- Handlers]
+  (map->SQSConsumerComponent {:config config :handlers handlers}))
+
+(comment
+
+  (def localstack-credentials
+    {:access-key "test"
+     :secret-key "test"
+     :region "us-east-1"
+     :path-style-access true
+     :endpoint "http://localhost:4566"})
+
+  (amazonica/defcredential localstack-credentials)
+
   (def queue-url "http://sqs.us-east-1.localhost.localstack.cloud:4566/000000000000/qname-2")
 
-  (def consumers (component/start (new-sqs-consumer-component [{:queue-url queue-url  
+  (def config {:credentials localstack-credentials
+               :baseUrl "http://sqs.us-east-1.localhost.localstack.cloud:4566/000000000000/"
+               :queues [{:name "qname-2" :properties {:queue-type "default"}}]})
+
+  (def handlers [{:queue "qname-2"
+                  :handler (fn [v components-map]
+                             (println v)
+                             (pprint components-map))}])
+  
+  (def consumers (component/start (new-sqs-consumer-component config handlers)))
+
+  (def consumers (component/start (new-sqs-consumer-component [{:queue-url queue-url
                                                                 :handler (fn [v components-map]
                                                                            (println v)
                                                                            (pprint components-map))}])))
 
   (component/stop consumers)
   (pprint consumers)
-  
+
   )
