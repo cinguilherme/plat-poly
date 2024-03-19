@@ -1,0 +1,21 @@
+version: "3"
+
+services:
+  open-street-map:
+    image: overv/openstreetmap-tile-server
+    command: "run"
+    ports:
+      - "8083:80"
+    volumes:
+      - ./data:/var/lib/postgresql/12/main
+      # - osm-data:/data/database/
+    environment:
+      ALLOW_CORS: "true"
+      POSTGRES_PASSWORD: "password"
+      POSTGRES_USER: "user"
+      POSTGRES_DB: "gis"
+      OSM2PGSQL_EXTRA_ARGS: "--hstore"
+      PBF_URL: "https://download.geofabrik.de/europe/germany-latest.osm.pbf"
+# volumes:
+#   osm-data:
+#     external: true
