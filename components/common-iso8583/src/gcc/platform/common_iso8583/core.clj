@@ -24,10 +24,3 @@
   (keep-indexed (fn [index bit]
                   (when (= bit \1)
                     (inc index))) binary-bitmap))
-
-
-(-> "0200C0000000000000004761739001010119000000"
-    extract-bitmap
-    hex-to-binary
-    active-data-elements
-    (extract-data-elements "0200C0000000000000004761739001010119000000"))

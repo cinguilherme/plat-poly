@@ -50,6 +50,7 @@
                            (println v)
                            (pprint components-map))}])
 
+;; USer
 (defn create-system []
   (pprint config)
   (component/system-map
@@ -74,6 +75,9 @@
    :pedestal (component/using
               (pedestal/new-pedestal-component routes/routes)
               [:redis :elasticsearch :dynamodb :postgres :sqs-producer])
+   
+   ;; GraphQL
+
 
    :sqs-consumer (sqs-consumer/new-sqs-consumer-component config handlers)
 

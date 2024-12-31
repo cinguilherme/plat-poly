@@ -18,6 +18,8 @@
 
 (comment
 
+  (set-key "key2" {:a "Hello, Redis! this is my second key"})
+  (get-key "key2")  ; Should return {:a "Hello
   (set-key "my-key" "Hello, Redis!")
   (get-key "my-key")  ; Should return "Hello, Redis!"
 

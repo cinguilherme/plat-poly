@@ -11,10 +11,10 @@
             [gcc.platform.dynamodb.component :as dynamodb]
             [gcc.platform.dynamodb.interface :as dynamodb-component]
 
-            ;;platform end
+            ;;platform end 
             [cheshire.core :as json]))
-            
 
+            
 (comment
 
   (defn respond-hello [request components-map]

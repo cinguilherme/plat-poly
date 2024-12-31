@@ -33,6 +33,22 @@
             (doseq [msg (take 40 (kafka-consumer/messages c "clj-kafka.consumer" "test-topic-3" 0 10 300000))]
               (println (String. (.value msg))))))
 
+  
+
+  
+
+  
+
+  
+
+
+
+
+
+  
+  
+  
+  
 
   (future (with-resource [c (consumer/consumer consumer-config)] 
             (println (take 2 (consumer/messages c "test-topic-3" )))))
