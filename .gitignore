@@ -65,3 +65,7 @@ bases/**/.calva
 # localstack-data
 localstack-data/**/*
 localstack-data
+
+tile38_data/**/*
+typesense_data/**/*
+kafka_data/**/*
