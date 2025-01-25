@@ -1,0 +1,1 @@
+(ns gcc.platform.common-messaging.rabbitmq.component)
