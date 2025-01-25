@@ -1,0 +1,14 @@
+services:
+  mongo-db-component-dev:
+    image: mongo:4.4.3
+    container_name: mongo-db-component-dev
+    ports:
+      - "27017:27017"
+    volumes:
+      - ./data:/data/db
+    networks:
+      - mongo-db-component-dev-network
+
+networks:
+  mongo-db-component-dev-network:
+    driver: bridge

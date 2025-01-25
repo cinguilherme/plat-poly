@@ -69,3 +69,5 @@ localstack-data
 tile38-data/**/*
 typesense-data/**/*
 kafka_data/**/*
+
+components/mongo/data
