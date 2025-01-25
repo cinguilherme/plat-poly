@@ -84,6 +84,33 @@
 
   (def consumer-c (redis-component/create-redis-consumer {:uri "redis://localhost:6379/"} {}))
   (component/start consumer-c)
+  (component/stop consumer-c)
+  
+  (intf/listen consumer-c {:my-queue-xpto {:queue "my-queue-xpto"
+                                           
+                                           :handler
+                                           (fn [{:keys [message attempt]}]
+                                             (try
+                                               (println "Received" message "!! from consumer component")
+                                               {:status :success}
+                                               (catch Throwable _
+                                                 (println "Handler error! from consumer component")
+                                                 {:status :retry})))
+                                           
+                                           :error-callback (fn [e] (println "Error callback" e))}
+                           :my-queue-xpto-2 {:queue "my-queue-xpto-2"
+                           
+                                           :handler
+                                           (fn [{:keys [message attempt]}]
+                                             (try
+                                               (println "Received" message "!! from consumer component but different consumer for same queue")
+                                               {:status :success}
+                                               (catch Throwable _
+                                                 (println "Handler error! from consumer component")
+                                                 {:status :retry})))
+                           
+                                           :error-callback (fn [e] (println "Error callback" e))}})
+  
   (intf/listen consumer-c {:queue "my-queue-xpto"
                            :error-callback (fn [e] (println "Error callback" e))
                            :handler

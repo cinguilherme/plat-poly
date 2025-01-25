@@ -2,7 +2,12 @@
   (:require [com.stuartsierra.component :as component]
             [gcc.platform.common-messaging.interface :as intf]
             [taoensso.carmine :as car :refer [wcar]]
-            [taoensso.carmine.message-queue :as car-mq]))
+            [taoensso.carmine.message-queue :as car-mq]
+            [clojure.pprint :as pprint]))
+
+(defn tap [v]
+  (pprint/pprint  v)
+  v)
 
 ;- :min-idle-per-key  ; Min num of idle conns to keep per sub-pool (Default 0)
 ;- :max-idle-per-key  ; Max num of idle conns to keep per sub-pool (Default 16)
@@ -39,6 +44,19 @@
 (defn create-redis-producer [server-info pool-settings]
   (->RedisProducer server-info pool-settings))
 
+(declare start-list)
+(defn start-list [list wcar-opts]
+  (mapv (fn [settings]
+          (println "starting consumer for settings" settings)
+         (let [_ (tap settings)
+               queue (-> settings :queue)
+               callback (-> settings :handler)
+               error-callback (-> settings :error-callback)]
+           (car-mq/worker wcar-opts queue
+                          {:handler callback
+                           :error-callback error-callback})))
+       list))
+
 (defrecord RedisConsumer [server-info pool-settings]
   component/Lifecycle
   (start [this]
@@ -54,14 +72,32 @@
 
   intf/CommonConsumer
   (listen
-    [this settings]
+    [this settings] ;; settings will be {:consumer-x {:handler s/fn :error-callback s/fn :queue s/str}}
     (let [wcar-opts (-> this :redis-consumer :wcar)
-          queue (-> settings :queue)
-          callback (-> settings :handler)
-          error-callback (-> settings :error-callback)]
-      (car-mq/worker wcar-opts queue
-                     {:handler callback
-                      :error-callback error-callback}))))
+          _ (tap (keys settings))
+          list (tap (-> settings tap vals))]
+      (start-list list wcar-opts))))
 
 (defn create-redis-consumer [server-info pool-settings]
   (->RedisConsumer server-info pool-settings))
+
+(comment
+
+  (zipmap (keys {:consumer-x {:handler println :error-callback println :queue "a-queue-x"}
+                 :consumer-y {:handler println :error-callback println :queue "a-queue-y"}})
+          (vals {:consumer-x {:handler println :error-callback println :queue "a-queue-x"}
+                 :consumer-y {:handler println :error-callback println :queue "a-queue-y"}}))
+  
+  (vals {:consumer-x {:handler println :error-callback println :queue "a-queue-x"}
+         :consumer-y {:handler println :error-callback println :queue "a-queue-y"}})
+  
+  (vals {:consumer-x {:handler println :error-callback println :queue "a-queue"}})
+
+  (type (vals {:consumer-x {:handler println :error-callback println :queue "a-queue"}}))
+  (type {:consumer-x {:handler println :error-callback println :queue "a-queue"}})
+
+  (map println (vals {:consumer-x {:handler println :error-callback println :queue "a-queue-x"}
+                      :consumer-y {:handler println :error-callback println :queue "a-queue-y"}}))
+
+  ;;
+  )

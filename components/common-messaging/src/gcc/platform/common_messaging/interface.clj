@@ -10,6 +10,6 @@
 
 (defprotocol CommonConsumer
   "Start a consumer worker for a given settings
-   settings is a map with the following keys: {:handler s/fn :reciever-details s/map} 
+   settings is a map with the following keys: {:event-consumer-x {:handler s/fn :reciever-details s/map}}
     details will be provided by the implementation detail for each messaging technology"
   (listen [this setting]))
