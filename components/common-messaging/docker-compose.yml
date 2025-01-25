@@ -1,0 +1,13 @@
+services:
+
+  messaging-comp-dev-redis:
+    image: redis:5.0.5
+    container_name: messaging-comp-dev-redis
+    ports:
+      - "6379:6379"
+    networks:
+      - common-messaging-dev-network
+
+networks:
+  common-messaging-dev-network:
+    driver: bridge

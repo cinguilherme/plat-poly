@@ -1,4 +1,21 @@
 {:paths ["src" "resources"]
- :deps {}
- :aliases {:test {:extra-paths ["test"]
+ 
+ 
+ :deps {org.clojure/clojure {:mvn/version "1.11.1"}
+        org.clojure/core.async {:mvn/version "1.6.681"}
+
+        ;; Component
+        com.stuartsierra/component {:mvn/version "1.1.0"}
+
+        org.clojure/spec.alpha {:mvn/version "0.3.218"}
+        nubank/state-flow {:mvn/version "2.2.4"}
+        prismatic/schema {:mvn/version "1.4.1"}
+
+        ;; dependendies on Redis, Kafka, Sqs and RabbitMQ
+        com.taoensso/carmine {:mvn/version "3.4.1"} ;; Redis Client
+        }
+ 
+ :aliases {:dev {:extra-paths ["dev"]
+                  :extra-deps {}}
+           :test {:extra-paths ["test"]
                   :extra-deps {}}}}
