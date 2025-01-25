@@ -2,6 +2,7 @@
   (:require
    [com.stuartsierra.component :as component]
    [gcc.platform.common.interface :as c-i]
+   [gcc.platform.mongo.interface :as i-mongo]
    [gcc.platform.mongo.core :as core]))
 
 (defn tap [v]
@@ -18,7 +19,7 @@
         (c-i/doc-disconnect this conn)
         (dissoc this :doc-db)))
   
-  common-interface/DocDB
+  i-mongo/DocDB
   (doc-connect [this]
     (core/init-mongo-connection server-info db-name))
   (doc-disconnect [this conn]

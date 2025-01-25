@@ -1,7 +1,7 @@
 (ns gcc.platform.pedestal-server.core
   (:require [gcc.platform.pedestal.interface :as pedestal]
             [gcc.platform.sqs_producer.interface :as sqs-producer]
-            [gcc.platform.sqs_consumer.interface :as sqs-consumer]
+            ;;[gcc.platform.sqs_consumer.interface :as sqs-consumer]
             [gcc.platform.redis.interface :as redis]
             [gcc.platform.postgres.interface :as postgres]
             [gcc.platform.dynamodb.interface :as dynamodb]
@@ -27,7 +27,7 @@
 (pprint sqs-producer-conf)
 (pprint relational-conf)
 
-(def credentials
+#_(def credentials
   {:access-key (envs/get-env :AWS_ACCESS_KEY_ID)
    :secret-key (envs/get-env :AWS_SECRET_ACCESS_KEY)
    :region (envs/get-env :AWS_REGION)
@@ -79,7 +79,7 @@
    ;; GraphQL
 
 
-   :sqs-consumer (sqs-consumer/new-sqs-consumer-component config handlers)
+   ;;:sqs-consumer (sqs-consumer/new-sqs-consumer-component config handlers)
 
    ;; Add other components here
    ))

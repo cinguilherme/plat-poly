@@ -10,5 +10,7 @@
         com.widdindustries/clojure.log4j2 {:mvn/version "0.1.9"}
         middlesphere/clj-compress {:mvn/version "0.1.0"}
         com.taoensso/nippy {:mvn/version "3.3.0"}}
- :aliases {:test {:extra-paths ["test"]
+ :aliases {:dev {:extra-paths ["dev"]
+                  :extra-deps {}}
+           :test {:extra-paths ["test"]
                   :extra-deps {}}}}
