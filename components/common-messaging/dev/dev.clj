@@ -5,14 +5,14 @@
             [gcc.platform.common-messaging.redis.component :as redis-component]
             [gcc.platform.common-messaging.interface :as intf]))
 
-  (defonce my-conn-pool (car/connection-pool {})) ; Create a new stateful pool
-  
-  (def     my-conn-spec {:uri "redis://localhost:6379/"})
-  (def     my-wcar-opts {:pool my-conn-pool, :spec my-conn-spec})
-  
-  (def     my-conn-opts {:pool my-conn-pool :spec my-conn-spec})
-  
-  (defmacro wcar* [& body] `(car/wcar my-wcar-opts ~@body))
+(defonce my-conn-pool (car/connection-pool {})) ; Create a new stateful pool
+
+(def     my-conn-spec {:uri "redis://localhost:6379/"})
+(def     my-wcar-opts {:pool my-conn-pool, :spec my-conn-spec})
+
+(def     my-conn-opts {:pool my-conn-pool :spec my-conn-spec})
+
+(defmacro wcar* [& body] `(car/wcar my-wcar-opts ~@body))
 
 
   ;;  hacking with Redis gets and sets, using carmine
@@ -45,10 +45,10 @@
              :bytes  (byte-array 5)
        ;; ...
              })
-  
+
    (car/get "clj-key"))
 
-  
+
   (clojure.repl/doc car/sort)
   ;;
   )
@@ -56,8 +56,8 @@
 
 ;; Carmine messaging queue only hacking producer and consumer
 (comment
-  
-  
+
+
   ;; consumer worker
   (def my-worker
     (car-mq/worker my-conn-opts "my-queue"
@@ -74,54 +74,11 @@
   (wcar* (car-mq/enqueue "my-queue" {:message {:payload "my message!"} :metadata {:a 1 :b 2}}))
 
   ;; producer without wcar* macro
-    (car/wcar my-wcar-opts (car-mq/enqueue "my-queue" {:message {:payload "my message!"} :metadata {:a 1 :b 2}}))
+  (car/wcar my-wcar-opts (car-mq/enqueue "my-queue" {:message {:payload "my message!"} :metadata {:a 1 :b 2}}))
 
 
-  )
 
-;; component producer hacking
-(comment
-
-  (def consumer-c (redis-component/create-redis-consumer {:uri "redis://localhost:6379/"} {}))
-  (component/start consumer-c)
-  (component/stop consumer-c)
-  
-  (intf/listen consumer-c {:my-queue-xpto {:queue "my-queue-xpto"
-                                           
-                                           :handler
-                                           (fn [{:keys [message attempt]}]
-                                             (try
-                                               (println "Received" message "!! from consumer component")
-                                               {:status :success}
-                                               (catch Throwable _
-                                                 (println "Handler error! from consumer component")
-                                                 {:status :retry})))
-                                           
-                                           :error-callback (fn [e] (println "Error callback" e))}
-                           :my-queue-xpto-2 {:queue "my-queue-xpto-2"
-                           
-                                           :handler
-                                           (fn [{:keys [message attempt]}]
-                                             (try
-                                               (println "Received" message "!! from consumer component but different consumer for same queue")
-                                               {:status :success}
-                                               (catch Throwable _
-                                                 (println "Handler error! from consumer component")
-                                                 {:status :retry})))
-                           
-                                           :error-callback (fn [e] (println "Error callback" e))}})
-  
-  (intf/listen consumer-c {:queue "my-queue-xpto"
-                           :error-callback (fn [e] (println "Error callback" e))
-                           :handler
-                           (fn [{:keys [message attempt]}]
-                             (try
-                               (println "Received" message "!! from consumer component")
-                               {:status :success}
-                               (catch Throwable _
-                                 (println "Handler error! from consumer component")
-                                 {:status :retry})))})
-
+  ;; bare bones consumer
   (def my-worker
     (car-mq/worker my-conn-opts "my-queue"
                    {:handler
@@ -131,12 +88,55 @@
                         {:status :success}
                         (catch Throwable _
                           (println "Handler error!")
-                          {:status :retry})))}))
+                          {:status :retry})))})))
+
+;; component producer hacking
+(comment
+
+  (def consumer-c (redis-component/create-redis-consumer {:uri "redis://localhost:6379/"} {}))
+  (component/start consumer-c)
+  (component/stop consumer-c)
+
+  (intf/listen consumer-c {:my-queue-xpto {:queue "my-queue-xpto"
+
+                                           :handler
+                                           (fn [{:keys [message attempt]}]
+                                             (try
+                                               (println "Received" message "!! from consumer component")
+                                               {:status :success}
+                                               (catch Throwable _
+                                                 (println "Handler error! from consumer component")
+                                                 {:status :retry})))
+
+                                           :error-callback (fn [e] (println "Error callback" e))}
+                           :my-queue-xpto-2 {:queue "my-queue-xpto-2"
+
+                                             :handler
+                                             (fn [{:keys [message attempt]}]
+                                               (try
+                                                 (println "Received" message "!! from consumer component but different consumer for same queue")
+                                                 {:status :success}
+                                                 (catch Throwable _
+                                                   (println "Handler error! from consumer component")
+                                                   {:status :retry})))
+
+                                             :error-callback (fn [e] (println "Error callback" e))}})
+
 
   (def producer (redis-component/create-redis-producer {:uri "redis://localhost:6379/"} {}))
 
   (component/start producer)
 
-  (intf/send-message producer {:destination {:queue "my-queue-xpto"} 
-                               :message {:payload "my message!" :meta {:a 1 :b 2}} })
+  (intf/send-message producer {:destination {:queue "my-queue-xpto-2"}
+                               :message {:payload "my message!" :meta {:a 1 :b 2}}} {})
+
+  
+  
+  (doseq [_ (range 5)]
+    (intf/send-messages producer [{:destination {:queue "my-queue-xpto"}
+                                   :message {:payload "my message!" :meta {:a 1 :b 2}}}
+                                  {:destination {:queue "my-queue-xpto-2"}
+                                   :message {:payload "my message!" :meta {:a 1 :b 2}}}] {:async? true}))
+  
+  ;;
   )
