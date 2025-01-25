@@ -13,12 +13,6 @@
 ;- :max-idle-per-key  ; Max num of idle conns to keep per sub-pool (Default 16)
 ;- :max-total-per-key ; Max num of idle or active conns <...>      (Default 16)
 (def poll-configs {})
-
-(defonce my-conn-pool (car/connection-pool poll-configs)) ; Create a new stateful pool
-
-;; (defmacro wcar* [& body] `(car/wcar my-wcar-opts ~@body))
-(defn wcar* [opts & body] (car/wcar opts body))
-
 (def default-producer-ops {:async? false})
 
 (defrecord RedisProducer [server-info pool-settings]
@@ -78,43 +72,20 @@
   (stop [this]
     (println "Stopping Redis Consumer")
     ;; before dissoc the redis-consumer we need to stop all the consumers listeners in :redis-consumer :consumers
-    (doseq [worker (-> this tap :redis-consumer tap :consumers)]
-      (tap (deref worker))
+    (doseq [worker (-> this :redis-consumer :consumers)]
+      (deref worker)
       (worker :stop))
     (dissoc this :redis-consumer))
 
   intf/CommonConsumer
   (listen
     [this settings] ;; settings will be {:consumer-x {:handler s/fn :error-callback s/fn :queue s/str}}
-    (let [wcar-opts (-> this tap :redis-consumer :wcar)
+    (let [wcar-opts (-> this :redis-consumer :wcar)
           list (-> settings vals)
           consumers-list (start-list list wcar-opts)
-          redis-consumer (tap (:redis-consumer this))
+          redis-consumer (:redis-consumer this)
           with-consumers (assoc redis-consumer :consumers consumers-list)]
       (assoc this :redis-consumer with-consumers))))
 
 (defn create-redis-consumer [server-info pool-settings]
   (->RedisConsumer server-info pool-settings))
-
-(comment
-
-  (zipmap (keys {:consumer-x {:handler println :error-callback println :queue "a-queue-x"}
-                 :consumer-y {:handler println :error-callback println :queue "a-queue-y"}})
-          (vals {:consumer-x {:handler println :error-callback println :queue "a-queue-x"}
-                 :consumer-y {:handler println :error-callback println :queue "a-queue-y"}}))
-
-  (vals {:consumer-x {:handler println :error-callback println :queue "a-queue-x"}
-         :consumer-y {:handler println :error-callback println :queue "a-queue-y"}})
-
-  (vals {:consumer-x {:handler println :error-callback println :queue "a-queue"}})
-
-  (type (vals {:consumer-x {:handler println :error-callback println :queue "a-queue"}}))
-  (type {:consumer-x {:handler println :error-callback println :queue "a-queue"}})
-
-  (map println (vals {:consumer-x {:handler println :error-callback println :queue "a-queue-x"}
-                      :consumer-y {:handler println :error-callback println :queue "a-queue-y"}}))
-
-  ;;
-
-  (merge default-producer-ops {})
-  (merge default-producer-ops {:async? true}))
