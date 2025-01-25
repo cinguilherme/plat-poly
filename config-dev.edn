@@ -6,5 +6,10 @@
             :secret-key "test"
             :endpoint "http://localhost:4566"}
 
+ :kafka {:bootstrap-servers "localhost:9092"}
+
+ :mongodb {:server-address "localhost"
+           :db-name "dev_db"}
+ 
  :redis {:host "localhost"
          :port  6379}}

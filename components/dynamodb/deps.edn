@@ -2,6 +2,8 @@
  :deps {
         ;; https://github.com/Taoensso/faraday
         com.taoensso/faraday {:mvn/version "1.12.0"}
+
+        poly/common {:local/root "../../components/common"} ;; common
  }
  :aliases {:test {:extra-paths ["test"]
                   :extra-deps {}}}}

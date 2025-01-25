@@ -2,9 +2,13 @@
               :dbname "test"    ; Name of the in-memory database
               :user "sa"        ; Default user for H2
               :password ""}
+ 
  :dynamodb {:access-key "test"
             :secret-key "test"
             :endpoint "http://localhost:4566"}
+
+ :mongodb {:server-address "localhost"
+           :db-name "test_db"}
 
  :redis {:host "localhost"
          :port  6379}}
