@@ -1,12 +1,13 @@
 {:mvn/repos {"central" {:url "https://repo1.maven.org/maven2/"}
              "clojars" {:url "https://repo.clojars.org/"}
              "confluent" {:url "https://packages.confluent.io/maven/"}}
- 
+
  :deps {org.clojure/clojure {:mvn/version "1.11.1"}
         org.clojure/core.async {:mvn/version "1.6.681"}
         org.clojure/spec.alpha {:mvn/version "0.3.218"}
         nubank/state-flow {:mvn/version "2.2.4"}
         prismatic/schema {:mvn/version "1.4.1"}
+        
         ;; enviroment
         environ/environ {:mvn/version "1.2.0"}
         cprop/cprop {:mvn/version "0.1.19"}
@@ -29,6 +30,20 @@
                                 "components/common/resources"
                                 "components/envs/src"
                                 "components/envs/resources"
+                                "components/common-cache/src"
+                                "components/common-cache/resources"
+                                "components/common-sql/src"
+                                "components/common-sql/resources"
+                                "components/common-store/src"
+                                "components/common-store/resources"
+                                "components/common-text-search/src"
+                                "components/common-text-search/resources"
+                                "components/common-messaging/src"
+                                "components/common-messaging/resources"
+                                "components/common-logs/src"
+                                "components/common-logs/resources"
+                                "components/common-metrics/src"
+                                "components/common-metrics/resources"
                                 "components/client_http/src"
                                 "components/client_http/resources"
                                 "components/elastic_search/src"
@@ -66,6 +81,17 @@
                                ;; core components
                                poly/common {:local/root "components/common"}
                                poly/envs {:local/root "components/envs"}
+
+                               ;; commons abstractions
+                               poly/common-cache {:local/root "components/common-cache"}
+                               poly/common-sql {:local/root "components/common-sql"}
+                               poly/common-store {:local/root "components/common-store"}
+                               poly/common-text-search {:local/root "components/common-text-search"}
+                               poly/common-messaging {:local/root "components/common-messaging"}
+                               poly/common-logs {:local/root "components/common-logs"}
+                               poly/common-metrics {:local/root "components/common-metrics"}
+
+
                                ;; base level components
 
                                ;; components leaf level dependencies
