@@ -5,6 +5,8 @@
             [gcc.platform.common-messaging.redis.component :as redis-component]
             [gcc.platform.common-messaging.interface :as intf]))
 
+
+
 (defonce my-conn-pool (car/connection-pool {})) ; Create a new stateful pool
 
 (def     my-conn-spec {:uri "redis://localhost:6379/"})
@@ -93,34 +95,38 @@
 ;; component producer hacking
 (comment
 
+  (defn handler-1 [{:keys [message attempt]}]
+    (try
+      (println "Received 1" message)
+      {:status :success}
+      (catch Throwable _
+        (println "Handler error!")
+        {:status :retry})))
+  
+  (defn handler-2 [{:keys [message attempt]}]
+    (try
+      (println "Received 2" message)
+      {:status :success}
+      (catch Throwable _
+        (println "Handler error!")
+        {:status :retry})))
+
   (def consumer-c (redis-component/create-redis-consumer {:uri "redis://localhost:6379/"} {}))
-  (component/start consumer-c)
-  (component/stop consumer-c)
+  (def active-consumer (component/start consumer-c)) 
+  (component/stop active-listeners)
 
-  (intf/listen consumer-c {:my-queue-xpto {:queue "my-queue-xpto"
+  consumer-c
+  active-consumer
 
-                                           :handler
-                                           (fn [{:keys [message attempt]}]
-                                             (try
-                                               (println "Received" message "!! from consumer component")
-                                               {:status :success}
-                                               (catch Throwable _
-                                                 (println "Handler error! from consumer component")
-                                                 {:status :retry})))
-
-                                           :error-callback (fn [e] (println "Error callback" e))}
-                           :my-queue-xpto-2 {:queue "my-queue-xpto-2"
-
-                                             :handler
-                                             (fn [{:keys [message attempt]}]
-                                               (try
-                                                 (println "Received" message "!! from consumer component but different consumer for same queue")
-                                                 {:status :success}
-                                                 (catch Throwable _
-                                                   (println "Handler error! from consumer component")
-                                                   {:status :retry})))
-
-                                             :error-callback (fn [e] (println "Error callback" e))}})
+  (def active-listeners
+    (intf/listen active-consumer
+                 {:my-queue-xpto {:queue "my-queue-xpto"
+                                  :handler handler-1
+                                  :error-callback (fn [e] (println "Error callback" e))}
+                  
+                  :my-queue-xpto-2 {:queue "my-queue-xpto-2"
+                                    :handler handler-2
+                                    :error-callback (fn [e] (println "Error callback" e))}}))
 
 
   (def producer (redis-component/create-redis-producer {:uri "redis://localhost:6379/"} {}))

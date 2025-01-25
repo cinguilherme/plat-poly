@@ -40,7 +40,7 @@
           async? (-> opsx :async?)]
       (if async?
         (future (car/wcar wcar-opts (car-mq/enqueue (:queue destination) payload)))
-        (car/wcar wcar-opts (car-mq/enqueue (:queue destination) payload))))) 
+        (car/wcar wcar-opts (car-mq/enqueue (:queue destination) payload)))))
   (send-messages [this messages ops]
     (let [opsx (merge default-producer-ops ops)
           async? (-> opsx :async?)]
@@ -48,7 +48,7 @@
               (let [wcar-opts (-> this :redis-producer :wcar)
                     payload (-> message :message)
                     destination (-> message :destination)]
-                (if async? 
+                (if async?
                   (future (car/wcar wcar-opts (car-mq/enqueue (:queue destination) payload)))
                   (car/wcar wcar-opts (car-mq/enqueue (:queue destination) payload))))) messages))))
 
@@ -59,8 +59,7 @@
 (defn start-list [list wcar-opts]
   (mapv (fn [settings]
           (println "starting consumer for settings" settings)
-          (let [_ (tap settings)
-                queue (-> settings :queue)
+          (let [queue (-> settings :queue)
                 callback (-> settings :handler)
                 error-callback (-> settings :error-callback)]
             (car-mq/worker wcar-opts queue
@@ -73,21 +72,26 @@
   (start [this]
     (let [conn-spec {:uri (-> server-info :uri)}
           conn-pool (car/connection-pool pool-settings)
-          wcar-opts {:pool conn-pool :spec conn-spec}]
-      (assoc this :redis-consumer {:wcar wcar-opts}))
-    (println "Starting Redis Consumer")
-    this)
+          wcar-opts {:pool conn-pool :spec conn-spec}] 
+      (println "Starting Redis Consumer")
+      (assoc this :redis-consumer {:wcar wcar-opts})))
   (stop [this]
     (println "Stopping Redis Consumer")
+    ;; before dissoc the redis-consumer we need to stop all the consumers listeners in :redis-consumer :consumers
+    (doseq [worker (-> this tap :redis-consumer tap :consumers)]
+      (tap (deref worker))
+      (worker :stop))
     (dissoc this :redis-consumer))
 
   intf/CommonConsumer
   (listen
     [this settings] ;; settings will be {:consumer-x {:handler s/fn :error-callback s/fn :queue s/str}}
-    (let [wcar-opts (-> this :redis-consumer :wcar)
-          _ (tap (keys settings))
-          list (tap (-> settings tap vals))]
-      (start-list list wcar-opts))))
+    (let [wcar-opts (-> this tap :redis-consumer :wcar)
+          list (-> settings vals)
+          consumers-list (start-list list wcar-opts)
+          redis-consumer (tap (:redis-consumer this))
+          with-consumers (assoc redis-consumer :consumers consumers-list)]
+      (assoc this :redis-consumer with-consumers))))
 
 (defn create-redis-consumer [server-info pool-settings]
   (->RedisConsumer server-info pool-settings))
@@ -113,5 +117,4 @@
   ;;
 
   (merge default-producer-ops {})
-  (merge default-producer-ops {:async? true})
-  )
+  (merge default-producer-ops {:async? true}))
