@@ -1,6 +1,6 @@
 {:paths ["src" "resources"]
  :deps {org.clojure/clojure {:mvn/version "1.11.1"}
-        org.clojure/core.async {:mvn/version "1.6.681"}
+        org.clojure/core.async {:mvn/version "1.6.681"} 
         com.stuartsierra/component {:mvn/version "1.1.0"}
         com.novemberain/monger {:mvn/version "3.6.0"}
         

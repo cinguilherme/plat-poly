@@ -1,5 +1,9 @@
 {:deps {org.clojure/clojure {:mvn/version "1.11.1"}
         org.clojure/tools.deps.alpha {:mvn/version "0.12.985"}
+        
+        poly/common {:local/root "../../components/common"}
+        poly/envs {:local/root "../../components/envs"}
+        
         poly/dynamodb {:local/root "../../components/dynamodb"}
         poly/redis {:local/root "../../components/redis"} 
         poly/postgres {:local/root "../../components/postgres"} 

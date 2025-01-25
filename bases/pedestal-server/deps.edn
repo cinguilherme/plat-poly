@@ -6,6 +6,8 @@
         ;; leaf components
         poly/common {:local/root "../../components/common"}
         poly/envs {:local/root "../../components/envs"}
+
+        ;; datastores
         poly/client-http {:local/root "../../components/client_http"}
         poly/dynamodb {:local/root "../../components/dynamodb"}
         poly/elastic-search {:local/root "../../components/elastic_search"}

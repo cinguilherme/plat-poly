@@ -36,6 +36,8 @@
 (defn create-collection [db collection ops]
   (mc/create db collection ops))
 
+(defn find-maps [db collection query]
+  (mc/find-maps db collection query))
 
 ;; Example Usage
 (comment

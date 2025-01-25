@@ -1,7 +1,7 @@
 (ns gcc.platform.mongo.component
   (:require
    [com.stuartsierra.component :as component]
-   [gcc.platform.common.protocols.doc-db :as doc-db]
+   [gcc.platform.common.interface :as c-i]
    [gcc.platform.mongo.core :as core]))
 
 (defn tap [v]
@@ -11,28 +11,30 @@
 (defrecord MongoComponent [server-info db-name]
   component/Lifecycle
     (start [this]
-      (let [vals (tap (doc-db/doc-connect this))]
+      (let [vals (tap (c-i/doc-connect this))]
         (assoc this :doc-db vals)))
     (stop [this]
       (let [{:keys [conn]} (tap (:doc-db this))]
-        (doc-db/doc-disconnect this conn)
+        (c-i/doc-disconnect this conn)
         (dissoc this :doc-db)))
   
-  doc-db/Docdoc
+  common-interface/DocDB
   (doc-connect [this]
     (core/init-mongo-connection server-info db-name))
   (doc-disconnect [this conn]
     (core/disconnect conn))
   (doc-create-collection [this collection ops]
     (core/create-collection db-name collection ops))
-  (doc-insert [this collection map-document]
-    (core/insert collection map-document))
+  (doc-insert [this collection map-document] 
+    (let [{:keys [conn db]} (tap (:doc-db this))]
+      (core/insert db collection map-document)))
   (doc-update [this collection query update]
     (throw (Exception. "Not implemented")))
   (doc-delete [this collection query]
     (throw (Exception. "Not implemented")))
   (doc-find-maps [this collection query]
-    (throw (Exception. "Not implemented")))
+    (let [{:keys [conn db]} (tap (:doc-db this))]
+      (core/find-maps db collection query))             )
   (doc-find-map [this collection query]
     (throw (Exception. "Not implemented"))))
 
