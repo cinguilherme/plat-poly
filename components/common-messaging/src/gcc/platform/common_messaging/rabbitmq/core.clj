@@ -31,6 +31,7 @@
     (mapv #(init-consumer ch %) consumers))
 
 
+  
   (let [
         conn  (rmq/connect {:host "127.0.0.1" :port 5672})
         ch    (lch/open conn)

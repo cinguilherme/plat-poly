@@ -12,6 +12,7 @@
             [langohr.basic     :as lb]
             ;; end rabbit
             
+            [gcc.platform.common-messaging.in-mem-event-bus.component :as in-mem]
             ))
 
 
@@ -133,6 +134,7 @@
 
 ;; component producer hacking
 (comment
+  
 
   (defn handler-1 [{:keys [message attempt]}]
     (try
@@ -183,5 +185,53 @@
                                   {:destination {:queue "my-queue-xpto-2"}
                                    :message {:payload "my message!" :meta {:a 1 :b 2}}}] {:async? true}))
   
+  ;;
+  )
+
+
+(comment
+
+  (def cc (in-mem/create-in-mem-consumer (:event-bus sc) (atom {}) (atom false)))
+  (def active-listeners (component/start cc))
+  (intf/listen active-listeners
+               {:queue "a-queue"
+                :handler (fn [message]
+                           (println "Received" message))})
+  (intf/listen active-listeners
+               {:queue "a-queue-2"
+                :handler (fn [message]
+                           (println "Received" message))})
+  active-listeners
+
+  (def c (in-mem/create-in-mem-producer))
+  (def sc (component/start c))
+  @(:event-bus sc)
+
+  (intf/send-message sc {:destination {:queue "a-queue"}
+                         :message {:payload "my message!" :meta {:a 1 :b 2}}}
+                     {})
+
+  (intf/send-message sc {:destination {:queue "a-queue-2"}
+                         :message {:payload "my message for queue 2!" :meta {:a 1 :b 2}}}
+                     {})
+
+  (doseq [_ (range 10)]
+    (intf/send-messages sc [{:destination {:queue "a-queue"}
+                             :message {:payload "my message!" :meta {:a 1 :b 2}}}
+                            {:destination {:queue "a-queue"}
+                             :message {:payload "my message 34!" :meta {:a 1 :b 2}}}
+                            {:destination {:queue "a-queue"}
+                             :message {:payload "my message 66!" :meta {:a 1 :b 2}}}
+                            {:destination {:queue "a-queue-2"}
+                             :message {:payload "my message for queue 2!" :meta {:a 1 :b 2}}}]
+                        {}))
+
+  (def a (atom {}))
+  (-> "a-queue" keyword)
+  (swap! a assoc :queue {})
+  (swap! a assoc :queue-2 {})
+
+  (deref a)
+
   ;;
   )
