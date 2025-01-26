@@ -2,7 +2,7 @@
   (:require
    [clojure.core.async :as async]
    [com.stuartsierra.component :as component]
-   [gcc.platform.common-messaging.interface :as intf]
+   [gcc.platform.common-messaging.protocols :as protocol]
    [gcc.platform.common-messaging.core-async.core :as core]))
 
 (defrecord CoreAsyncProducer [channels]
@@ -14,7 +14,7 @@
       (async/close! ch))
     (assoc this :channels nil))
 
-  intf/CommonProducer
+  protocol/CommonProducer
   (send-message [this message ops]
     (let [queue   (-> message :destination :queue keyword)
           payload (-> message :message)
@@ -49,7 +49,7 @@
     ;; optionally close channels or let the producer handle it
     (assoc this :threads-atom nil :stop?-atom nil))
 
-  intf/CommonConsumer 
+  protocol/CommonConsumer 
   (listen [this {:keys [queue handler]}]
     (let [queue-k (keyword queue)
           ch      (get @channels queue-k)]

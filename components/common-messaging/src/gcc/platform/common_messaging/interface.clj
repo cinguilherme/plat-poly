@@ -1,25 +1,42 @@
-(ns gcc.platform.common-messaging.interface)
+(ns gcc.platform.common-messaging.interface
+  (:require [gcc.platform.common-messaging.in-mem-event-bus.component :as in-mem-event-bus]
+            [gcc.platform.common-messaging.core-async.component :as core-async]
+            [gcc.platform.common-messaging.rabbitmq.component :as rabbitmq]
+            [gcc.platform.common-messaging.redis.component :as redis]
+            [gcc.platform.common-messaging.core :as core]))
 
-(defprotocol CommonProducer
-  "A protocol for sending messages to a message queue, 
-   has to be generic to the point of not knowing the underlying implementation 
-   and working fine with Redis, Kafka, SQS, RabbitMQ, etc.
-   message is a map and at least it has a key :message and :destination each being a map 
-   witch underling component implementation may require diferent keys
-    ops is a config map that should be adhered by all implementations with the following keys
-    :async? s/Bool default false, this will indicate if the producer will be async or not for blocking or non blocking operation"
-  (send-message 
-    [this message]
-    [this message ops])
-  (send-messages 
-    [this messages]
-    [this messages ops]))
+(defn new-producer-component [{:keys [kind] :as settings}])
 
-(defprotocol CommonConsumer
-  "Start a consumer worker for a given settings
-   settings is a map with the following keys: {:event-consumer-x {:handler s/fn :reciever-details s/map}}
-    details will be provided by the implementation detail for each messaging technology
-    and optionally an `ops` map for implementation-specific options."
-  (listen
-    [this setting]
-    [this setting ops]))
+(defn create-new-in-memory-consumer [{:keys [bus threads-atom stop?-atom]}]
+  (let [bus (or bus (ex-info "bus is required" {}))
+        threads-atom (or threads-atom (atom {}))
+        stop?-atom (or stop?-atom (atom false))]
+    (in-mem-event-bus/create-in-mem-consumer bus threads-atom stop?-atom)))
+
+(defn create-new-in-mem-core-async-consumer [{:keys [channels]}]
+  (let [channels (or channels (atom {}))]
+    (core-async/create-core-async-consumer channels)))
+
+(defn create-new-in-memory-producer [configs]
+  (in-mem-event-bus/create-in-mem-producer))
+
+(defn create-new-in-mem-core-async-producer [configs]
+  (core-async/create-core-async-producer))
+
+(defn new-producer-component [{:keys [kind configs] :as settings}]
+  (when (core/exists? core/kind-set kind)
+    (throw (IllegalArgumentException. (str "Invalid kind: " kind))))
+  (cond-> (case kind
+            :in-mem        (create-new-in-memory-producer configs)
+            ;:in-mem-async  (core-async/create-core-async-producer)
+            ;:rabbitmq     (rabbitmq/new-producer-component settings)
+            :redis         (redis/create-redis-producer))))
+
+(defn new-consumer-component [{:keys [kind configs] :as settings}]
+  (when (core/exists? core/kind-set kind)
+    (throw (IllegalArgumentException. (str "Invalid kind: " kind))))
+  (cond-> (case kind
+            :in-mem        (create-new-in-memory-consumer configs)
+            ;:in-mem-async  (core-async/create-core-async-consumer)
+            ;:rabbitmq     (rabbitmq/new-consumer-component settings)
+            :redis         (redis/create-redis-consumer))))

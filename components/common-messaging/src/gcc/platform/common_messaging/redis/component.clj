@@ -1,6 +1,6 @@
 (ns gcc.platform.common-messaging.redis.component
   (:require [com.stuartsierra.component :as component]
-            [gcc.platform.common-messaging.interface :as intf]
+            [gcc.platform.common-messaging.protocols :as proto]
             [taoensso.carmine :as car :refer [wcar]]
             [taoensso.carmine.message-queue :as car-mq]
             [clojure.pprint :as pprint]))
@@ -25,7 +25,7 @@
   (stop [this]
     (dissoc this :redis-producer))
 
-  intf/CommonProducer
+  proto/CommonProducer
   (send-message [this message ops]
     (let [opsx (tap (merge default-producer-ops ops))
           wcar-opts (-> this :redis-producer :wcar)
@@ -77,7 +77,7 @@
       (worker :stop))
     (dissoc this :redis-consumer))
 
-  intf/CommonConsumer
+  proto/CommonConsumer
   (listen
     [this settings] ;; settings will be {:consumer-x {:handler s/fn :error-callback s/fn :queue s/str}}
     (let [wcar-opts (-> this :redis-consumer :wcar)

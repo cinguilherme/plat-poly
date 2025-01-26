@@ -74,6 +74,8 @@
                                 "components/pedestal/resources"
                                 "components/files/src"
                                 "components/files/resources"
+                                "components/sample-mono-system/src"
+                                "components/sample-mono-system/resources"
                                 "bases/cli/src"
                                 "bases/cli/resources"
                                 "bases/pedestal-server/src"
@@ -92,7 +94,6 @@
                                poly/common-messaging {:local/root "components/common-messaging"}
                                poly/common-logs {:local/root "components/common-logs"}
                                poly/common-metrics {:local/root "components/common-metrics"}
-
 
                                ;; base level components
 
@@ -113,6 +114,9 @@
 
                                ;; composed component
                                poly/pedestal {:local/root "components/pedestal"} ;; pedestal HTTP server
+
+                               ;; full systems
+                               poly/sample-mono-system {:local/root "components/sample-mono-system"} ;; sample mono system
 
                                ;; need component for async message processing (SQS/Kafka/Redis/In Memory Queue Messagin even)
                                ;; end of composed

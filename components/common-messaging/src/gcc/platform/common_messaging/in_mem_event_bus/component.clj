@@ -2,7 +2,7 @@
   (:require
    [clojure.pprint :refer [pprint]]
    [com.stuartsierra.component :as component]
-   [gcc.platform.common-messaging.interface :as intf]
+   [gcc.platform.common-messaging.protocols :as proto]
    [gcc.platform.common-messaging.in-mem-event-bus.core :as core]))
 
 (defn tap [x]
@@ -18,7 +18,7 @@
     (reset! (:event-bus this) {})
     (dissoc this :event-bus))
 
-  intf/CommonProducer
+  proto/CommonProducer
   (send-message [this message ops]
     (let [destination (-> message :destination :queue keyword)
           payload     (-> message :message)]
@@ -64,7 +64,7 @@
     (assoc this :stop?-atom nil
            :threads-atom nil))
 
-  intf/CommonConsumer
+  proto/CommonConsumer
   (listen [this settings]
     ;; Listen for messages on the queue specified by :queue, 
     ;; calling the function in :handler each time a message arrives.

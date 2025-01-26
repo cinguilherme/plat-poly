@@ -1,0 +1,1 @@
+(ns gcc.platform.sample-mono-system.core)
