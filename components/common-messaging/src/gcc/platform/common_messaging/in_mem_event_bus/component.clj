@@ -2,7 +2,8 @@
   (:require
    [clojure.pprint :refer [pprint]]
    [com.stuartsierra.component :as component]
-   [gcc.platform.common-messaging.interface :as intf]))
+   [gcc.platform.common-messaging.interface :as intf]
+   [gcc.platform.common-messaging.in-mem-event-bus.core :as core]))
 
 (defn tap [x]
   (pprint x)
@@ -44,27 +45,6 @@
 (defn create-in-mem-producer []
   (->InMemEventBusProducer {}))
 
-(defn poll-queue!
-  "Continuously pops messages from the given `queue` key in `event-bus`
-   and invokes `handler` on each.  Stops when `stop?` atom becomes true."
-  [event-bus queue-key handler stop?]
-  (future
-    (while (not @stop?)
-      (let [message (atom nil)]
-        ;; Atomically pop one message off the queue (if any):
-        (swap! event-bus
-               (fn [bus]
-                 (let [q (get bus queue-key clojure.lang.PersistentQueue/EMPTY)]
-                   (if (empty? q)
-                     bus
-                     (do
-                       (reset! message (peek q))    ;; capture the message
-                       (assoc bus queue-key (pop q)))))))
-        ;; If we got a message, invoke the handler:
-        (when-let [m @message]
-          (handler m)))
-      (Thread/sleep 50)))) ;; Sleep a bit to avoid tight loop
-
 ;; Consumer
 (defrecord InMemEventBusConsumer [event-bus threads-atom stop?-atom]
   component/Lifecycle
@@ -90,7 +70,7 @@
     ;; calling the function in :handler each time a message arrives.
     (let [queue   (-> settings :queue keyword)
           handler (-> settings :handler)
-          fut     (poll-queue! event-bus queue handler stop?-atom)]
+          fut     (core/poll-queue! event-bus queue handler stop?-atom)]
       (swap! threads-atom assoc queue fut))
     nil))
 

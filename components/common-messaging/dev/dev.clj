@@ -13,6 +13,7 @@
             ;; end rabbit
             
             [gcc.platform.common-messaging.in-mem-event-bus.component :as in-mem]
+            [gcc.platform.common-messaging.core-async.component :as ca]
             ))
 
 
@@ -217,6 +218,60 @@
 
   (doseq [_ (range 10)]
     (intf/send-messages sc [{:destination {:queue "a-queue"}
+                             :message {:payload "my message!" :meta {:a 1 :b 2}}}
+                            {:destination {:queue "a-queue"}
+                             :message {:payload "my message 34!" :meta {:a 1 :b 2}}}
+                            {:destination {:queue "a-queue"}
+                             :message {:payload "my message 66!" :meta {:a 1 :b 2}}}
+                            {:destination {:queue "a-queue-2"}
+                             :message {:payload "my message for queue 2!" :meta {:a 1 :b 2}}}]
+                        {}))
+
+  (def a (atom {}))
+  (-> "a-queue" keyword)
+  (swap! a assoc :queue {})
+  (swap! a assoc :queue-2 {})
+
+  (deref a)
+
+  ;;
+  )
+
+
+
+(comment
+
+  (def producer (ca/create-core-async-producer))
+  (def started-producer (component/start producer))
+  
+  ;; The producer now has :channels as an atom:
+  (:channels started-producer)
+  ;; => #atom {...}
+
+
+  (def consumer (ca/create-core-async-consumer (:channels started-producer)))
+  (def started-consumer (component/start consumer))
+  
+  (intf/listen started-consumer
+               {:queue "a-queue"
+                :handler (fn [message]
+                           (println "Received" message))})
+  (intf/listen started-consumer
+               {:queue "a-queue-2"
+                :handler (fn [message]
+                           (println "Received" message))})
+  started-consumer
+  
+  (intf/send-message started-producer {:destination {:queue "a-queue"}
+                         :message {:payload "my message!" :meta {:a 1 :b 2}}}
+                     {})
+
+  (intf/send-message started-producer {:destination {:queue "a-queue-2"}
+                         :message {:payload "my message for queue 2!" :meta {:a 1 :b 2}}}
+                     {})
+
+  (doseq [_ (range 10)]
+    (intf/send-messages started-producer [{:destination {:queue "a-queue"}
                              :message {:payload "my message!" :meta {:a 1 :b 2}}}
                             {:destination {:queue "a-queue"}
                              :message {:payload "my message 34!" :meta {:a 1 :b 2}}}
