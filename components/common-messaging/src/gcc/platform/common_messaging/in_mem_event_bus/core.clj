@@ -1,4 +1,6 @@
-(ns gcc.platform.common-messaging.in-mem-event-bus.core)
+(ns gcc.platform.common-messaging.in-mem-event-bus.core 
+  (:require
+   [clojure.pprint :refer [pprint]]))
 
 (defn poll-queue!
   "Continuously pops messages from the given `queue` key in `event-bus`
@@ -20,3 +22,11 @@
         (when-let [m @message]
           (handler m)))
       (Thread/sleep 50))))
+
+(defn iterate-consumer-map-add-listeners! 
+  [threads-atom stop?-atom consumer-map event-bus]
+  (doseq [[_ {:keys [queue handler]}] consumer-map]
+    (pprint queue)
+    (pprint handler)
+    (let [fut (poll-queue! event-bus (keyword queue) handler stop?-atom)]
+      (swap! threads-atom assoc queue fut))))

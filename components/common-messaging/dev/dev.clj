@@ -320,18 +320,21 @@
   active-prod
   (component/stop active-prod)
 
+  
+  ;; consumer
   (def cons-c (intf/new-consumer-component {:kind :in-mem 
                                             :configs configs}))
   cons-c
 
   (def active-cons (component/start cons-c))
   active-cons
+  (component/stop active-cons)
 
-  (proto/listen active-cons
+  #_(proto/listen active-cons
                 {:queue "a-queue"
                  :handler (fn [message]
                             (println "Received" message))})
-  (proto/listen active-cons
+  #_(proto/listen active-cons
                 {:queue "a-queue-2"
                  :handler (fn [message]
                             (println "Received" message))})

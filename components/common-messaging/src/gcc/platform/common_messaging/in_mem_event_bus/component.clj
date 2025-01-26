@@ -55,6 +55,7 @@
   ([events-map bus]
    (->InMemEventBusProducer events-map bus)))
 
+
 ;; Consumer
 (defrecord InMemEventBusConsumer [event-bus threads-atom stop?-atom auto-start? events-map consumer-map]
   component/Lifecycle
@@ -63,9 +64,11 @@
     ;; On start, initialize controlling atoms if they aren’t set yet:
     (let [stop?-atom   (or stop?-atom (atom false))
           threads-atom (or threads-atom (atom {}))]
+      (core/iterate-consumer-map-add-listeners! 
+       threads-atom stop?-atom consumer-map event-bus))
       (assoc this
              :stop?-atom stop?-atom
-             :threads-atom threads-atom)))
+             :threads-atom threads-atom))
 
   (stop [this]
     (println "In Mem Event Bus Consumer stopping")
