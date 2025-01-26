@@ -1,9 +1,9 @@
 (ns gcc.platform.pedestal-server.routes.hello-json
-  (:require [gcc.platform.elastic_search.component :as esc]
+  (:require [cheshire.core :as json]
+            [gcc.platform.elastic_search.interface :as esc]
             [gcc.platform.redis.interface :as redis]
             [gcc.platform.postgres.interface :as postgres]
-            [gcc.platform.dynamodb.interface :as dynamodb]
-             [cheshire.core :as json]))
+            [gcc.platform.dynamodb.interface :as dynamodb]))
 
 
 (defn postgres-stuff [postgres]

@@ -8,6 +8,7 @@
         poly/redis {:local/root "../../components/redis"} 
         poly/postgres {:local/root "../../components/postgres"} 
         poly/pedestal {:local/root "../../components/pedestal"}
+        
         poly/pedestal-server {:local/root "../../bases/pedestal-server"}}
 
  :aliases {:test {:extra-paths []

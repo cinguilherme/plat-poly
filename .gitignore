@@ -58,6 +58,9 @@ bases/**/.calva
 ## eg bases/pedestal-server/.calva/output-window/output.calva-repl
 
 
+#ignore any .lsp in any folder
+**/.lsp
+
 
 # Cursive
 

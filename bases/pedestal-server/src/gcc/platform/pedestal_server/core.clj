@@ -1,16 +1,14 @@
 (ns gcc.platform.pedestal-server.core
-  (:require [gcc.platform.pedestal.interface :as pedestal]
-            [gcc.platform.sqs_producer.interface :as sqs-producer]
-            ;;[gcc.platform.sqs_consumer.interface :as sqs-consumer]
-            [gcc.platform.redis.interface :as redis]
-            [gcc.platform.postgres.interface :as postgres]
-            [gcc.platform.dynamodb.interface :as dynamodb]
-            [gcc.platform.elastic_search.component :as esc]
-            [com.stuartsierra.component :as component]
-            [gcc.platform.common.interface :as common]
-            [gcc.platform.envs.interface :as envs]
-            [gcc.platform.pedestal-server.routes.routes :as routes]
-            [clojure.pprint :refer [pprint]])
+  (:require  [com.stuartsierra.component :as component]
+             [clojure.pprint :refer [pprint]]
+             [gcc.platform.pedestal.interface :as pedestal]
+             [gcc.platform.sqs_producer.interface :as sqs-producer]
+             [gcc.platform.redis.interface :as redis]
+             [gcc.platform.postgres.interface :as postgres]
+             [gcc.platform.dynamodb.interface :as dynamodb]
+             [gcc.platform.elastic_search.interface :as esc]
+             [gcc.platform.envs.interface :as envs]
+             [gcc.platform.pedestal-server.routes.routes :as routes])
   (:gen-class))
 
 (def config (envs/load-config-for-env-plus-envs
@@ -26,13 +24,6 @@
 
 (pprint sqs-producer-conf)
 (pprint relational-conf)
-
-#_(def credentials
-  {:access-key (envs/get-env :AWS_ACCESS_KEY_ID)
-   :secret-key (envs/get-env :AWS_SECRET_ACCESS_KEY)
-   :region (envs/get-env :AWS_REGION)
-   :path-style-access false
-   :endpoint (envs/get-env :AWS_ENDPOINT)})
 
 (def localstack-credentials
   {:access-key "test"
