@@ -1,4 +1,4 @@
 {:paths ["src" "resources"]
- :deps {}
+ :deps {com.taoensso/timbre {:mvn/version "6.3.1"}}
  :aliases {:test {:extra-paths ["test"]
                   :extra-deps {}}}}
