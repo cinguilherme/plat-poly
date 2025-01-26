@@ -239,6 +239,7 @@
 
 
 
+;; core async stuff
 (comment
 
   (def producer (ca/create-core-async-producer))
@@ -252,6 +253,8 @@
   (def consumer (ca/create-core-async-consumer (:channels started-producer)))
   (def started-consumer (component/start consumer))
   
+started-consumer
+
   (intf/listen started-consumer
                {:queue "a-queue"
                 :handler (fn [message]
@@ -280,13 +283,5 @@
                             {:destination {:queue "a-queue-2"}
                              :message {:payload "my message for queue 2!" :meta {:a 1 :b 2}}}]
                         {}))
-
-  (def a (atom {}))
-  (-> "a-queue" keyword)
-  (swap! a assoc :queue {})
-  (swap! a assoc :queue-2 {})
-
-  (deref a)
-
   ;;
   )

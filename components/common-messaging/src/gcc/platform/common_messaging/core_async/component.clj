@@ -49,7 +49,7 @@
     ;; optionally close channels or let the producer handle it
     (assoc this :threads-atom nil :stop?-atom nil))
 
-  intf/CommonConsumer
+  intf/CommonConsumer 
   (listen [this {:keys [queue handler]}]
     (let [queue-k (keyword queue)
           ch      (get @channels queue-k)]
