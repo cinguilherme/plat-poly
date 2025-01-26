@@ -1,7 +1,11 @@
 (ns gcc.platform.common-messaging.redis.core
-  (:require [taoensso.carmine :as car :refer [wcar]]
+  (:require [clojure.pprint :as pprint]
+            [taoensso.carmine :as car :refer [wcar]]
             [taoensso.carmine.message-queue :as car-mq]))
 
+(defn tap [v]
+  (pprint/pprint  v)
+  v)
 
 (defonce my-conn-pool (car/connection-pool {})) ; Create a new stateful pool
 

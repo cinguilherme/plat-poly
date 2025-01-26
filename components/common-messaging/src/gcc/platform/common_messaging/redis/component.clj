@@ -15,7 +15,7 @@
 (def poll-configs {})
 (def default-producer-ops {:async? false})
 
-(defrecord RedisProducer [server-info pool-settings]
+(defrecord RedisProducer [server-info pool-settings events-map consumer-map]
   component/Lifecycle
   (start [this]
     (let [conn-spec {:uri (-> server-info :uri)}
@@ -46,8 +46,11 @@
                   (future (car/wcar wcar-opts (car-mq/enqueue (:queue destination) payload)))
                   (car/wcar wcar-opts (car-mq/enqueue (:queue destination) payload))))) messages))))
 
-(defn create-redis-producer [server-info pool-settings]
-  (->RedisProducer server-info pool-settings))
+(defn create-redis-producer 
+  ([server-info pool-settings]
+   (->RedisProducer server-info pool-settings {} {}))
+  ([server-info pool-settings events-map consumer-map]
+   (->RedisProducer server-info pool-settings events-map consumer-map)))
 
 (declare start-list)
 (defn start-list [list wcar-opts]
@@ -61,7 +64,7 @@
                             :error-callback error-callback})))
         list))
 
-(defrecord RedisConsumer [server-info pool-settings]
+(defrecord RedisConsumer [server-info pool-settings events-map consumer-map]
   component/Lifecycle
   (start [this]
     (let [conn-spec {:uri (-> server-info :uri)}
@@ -87,5 +90,8 @@
           with-consumers (assoc redis-consumer :consumers consumers-list)]
       (assoc this :redis-consumer with-consumers))))
 
-(defn create-redis-consumer [server-info pool-settings]
-  (->RedisConsumer server-info pool-settings))
+(defn create-redis-consumer 
+  ([server-info pool-settings]
+   (->RedisConsumer server-info pool-settings {} {}))
+  ([server-info pool-settings events-map consumer-map]
+   (->RedisConsumer server-info pool-settings events-map consumer-map)))

@@ -25,13 +25,21 @@
 (defn create-new-in-mem-core-async-producer [configs]
   (core-async/create-core-async-producer))
 
+(defn create-new-redis-producer 
+  [{:keys [server-info pool-settings events-map consumer-map] :as configs}]
+  (redis/create-redis-producer server-info pool-settings events-map consumer-map))
+
+(defn create-new-redis-consumer
+  [{:keys [server-info pool-settings events-map consumer-map] :as configs}]
+  (redis/create-redis-consumer server-info pool-settings events-map consumer-map))
+
 (defn new-producer-component [{:keys [kind configs] :as settings}]
   (core/check-kind! kind)
   (cond-> (case kind
             :in-mem        (create-new-in-memory-producer configs)
             ;:in-mem-async  (core-async/create-core-async-producer)
             ;:rabbitmq     (rabbitmq/new-producer-component settings)
-            :redis         (redis/create-redis-producer))))
+            :redis         (create-new-redis-producer configs))))
 
 (defn new-consumer-component [{:keys [kind configs] :as settings}]
   (core/check-kind! kind)
@@ -39,4 +47,4 @@
             :in-mem        (create-new-in-memory-consumer configs)
             ;:in-mem-async  (core-async/create-core-async-consumer)
             ;:rabbitmq     (rabbitmq/new-consumer-component settings)
-            :redis         (redis/create-redis-consumer))))
+            :redis         (create-new-redis-consumer configs))))

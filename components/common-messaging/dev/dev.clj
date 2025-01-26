@@ -3,7 +3,7 @@
             [taoensso.carmine.message-queue :as car-mq]
             [com.stuartsierra.component :as component]
             [gcc.platform.common-messaging.redis.component :as redis-component]
-            
+
             ;; rabitMQ
             [langohr.core      :as rmq]
             [langohr.channel   :as lch]
@@ -14,12 +14,10 @@
 
             [gcc.platform.common-messaging.in-mem-event-bus.component :as in-mem]
             [gcc.platform.common-messaging.core-async.component :as ca]
-            
+
             ;; top level interface
             [gcc.platform.common-messaging.interface :as intf]
-            [gcc.platform.common-messaging.protocols :as proto]
-            
-            ))
+            [gcc.platform.common-messaging.protocols :as proto]))
 
 
 ;; rabit mq stuff
@@ -292,7 +290,7 @@
   )
 
 
-;; using the interface top level instructions
+;; using the interface top level instructions for in memory funcionalities
 (comment
 
   (def events-map
@@ -300,7 +298,7 @@
      :queue-2 "a-queue-2"})
   (def bus (atom {}))
 
-  (def configs 
+  (def configs
     {:bus bus
      :events-map events-map
      :consumer-map {:first {:queue "a-queue"
@@ -309,10 +307,10 @@
                     :second {:queue "a-queue-2"
                              :handler (fn [message]
                                         (println "Received" message))}}})
-  
 
 
-  (def prod-c (intf/new-producer-component 
+
+  (def prod-c (intf/new-producer-component
                {:kind :in-mem
                 :configs configs}))
   prod-c
@@ -320,9 +318,9 @@
   active-prod
   (component/stop active-prod)
 
-  
+
   ;; consumer
-  (def cons-c (intf/new-consumer-component {:kind :in-mem 
+  (def cons-c (intf/new-consumer-component {:kind :in-mem
                                             :configs configs}))
   cons-c
 
@@ -331,18 +329,68 @@
   (component/stop active-cons)
 
   #_(proto/listen active-cons
-                {:queue "a-queue"
-                 :handler (fn [message]
-                            (println "Received" message))})
+                  {:queue "a-queue"
+                   :handler (fn [message]
+                              (println "Received" message))})
   #_(proto/listen active-cons
-                {:queue "a-queue-2"
-                 :handler (fn [message]
-                            (println "Received" message))})
+                  {:queue "a-queue-2"
+                   :handler (fn [message]
+                              (println "Received" message))})
 
   (proto/send-messages active-prod [{:destination {:queue "a-queue"}
                                      :message {:payload "my message!" :meta {:a 1 :b 2}}}
                                     {:destination {:queue "a-queue-2"}
                                      :message {:payload "my message for queue 2!" :meta {:a 1 :b 2}}}]
-                       {})
+                       {}))
 
-  )
+
+
+;; using the interface top level instructions for REDIS
+(comment
+
+  (def configs
+    {:server-info {:uri "redis://localhost:6379/"}
+     :pool-settings {}
+     :events-map {:queue-1 "a-queue"
+                  :queue-2 "a-queue-2"}
+     :consumer-map {:first {:queue "a-queue"
+                            :handler (fn [message]
+                                       (println "Received" message))}
+                    :second {:queue "a-queue-2"
+                             :handler (fn [message]
+                                        (println "Received" message))}}})
+
+
+
+  (def prod-c (intf/new-producer-component
+               {:kind :redis
+                :configs configs}))
+  prod-c
+  (def active-prod (component/start prod-c))
+  active-prod
+  (component/stop active-prod)
+
+
+  ;; consumer
+  (def cons-c (intf/new-consumer-component {:kind :redis
+                                            :configs configs}))
+  cons-c
+
+  (def active-cons (component/start cons-c))
+  active-cons
+  (component/stop active-cons)
+
+  #_(proto/listen active-cons
+                  {:queue "a-queue"
+                   :handler (fn [message]
+                              (println "Received" message))})
+  #_(proto/listen active-cons
+                  {:queue "a-queue-2"
+                   :handler (fn [message]
+                              (println "Received" message))})
+
+  (proto/send-messages active-prod [{:destination {:queue "a-queue"}
+                                     :message {:payload "my message!" :meta {:a 1 :b 2}}}
+                                    {:destination {:queue "a-queue-2"}
+                                     :message {:payload "my message for queue 2!" :meta {:a 1 :b 2}}}]
+                       {}))
