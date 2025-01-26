@@ -3,7 +3,7 @@
             [taoensso.carmine.message-queue :as car-mq]
             [com.stuartsierra.component :as component]
             [gcc.platform.common-messaging.redis.component :as redis-component]
-            [gcc.platform.common-messaging.interface :as intf]
+            
             ;; rabitMQ
             [langohr.core      :as rmq]
             [langohr.channel   :as lch]
@@ -11,23 +11,28 @@
             [langohr.consumers :as lc]
             [langohr.basic     :as lb]
             ;; end rabbit
-            
+
             [gcc.platform.common-messaging.in-mem-event-bus.component :as in-mem]
             [gcc.platform.common-messaging.core-async.component :as ca]
+            
+            ;; top level interface
+            [gcc.platform.common-messaging.interface :as intf]
+            [gcc.platform.common-messaging.protocols :as proto]
+            
             ))
 
 
 ;; rabit mq stuff
 (comment
-  
+
   (def ^{:const true}
     default-exchange-name "")
-  
+
   (defn message-handler
     [ch {:keys [content-type delivery-tag type] :as meta} ^bytes payload]
     (println (format "[consumer] Received a message: %s, delivery tag: %d, content type: %s, type: %s"
                      (String. payload "UTF-8") delivery-tag content-type type)))
-  
+
 
   (let [conn  (rmq/connect {:host "127.0.0.1" :port 5672})
         ch    (lch/open conn)
@@ -135,7 +140,7 @@
 
 ;; component producer hacking
 (comment
-  
+
 
   (defn handler-1 [{:keys [message attempt]}]
     (try
@@ -144,7 +149,7 @@
       (catch Throwable _
         (println "Handler error!")
         {:status :retry})))
-  
+
   (defn handler-2 [{:keys [message attempt]}]
     (try
       (println "Received 2" message)
@@ -154,7 +159,7 @@
         {:status :retry})))
 
   (def consumer-c (redis-component/create-redis-consumer {:uri "redis://localhost:6379/"} {}))
-  (def active-consumer (component/start consumer-c)) 
+  (def active-consumer (component/start consumer-c))
   (component/stop active-listeners)
 
   consumer-c
@@ -165,7 +170,7 @@
                  {:my-queue-xpto {:queue "my-queue-xpto"
                                   :handler handler-1
                                   :error-callback (fn [e] (println "Error callback" e))}
-                  
+
                   :my-queue-xpto-2 {:queue "my-queue-xpto-2"
                                     :handler handler-2
                                     :error-callback (fn [e] (println "Error callback" e))}}))
@@ -178,14 +183,14 @@
   (intf/send-message producer {:destination {:queue "my-queue-xpto-2"}
                                :message {:payload "my message!" :meta {:a 1 :b 2}}} {})
 
-  
-  
+
+
   (doseq [_ (range 5)]
     (intf/send-messages producer [{:destination {:queue "my-queue-xpto"}
                                    :message {:payload "my message!" :meta {:a 1 :b 2}}}
                                   {:destination {:queue "my-queue-xpto-2"}
                                    :message {:payload "my message!" :meta {:a 1 :b 2}}}] {:async? true}))
-  
+
   ;;
   )
 
@@ -244,7 +249,7 @@
 
   (def producer (ca/create-core-async-producer))
   (def started-producer (component/start producer))
-  
+
   ;; The producer now has :channels as an atom:
   (:channels started-producer)
   ;; => #atom {...}
@@ -252,8 +257,8 @@
 
   (def consumer (ca/create-core-async-consumer (:channels started-producer)))
   (def started-consumer (component/start consumer))
-  
-started-consumer
+
+  started-consumer
 
   (intf/listen started-consumer
                {:queue "a-queue"
@@ -264,24 +269,77 @@ started-consumer
                 :handler (fn [message]
                            (println "Received" message))})
   started-consumer
-  
+
   (intf/send-message started-producer {:destination {:queue "a-queue"}
-                         :message {:payload "my message!" :meta {:a 1 :b 2}}}
+                                       :message {:payload "my message!" :meta {:a 1 :b 2}}}
                      {})
 
   (intf/send-message started-producer {:destination {:queue "a-queue-2"}
-                         :message {:payload "my message for queue 2!" :meta {:a 1 :b 2}}}
+                                       :message {:payload "my message for queue 2!" :meta {:a 1 :b 2}}}
                      {})
 
   (doseq [_ (range 10)]
     (intf/send-messages started-producer [{:destination {:queue "a-queue"}
-                             :message {:payload "my message!" :meta {:a 1 :b 2}}}
-                            {:destination {:queue "a-queue"}
-                             :message {:payload "my message 34!" :meta {:a 1 :b 2}}}
-                            {:destination {:queue "a-queue"}
-                             :message {:payload "my message 66!" :meta {:a 1 :b 2}}}
-                            {:destination {:queue "a-queue-2"}
-                             :message {:payload "my message for queue 2!" :meta {:a 1 :b 2}}}]
+                                           :message {:payload "my message!" :meta {:a 1 :b 2}}}
+                                          {:destination {:queue "a-queue"}
+                                           :message {:payload "my message 34!" :meta {:a 1 :b 2}}}
+                                          {:destination {:queue "a-queue"}
+                                           :message {:payload "my message 66!" :meta {:a 1 :b 2}}}
+                                          {:destination {:queue "a-queue-2"}
+                                           :message {:payload "my message for queue 2!" :meta {:a 1 :b 2}}}]
                         {}))
   ;;
+  )
+
+
+;; using the interface top level instructions
+(comment
+
+  (def events-map
+    {:queue-1 "a-queue"
+     :queue-2 "a-queue-2"})
+  (def bus (atom {}))
+
+  (def configs 
+    {:bus bus
+     :events-map events-map
+     :consumer-map {:first {:queue "a-queue"
+                            :handler (fn [message]
+                                       (println "Received" message))}
+                    :second {:queue "a-queue-2"
+                             :handler (fn [message]
+                                        (println "Received" message))}}})
+  
+
+
+  (def prod-c (intf/new-producer-component 
+               {:kind :in-mem
+                :configs {:events-map events-map
+                          :bus bus}}))
+  prod-c
+  (def active-prod (component/start prod-c))
+  active-prod
+
+  (def cons-c (intf/new-consumer-component {:kind :in-mem 
+                                            :configs configs}))
+  cons-c
+
+  (def active-cons (component/start cons-c))
+  active-cons
+
+  (proto/listen active-cons
+                {:queue "a-queue"
+                 :handler (fn [message]
+                            (println "Received" message))})
+  (proto/listen active-cons
+                {:queue "a-queue-2"
+                 :handler (fn [message]
+                            (println "Received" message))})
+
+  (proto/send-messages active-prod [{:destination {:queue "a-queue"}
+                                     :message {:payload "my message!" :meta {:a 1 :b 2}}}
+                                    {:destination {:queue "a-queue-2"}
+                                     :message {:payload "my message for queue 2!" :meta {:a 1 :b 2}}}]
+                       {})
+
   )

@@ -3,8 +3,8 @@
             [gcc.platform.elastic_search.interface :as esc]
             [gcc.platform.redis.interface :as redis]
             [gcc.platform.postgres.interface :as postgres]
-            [gcc.platform.dynamodb.interface :as dynamodb]))
-
+            [gcc.platform.dynamodb.interface :as dynamodb]
+            [gcc.platform.common-messaging.protocols :as proto]))
 
 (defn postgres-stuff [postgres]
   (try
@@ -52,6 +52,7 @@
 (defn respond-hello-json [request components-map]
   ;; Your implementation here, using components-map if needed
   (let [redis (get components-map :redis)
+        producer (get components-map :producer)
         ;elasticsearch (get components-map :elasticsearch)
         postgres (get components-map :postgres) 
         dynamodb (get components-map :dynamodb)
@@ -61,6 +62,9 @@
         redis-value (future (redis-stuff redis))
         postgres-value (future (postgres-stuff postgres))
         dynamodb-value (future (dynamodb-stuff dynamodb))]
+    (future 
+      (do (println "sending message to producer")
+          (proto/send-message producer {:message "Hello, world! This is a JSON response. 🔥"})))
     {:status 200
      :headers {"Content-Type" "application/json"}
      :body (json/encode {:message "Hello, world! This is a JSON response. 🔥"

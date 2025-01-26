@@ -33,12 +33,13 @@
 (defn start [server]
   (future (http/start server)))
 
-(defrecord PedestalComponent [routes redis elasticsearch dynamodb postgres sqs-producer]
+(defrecord PedestalComponent [routes redis elasticsearch dynamodb postgres sqs-producer producer]
   component/Lifecycle
 
   (start [component]
     (println "Starting PedestalComponent")
-    (let [components-map {:redis redis
+    (let [components-map {:producer producer
+                          :redis redis
                           :elasticsearch elasticsearch
                           :dynamodb dynamodb
                           :postgres postgres

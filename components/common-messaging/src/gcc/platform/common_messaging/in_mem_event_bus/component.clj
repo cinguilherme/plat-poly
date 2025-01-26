@@ -10,11 +10,13 @@
   x)
 
 ;; Producer
-(defrecord InMemEventBusProducer [event-bus]
+(defrecord InMemEventBusProducer [events-map bus]
   component/Lifecycle
   (start [this]
-    (assoc this :event-bus (atom {})))
+    (println "In Mem Event Bus Producer starting")
+    (assoc this :event-bus bus :events-map events-map))
   (stop [this]
+    (println "In Mem Event Bus Producer stopping")
     (reset! (:event-bus this) {})
     (dissoc this :event-bus))
 
@@ -42,13 +44,19 @@
               messages)))
     nil))
 
-(defn create-in-mem-producer []
-  (->InMemEventBusProducer {}))
+(defn create-in-mem-producer 
+  ([]
+   (->InMemEventBusProducer {} (atom {})))
+  ([events-map]
+   (->InMemEventBusProducer events-map (atom {})))
+  ([events-map bus]
+   (->InMemEventBusProducer events-map bus)))
 
 ;; Consumer
 (defrecord InMemEventBusConsumer [event-bus threads-atom stop?-atom]
   component/Lifecycle
   (start [this]
+    (println "In Mem Event Bus Consumer starting")
     ;; On start, initialize controlling atoms if they aren’t set yet:
     (let [stop?-atom   (or stop?-atom (atom false))
           threads-atom (or threads-atom (atom {}))]
@@ -57,6 +65,7 @@
              :threads-atom threads-atom)))
 
   (stop [this]
+    (println "In Mem Event Bus Consumer stopping")
     (reset! stop?-atom true)
     (doseq [[_ fut] @threads-atom]
       (future-cancel fut))
