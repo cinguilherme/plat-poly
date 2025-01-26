@@ -11,16 +11,19 @@
 
 ;; Producer
 (defrecord InMemEventBusProducer [events-map bus]
+  
   component/Lifecycle
+  
   (start [this]
-    (println "In Mem Event Bus Producer starting")
+    (println "In Mem Event Bus Producer starting, this has no real state since it only requires the event-bus to exist")
     (assoc this :event-bus bus :events-map events-map))
   (stop [this]
-    (println "In Mem Event Bus Producer stopping")
+    (println "In Mem Event Bus Producer stopping, removing the event-bus")
     (reset! (:event-bus this) {})
     (dissoc this :event-bus))
 
   proto/CommonProducer
+  
   (send-message [this message ops]
     (let [destination (-> message :destination :queue keyword)
           payload     (-> message :message)]
@@ -53,7 +56,7 @@
    (->InMemEventBusProducer events-map bus)))
 
 ;; Consumer
-(defrecord InMemEventBusConsumer [event-bus threads-atom stop?-atom]
+(defrecord InMemEventBusConsumer [event-bus threads-atom stop?-atom auto-start? events-map consumer-map]
   component/Lifecycle
   (start [this]
     (println "In Mem Event Bus Consumer starting")
@@ -83,6 +86,9 @@
       (swap! threads-atom assoc queue fut))
     nil))
 
-(defn create-in-mem-consumer [bus threads-atom stop?-atom]
-  (->InMemEventBusConsumer bus threads-atom stop?-atom))
+(defn create-in-mem-consumer 
+  ([bus threads-atom stop?-atom]
+   (->InMemEventBusConsumer bus threads-atom stop?-atom false {} {}))
+  ([bus threads-atom stop?-atom events-map consumer-map]
+   (->InMemEventBusConsumer bus threads-atom stop?-atom false events-map consumer-map)))
 

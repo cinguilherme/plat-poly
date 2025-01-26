@@ -314,11 +314,11 @@
 
   (def prod-c (intf/new-producer-component 
                {:kind :in-mem
-                :configs {:events-map events-map
-                          :bus bus}}))
+                :configs configs}))
   prod-c
   (def active-prod (component/start prod-c))
   active-prod
+  (component/stop active-prod)
 
   (def cons-c (intf/new-consumer-component {:kind :in-mem 
                                             :configs configs}))

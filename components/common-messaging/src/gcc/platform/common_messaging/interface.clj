@@ -8,13 +8,15 @@
 
 
 (defn create-new-in-memory-producer [{:keys [events-map bus] :as configs}]
-  (in-mem-event-bus/create-in-mem-producer events-map))
+  (in-mem-event-bus/create-in-mem-producer events-map bus))
 
-(defn create-new-in-memory-consumer [{:keys [bus threads-atom stop?-atom]}]
+(defn create-new-in-memory-consumer 
+  [{:keys [bus events-map consumer-map threads-atom stop?-atom] :as configs}]
   (let [bus (or bus (ex-info "bus is required" {}))
         threads-atom (or threads-atom (atom {}))
         stop?-atom (or stop?-atom (atom false))]
-    (in-mem-event-bus/create-in-mem-consumer bus threads-atom stop?-atom)))
+    (in-mem-event-bus/create-in-mem-consumer 
+     bus threads-atom stop?-atom events-map consumer-map)))
 
 (defn create-new-in-mem-core-async-consumer [{:keys [channels]}]
   (let [channels (or channels (atom {}))]
