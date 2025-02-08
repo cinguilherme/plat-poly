@@ -12,6 +12,9 @@
             [langohr.basic     :as lb]
             ;; end rabbit
 
+            [gcc.platform.common-messaging.rabbitmq.component :as rabbitmq]
+            [gcc.platform.common-messaging.rabbitmq.core :as rabbitmq-core]
+
             [gcc.platform.common-messaging.in-mem-event-bus.component :as in-mem]
             [gcc.platform.common-messaging.core-async.component :as ca]
 
@@ -81,6 +84,12 @@
    (car/ping)
    (car/set "foo" "bar")
    (car/get "foo")) ;
+
+  ;; create a function to map over the values of a map
+
+  ;; create a function to convert a vector of vector and reduce it to a map
+
+
 
 
   (wcar*
@@ -394,3 +403,40 @@
                                     {:destination {:queue "a-queue-2"}
                                      :message {:payload "my message for queue 2!" :meta {:a 1 :b 2}}}]
                        {}))
+
+
+;; rabbirMQ component testing
+(comment
+  
+  ;; producer
+  (def producer (rabbitmq/create-rabbitmq-producer {:host "127.0.0.1" :port 5672}))
+  (def active-producer (component/start producer))
+
+  (proto/send-message active-producer
+                      {:destination {:exchange "my-exchange"
+                                     :routing-key "my-routing-key"}
+                       :message "Hello, RabbitMQ!"}
+                      {})
+
+  (component/stop active-producer)
+  ;; end producer
+
+  (def consumer (rabbitmq/create-rabbitmq-consumer {:host "127.0.0.1" :port 5672}))
+  (def active-consumer (component/start consumer))
+  
+  (proto/listen active-consumer
+                {:exchange "my-exchange"
+                 :queue "my-queue"
+                 :routing-key "my-routing-key"
+                 :handler (fn [message] (println "Received message:" message))}) ;; Handler receives only the message string
+  
+  (Thread/sleep 5000) ;; Let it run for a while
+  
+  (component/stop active-consumer)
+
+  ;; end consumer
+
+  
+
+  ;; end comment
+  )

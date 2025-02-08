@@ -7,6 +7,14 @@
   (pprint/pprint  v)
   v)
 
+;; macro for tapd
+(defmacro tapd [v & body]
+  `(do
+     (pprint/pprint ~v)))
+
+(tapd {:a "b"})
+
+
 (defonce my-conn-pool (car/connection-pool {})) ; Create a new stateful pool
 
 (def     my-conn-spec {:uri "redis://localhost:6379/"})
