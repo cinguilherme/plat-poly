@@ -22,6 +22,15 @@ services:
 
 #$ docker run -d --hostname my-rabbit --name some-rabbit -e RABBITMQ_DEFAULT_USER=user -e RABBITMQ_DEFAULT_PASS=password rabbitmq:3-management
 
+  messaging-comp-dev-nats:
+    image: nats:latest
+    container_name: messaging-comp-dev-nats
+    ports:
+      - "4222:4222"  # Client connections
+      - "8222:8222"  # Monitoring dashboard
+    command: ["-js"]  # Enables JetStream for persistence
+    networks:
+      - common-messaging-dev-network
 
 networks:
   common-messaging-dev-network:

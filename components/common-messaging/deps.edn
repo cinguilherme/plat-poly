@@ -13,7 +13,10 @@
 
         ;; dependendies on Redis, Kafka, Sqs and RabbitMQ
         com.taoensso/carmine {:mvn/version "3.4.1"} ;; Redis Client
-        com.novemberain/langohr {:mvn/version "5.5.0"}
+        com.novemberain/langohr {:mvn/version "5.5.0"} ;; rabbitMQ Client
+
+        no.cjohansen/clj-nats {:git/url "https://github.com/cjohansen/clj-nats"
+                               :git/sha "24d030057572d6b9759eede6a9cbb9d6678ed09e"}
         }
  
  :aliases {:dev {:extra-paths ["dev"]
