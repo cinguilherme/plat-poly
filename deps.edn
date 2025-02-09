@@ -7,13 +7,17 @@
         org.clojure/spec.alpha {:mvn/version "0.3.218"}
         nubank/state-flow {:mvn/version "2.2.4"}
         prismatic/schema {:mvn/version "1.4.1"}
-        
+
         com.taoensso/timbre {:mvn/version "6.3.1"}
 
         ;; enviroment
         environ/environ {:mvn/version "1.2.0"}
         cprop/cprop {:mvn/version "0.1.19"}
         lynxeyes/dotenv  {:mvn/version "1.1.0"}
+
+        ;;
+        org.clojars.cinguilherme/async-messaging {:mvn/version "0.0.1-SNAPSHOT"}
+
         ;; enviroment end
 
         clj-time/clj-time {:mvn/version "0.15.2"}

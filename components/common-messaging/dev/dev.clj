@@ -4,6 +4,10 @@
             [com.stuartsierra.component :as component]
             [gcc.platform.common-messaging.redis.component :as redis-component]
 
+            ;; cinguilherme
+            [async-messaging.protocols :as cproto]
+            [async-messaging.in-mem-event-bus.component :as c-mem]
+
             ;; rabitMQ
             [langohr.core      :as rmq]
             [langohr.channel   :as lch]
@@ -22,6 +26,26 @@
             [gcc.platform.common-messaging.interface :as intf]
             [gcc.platform.common-messaging.protocols :as proto]))
 
+
+;;cingui
+(comment
+  
+  (def bus (atom {}))
+  (def event-map {:a-queue "a-queue"
+                  :a-queue-2 "a-queue-2"})
+
+  (def producer (component/start (c-mem/create-in-mem-producer event-map bus)))
+
+  (cproto/send-message
+   producer {:destination {:queue "a-queue"}
+             :message {:payload "my message!" :meta {:a 1 :b 2}}}
+   {})
+
+  ;; (def condsumer (component/start
+  ;;                 (c-mem/create-in-mem-consumer bus (atom {}) (atom false) event-map)))
+
+  ;;
+  )
 
 ;; rabit mq stuff
 (comment
